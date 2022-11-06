@@ -3,7 +3,7 @@ import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 
-import API from '../../components/utils/fetchAPI';
+import { getFetchTrending } from '../../components/utils/fetchAPI';
 
 export const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -14,7 +14,7 @@ export const HomePage = () => {
     setLoadind(true);
     (async () => {
       try {
-        const movies = await API.getFetchTrending();
+        const movies = await getFetchTrending();
         setMovies(movies);
         setLoadind(false);
       } catch (error) {
