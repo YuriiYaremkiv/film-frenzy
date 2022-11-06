@@ -1,19 +1,20 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { ActiveLink } from './Layout.styled';
 import css from './Layout.module.scss';
 
 export const Layout = () => {
   return (
     <>
       <header className={css.header}>
-        <NavLink to="/" className={css.link}>
-          Home
-        </NavLink>
-        <NavLink to="/movies" className={css.link}>
-          Movies
-        </NavLink>
+        <div className={css.container}>
+          <ActiveLink to="/">Home</ActiveLink>
+          <ActiveLink to="/movies">Movies</ActiveLink>
+        </div>
       </header>
       <main>
-        <Outlet />
+        <div className={css.container}>
+          <Outlet />
+        </div>
       </main>
     </>
   );

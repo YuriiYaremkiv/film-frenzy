@@ -2,16 +2,10 @@
   border-bottom: 1px solid black;
 }
 
-.link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 500;
-  color: #2a363b;
-  font-size: 18px;
-}
-
-.activeLink {
-  composes: link;
-  color: #2196f3;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid red;
 }

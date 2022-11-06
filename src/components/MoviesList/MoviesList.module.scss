@@ -1,0 +1,32 @@
+.movies__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  gap: 20px;
+  list-style: none;
+}
+
+.movies_item {
+  width: 275px;
+}
+
+.movies__link {
+  display: block;
+  width: 100%;
+
+  &:hover {
+    background-color: tomato;
+  }
+}
+
+.movies_item {
+  border: 1px solid red;
+}
+
+.movies__img {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
