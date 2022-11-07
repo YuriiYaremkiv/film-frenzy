@@ -1,56 +1,78 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {MoviesList} from '../../components/MoviesList/MoviesList'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+import { MoviesList } from '../../components/MoviesList/MoviesList';
+import { Loader } from '../../components/Loader/Loader';
+import { Error } from '../../components/Error/Error';
+import { getFetchQuery } from '../../components/utils/fetchAPI';
+import css from './Movies.module.scss';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoadind] = useState(false);
+  const [error, setError] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams('');
   const queryURL = searchParams.get('query') ?? '';
 
   const onChange = e => {
     setQuery(e.target.value);
   };
 
-
   const handleSubmit = e => {
+    let value = e.currentTarget.search.value;
+
     e.preventDefault();
-    setQuery(e.currentTarget.search.value)
-    setSearchParams({query});
-    e.currentTarget.search.value = '';
+    if (value.length === 0) {
+      Notify.info('Enter a request');
+      return;
+    }
+    setQuery(value);
+    setSearchParams({ query });
+    value = '';
   };
 
-
   const fetchQuery = query => {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=d08efe59ac708d7aace6afed9ba7eae9&language=en-US&query=${query}&page=1&include_adult=false`)
-      .then(response => response.json())
-      .then(data => setMovies(data.results))
-      .catch(error => console.log(error))
-  }
+    setLoadind(true);
+    (async () => {
+      try {
+        const movies = await getFetchQuery(query);
+        setMovies(movies);
+        setLoadind(false);
+      } catch (error) {
+        setLoadind(false);
+        setError(true);
+      }
+    })();
+  };
 
   useEffect(() => {
     if (queryURL) {
       fetchQuery(queryURL);
     }
-}, [queryURL])
-
-
-
+  }, [queryURL]);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
+          className={css.form__input}
           type="text"
           name="search"
-          value={query} 
+          value={query}
           onChange={onChange}
         />
-      <button type="submit" >
-        Search
-      </button>
-    </form>
-      {movies.length > 0 && <MoviesList movies={movies} />}
+        <button className={css.form__btn} type="submit">
+          Search
+        </button>
+      </form>
+      {loading ? <Loader /> : null}
+      {error ? <Error /> : null}
+      {movies.length > 0 ? <MoviesList movies={movies} /> : null}
+      {movies.length === 0 && queryURL.length > 0 && loading === false
+        ? 'Nothing found for your request!'
+        : null}
     </>
   );
 };
