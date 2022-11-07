@@ -19,9 +19,10 @@ export const MoviesList = ({ movies }) => {
                 className={css.movies__img}
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 alt={title}
-                width="200"
+                width="270"
+                height="409"
               />
-              <p>{title || name}</p>
+              <p className={css.movies__description}>{title || name}</p>
             </Link>
           </li>
         );

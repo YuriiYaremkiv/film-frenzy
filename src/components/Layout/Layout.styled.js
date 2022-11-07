@@ -4,12 +4,12 @@ import styled from 'styled-components';
 export const ActiveLink = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
-  padding: 12px;
-  font-weight: 500;
+  padding: 16px;
+  font-weight: 700;
   color: #2a363b;
-  font-size: 18px;
+  font-size: 24px;
 
   &.active {
-    color: red;
+    color: #d62828;
   }
 `;
