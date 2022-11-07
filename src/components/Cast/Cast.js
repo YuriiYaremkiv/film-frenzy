@@ -30,7 +30,6 @@ export const Cast = () => {
     <>
       {loading ? <Loader /> : null}
       {error ? <Error /> : null}
-
       {!loading && !error ? <ActorsList actors={actors} /> : null}
     </>
   );

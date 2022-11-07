@@ -39,8 +39,11 @@ export const Reviews = () => {
                 </li>
               );
             })
-          : "We don't have any reviews for this movie"}
+          : null}
       </ul>
+      {reviews.length === 0 && loading === false ? (
+        <p>We don't have any reviews for this movie</p>
+      ) : null}
     </>
   );
 };

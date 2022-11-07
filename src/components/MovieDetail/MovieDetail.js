@@ -53,12 +53,20 @@ export const MovieDetail = ({ movieInfo }) => {
         <p className={css.additional__title}>Additional information</p>
         <ul>
           <li>
-            <Link className={css.additional__link} to="cast">
+            <Link
+              className={css.additional__link}
+              to="cast"
+              state={location.state}
+            >
               Cast
             </Link>
           </li>
           <li>
-            <Link className={css.additional__link} to="reviews">
+            <Link
+              className={css.additional__link}
+              to="reviews"
+              state={location.state}
+            >
               Reviews
             </Link>
           </li>
