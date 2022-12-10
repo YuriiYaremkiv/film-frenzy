@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-
 import css from './ActorsList.module.scss';
 
 export const ActorsList = ({ actors }) => {
@@ -53,4 +53,15 @@ export const ActorsList = ({ actors }) => {
         : null}
     </ul>
   );
+};
+
+ActorsList.propTypes = {
+  actors: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+    }).isRequired
+  ).isRequired,
 };

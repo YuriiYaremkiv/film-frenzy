@@ -6,7 +6,7 @@ import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { getFetchById } from '../../components/utils/fetchAPI';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoadind] = useState(false);
   const [error, setError] = useState(false);
@@ -34,3 +34,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

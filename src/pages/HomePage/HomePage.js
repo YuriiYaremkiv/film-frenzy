@@ -7,7 +7,7 @@ import css from './HomePage.module.scss';
 
 import { getFetchTrending } from '../../components/utils/fetchAPI';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoadind] = useState(false);
   const [error, setError] = useState(false);
@@ -37,3 +37,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

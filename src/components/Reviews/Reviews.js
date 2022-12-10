@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { NotReviews } from '../../components/Info/NotReviews';
 import { getFetchByReviews } from '../../components/utils/fetchAPI';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoadind] = useState(false);
   const [error, setError] = useState(false);
@@ -46,3 +45,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

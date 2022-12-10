@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { ActorsList } from '../ActorsList/ActorsList';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { getFetchByCredits } from '../../components/utils/fetchAPI';
 
-export const Cast = () => {
+const Cast = () => {
   const [actors, setActors] = useState([]);
   const [loading, setLoadind] = useState(false);
   const [error, setError] = useState(false);
@@ -34,3 +33,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

@@ -8,7 +8,7 @@ import { Error } from '../../components/Error/Error';
 import { getFetchQuery } from '../../components/utils/fetchAPI';
 import css from './Movies.module.scss';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoadind] = useState(false);
@@ -76,3 +76,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;
