@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/442.6c3c256f.chunk.css","mappings":"AAAA,sBACE,6BAGF,yBAEE,cADA,iBAEA,kBACA","sources":["components/Layout/Layout.module.scss"],"sourcesContent":[".header {\n  border-bottom: 2px solid black;\n}\n\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding-left: 15px;\n  padding-right: 15px;\n}\n"],"names":[],"sourceRoot":""}
