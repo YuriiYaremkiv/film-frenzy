@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { NotReviews } from '../../components/Info/NotReviews';
-import { getFetchByReviews } from '../../components/utils/fetchAPI';
+import { getFetchByReviews } from '../../utils/fetchAPI';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);

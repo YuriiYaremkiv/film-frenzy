@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { ActiveLink } from './Layout.styled';
+import { Suspense } from 'react';
 import css from './Layout.module.scss';
 
 const Layout = () => {
@@ -15,7 +16,9 @@ const Layout = () => {
       </header>
       <main>
         <div className={css.container}>
-          <Outlet />
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </div>
       </main>
     </>

@@ -5,7 +5,7 @@ import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import css from './HomePage.module.scss';
 
-import { getFetchTrending } from '../../components/utils/fetchAPI';
+import { getFetchTrending } from '../../utils/fetchAPI';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);

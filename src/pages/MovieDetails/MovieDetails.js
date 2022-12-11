@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { MovieDetail } from '../../components/MovieDetail/MovieDetail';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import { getFetchById } from '../../components/utils/fetchAPI';
+import { getFetchById } from '../../utils/fetchAPI';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);

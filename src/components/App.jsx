@@ -1,13 +1,6 @@
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-// import { Layout } from './Layout/Layout';
-// import { HomePage } from '../pages/HomePage/HomePage';
-// import { MovieDetails } from '../pages/MovieDetails/MovieDetails';
-// import { Movies } from '../pages/Movies/Movies';
-// import { Cast } from './Cast/Cast';
-// import { Reviews } from './Reviews/Reviews';
-
 const Layout = lazy(() => import('./Layout/Layout'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
@@ -26,7 +19,7 @@ export const App = () => {
           <Route path="reviews" element={<Reviews />} />
         </Route>
       </Route>
-        <Route path="*" element={<HomePage />} />
+      <Route path="*" element={<Layout />} />
     </Routes>
   );
 };

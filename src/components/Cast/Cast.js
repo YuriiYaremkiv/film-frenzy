@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ActorsList } from '../ActorsList/ActorsList';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import { getFetchByCredits } from '../../components/utils/fetchAPI';
+import { getFetchByCredits } from '../../utils/fetchAPI';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);

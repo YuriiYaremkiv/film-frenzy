@@ -5,7 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import { getFetchQuery } from '../../components/utils/fetchAPI';
+import { getFetchQuery } from '../../utils/fetchAPI';
 import css from './Movies.module.scss';
 
 const Movies = () => {
