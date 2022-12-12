@@ -29,7 +29,7 @@ const Reviews = () => {
     <>
       {loading ? <Loader /> : null}
       {error ? <Error /> : null}
-      {loading === false && reviews.length === 0 ? <NotReviews /> : null}
+      {!loading && !reviews.length ? <NotReviews /> : null}
       <ul>
         {reviews.length
           ? reviews.map(({ id, author, content }) => {

@@ -29,11 +29,13 @@ const HomePage = () => {
   return (
     <>
       {!error && movies.length > 0 ? (
-        <h2 className={css.title}>Trending today</h2>
+        <>
+          <h2 className={css.title}>Trending today</h2>
+          <MoviesList movies={movies} />
+        </>
       ) : null}
       {loading ? <Loader /> : null}
       {error ? <Error /> : null}
-      {movies.length > 0 ? <MoviesList movies={movies} /> : null}
     </>
   );
 };
