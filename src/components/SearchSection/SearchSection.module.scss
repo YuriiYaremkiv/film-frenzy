@@ -1,0 +1,33 @@
+.section {
+  padding: 100px 0;
+
+  background-color: aqua;
+}
+
+.container {
+  position: relative;
+}
+
+.select {
+  padding: 12px;
+}
+
+.input {
+  position: relative;
+  display: block;
+  padding: 12px;
+  width: 100%;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+  transform: translateY(-50%);
+}
+
+.list {
+  position: absolute;
+  width: 100%;
+}
