@@ -1,0 +1,7 @@
+@import '../../style/vars.scss';
+
+.title {
+  margin-bottom: 24px;
+  color: map-get($textColors, 'primary');
+  text-align: center;
+}

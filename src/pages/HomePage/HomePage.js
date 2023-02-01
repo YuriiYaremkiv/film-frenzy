@@ -6,7 +6,8 @@ import { Error } from '../../components/Error/Error';
 import css from './HomePage.module.scss';
 
 import { getFetchTrending } from '../../utils/fetchAPI';
-import { SearchSection } from 'components/SearchSection/SearchSection';
+import { SectionSearch } from 'components/SectionSearch/SectionSearch';
+import { SectionTrendingMovies } from 'components/SectionTrendingMovies/SectionTrendingMovies';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -29,7 +30,8 @@ const HomePage = () => {
 
   return (
     <>
-      <SearchSection />
+      <SectionSearch />
+      <SectionTrendingMovies movies={movies} />
       {!error && movies.length > 0 ? (
         <>
           <h2 className={css.title}>Trending today</h2>

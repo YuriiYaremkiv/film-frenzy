@@ -1,8 +1,7 @@
-import { NavLink } from 'react-router-dom';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import * as React from 'react';
 
-import css from './SearchSection.module.scss';
+import css from './SectionSearch.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash/debounce';
@@ -17,7 +16,7 @@ import {
 } from 'redux/transactions/transactionsOperations';
 import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
 
-export const SearchSection = () => {
+export const SectionSearch = () => {
   const [query, setQuery] = useState('');
   const [showClearBtn, setShowClearBtn] = useState(false);
   const [showList, setShowList] = useState(true);
