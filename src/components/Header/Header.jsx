@@ -1,3 +1,6 @@
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import { Link } from 'react-router-dom';
+
 import css from './Header.module.scss';
 
 import sprite from './icons/sprite.svg';
@@ -8,32 +11,44 @@ export const Header = () => {
       <div className="container">
         <div className={css.header__container}>
           <div className={css.logo}>
-            <a href="#">
-              <svg>
-                <use href={ } />
+            <Link to="/">
+              <svg className={css.icon}>
+                <use href={sprite + '#logo'}></use>
               </svg>
-            </a>
+            </Link>
           </div>
-          <ul className={css.list}>
+          <ul className={css.list__menu}>
             <li>
-              <p>Movies</p>
+              <a href="/" className={css.link}>
+                Movies
+              </a>
             </li>
             <li>
-              <p>TV Shows</p>
+              <a href="/" className={css.link}>
+                TV Shows
+              </a>
             </li>
             <li>
-              <p>People</p>
+              <a href="/" className={css.link}>
+                People
+              </a>
             </li>
           </ul>
-          <ul className={css.list}>
+          <ul className={css.list__contacts}>
             <li>
-              <p>EN</p>
+              <a href="/" className={css.link}>
+                EN
+              </a>
             </li>
             <li>
-              <p>Login</p>
+              <a href="/" className={css.link}>
+                Login
+              </a>
             </li>
             <li>
-              <p>Join</p>
+              <a href="/" className={css.link}>
+                Join
+              </a>
             </li>
           </ul>
         </div>

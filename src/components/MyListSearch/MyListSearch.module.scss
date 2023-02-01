@@ -102,6 +102,11 @@
   color: map-get($textColors, 'primary');
 }
 
+.rating {
+  margin-left: auto;
+  margin-right: 4px;
+}
+
 .progress {
   position: absolute;
   top: 0;

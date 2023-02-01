@@ -12,6 +12,9 @@ import css from './MyListSearch.module.scss';
 
 import photoNotFound from './images/not_found.jpg';
 
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+
 export const MyInputSearch = ({ options = [], showList = true, isLoading }) => {
   return (
     <>
@@ -19,7 +22,13 @@ export const MyInputSearch = ({ options = [], showList = true, isLoading }) => {
         <div className={css.container}>
           <ul className={showList ? css.list__open : css.list__close}>
             {options.map(
-              ({ id, title, poster_path: path, release_date: data }) => (
+              ({
+                id,
+                title,
+                poster_path: path,
+                release_date: data,
+                vote_average: rating,
+              }) => (
                 <li key={id} className={css.item}>
                   <NavLink to={`/movies/${id}`} className={css.navlink}>
                     <img
@@ -37,6 +46,14 @@ export const MyInputSearch = ({ options = [], showList = true, isLoading }) => {
                     <p className={css.data}>
                       {data ? `(${data.slice(0, 4)})` : null}
                     </p>
+                    <Stack spacing={1} className={css.rating}>
+                      <Rating
+                        name="half-rating-read"
+                        defaultValue={rating / 2}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </Stack>
                   </NavLink>
                 </li>
               )

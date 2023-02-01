@@ -23,6 +23,13 @@ body {
   margin: 0;
 
   font-family: 'Source Sans Pro', Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 code {

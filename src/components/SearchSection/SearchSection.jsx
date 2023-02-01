@@ -13,6 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   getQueryMoviesList,
   getQueryMoviesListRemove,
+  getTrendingMovies,
 } from 'redux/transactions/transactionsOperations';
 import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
 
@@ -66,6 +67,13 @@ export const SearchSection = () => {
     inputRef.current.focus();
   };
 
+  const handleSearchMovies = () => {
+    if (!inputRef.current.value) {
+      return alert('dsshvdhjv');
+    }
+    dispatch(getTrendingMovies(inputRef.current.value));
+  };
+
   return (
     <section className={css.section}>
       <div className="container">
@@ -99,7 +107,12 @@ export const SearchSection = () => {
                   <CloseIcon />
                 </button>
               )}
-              <button className={css.button__search}>SEARCH</button>
+              <button
+                onClick={handleSearchMovies}
+                className={css.button__search}
+              >
+                SEARCH
+              </button>
             </div>
 
             <div className={css.list}>
