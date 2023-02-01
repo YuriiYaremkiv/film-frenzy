@@ -22,13 +22,14 @@ const moviesSlice = createSlice({
       state.isLoading = false;
     },
     [getQueryMoviesList.rejected]: (state, action) => {
+      state.list = [];
       state.isLoading = false;
     },
     [getQueryMoviesListRemove.pending]: state => {
       state.isLoading = true;
     },
     [getQueryMoviesListRemove.fulfilled]: (state, action) => {
-      state.list = action.payload;
+      state.list = [];
       state.isLoading = false;
     },
     [getQueryMoviesListRemove.rejected]: (state, action) => {

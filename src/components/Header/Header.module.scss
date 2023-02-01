@@ -1,0 +1,23 @@
+@import '../../style/vars.scss';
+
+.header {
+  background-color: map-get($bgColors, 'primary');
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+}
+
+.list {
+  padding: 16px 0;
+  display: flex;
+  gap: 30px;
+}
+
+p {
+  color: #fff;
+}
