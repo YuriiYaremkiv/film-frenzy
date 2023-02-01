@@ -23,6 +23,7 @@ body {
   margin: 0;
 
   font-family: 'Source Sans Pro', Arial, sans-serif;
+  color: black;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -56,4 +57,23 @@ li {
 
 image {
   display: block;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #333 !important;
+}
+
+.slick-prev {
+  background-color: green !important;
+  width: 45px !important;
+  height: 45px !important;
+  z-index: 100 !important;
+}
+
+.slick-next {
+  background-color: blue !important;
+  width: 45px !important;
+  height: 45px !important;
+  z-index: 100 !important;
 }
