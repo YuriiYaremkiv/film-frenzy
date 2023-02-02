@@ -5,9 +5,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Media from 'react-media';
 
-import css from './SliderMovies.module.scss';
+import css from './SliderTrailers.module.scss';
 
-export class SliderMovies extends Component {
+export class SliderTrailers extends Component {
   render() {
     const { movies } = this.props;
 
@@ -32,8 +32,8 @@ export class SliderMovies extends Component {
                 : matches.mobile
                 ? 2
                 : matches.tablet
-                ? 6
-                : 8
+                ? 4
+                : 4
             }
             slidesToScroll={
               matches.responsive

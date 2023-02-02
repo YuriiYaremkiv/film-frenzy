@@ -8,6 +8,8 @@ import css from './HomePage.module.scss';
 import { getFetchTrending } from '../../utils/fetchAPI';
 import { SectionSearch } from 'components/SectionSearch/SectionSearch';
 import { SectionTrendingMovies } from 'components/SectionTrendingMovies/SectionTrendingMovies';
+import { SectionLatestTrailers } from 'components/SectionLatestTrailers/SectionLatestTrailers';
+import { SectionJoin } from 'components/SectionJoin/SectionJoin';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -32,12 +34,10 @@ const HomePage = () => {
     <>
       <SectionSearch />
       <SectionTrendingMovies movies={movies} />
-      {!error && movies.length > 0 ? (
-        <>
-          <h2 className={css.title}>Trending today</h2>
-          <MoviesList movies={movies} />
-        </>
-      ) : null}
+      <SectionLatestTrailers movies={movies} />
+      <SectionTrendingMovies movies={movies} />
+      <SectionTrendingMovies movies={movies} />
+      <SectionJoin />
       {loading ? <Loader /> : null}
       {error ? <Error /> : null}
     </>

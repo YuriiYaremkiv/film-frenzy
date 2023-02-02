@@ -45,6 +45,32 @@ code {
   border: 1px solid green;
 }
 
+.container.SectionLatestTrailers {
+  background-image: linear-gradient(
+      to right,
+      rgba(3, 37, 65, 0.8) 0%,
+      rgba(3, 37, 65, 0) 100%
+    ),
+    url('../src/components/SectionLatestTrailers/images/bcGround.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -100;
+}
+
+.container.SectionJoin {
+  background-image: linear-gradient(
+      to right,
+      rgba(3, 37, 65, 0.8) 0%,
+      rgba(3, 37, 65, 0) 100%
+    ),
+    url('../src/components/SectionJoin/images/poster.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -100;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -59,25 +85,28 @@ image {
   display: block;
 }
 
+/* Styles of slider */
 .slick-prev:before,
 .slick-next:before {
-  color: #333 !important;
+  font-size: 36px !important;
+
+  color: map-get($bgColors, 'darkGray') !important;
 }
 
-.slick-prev {
-  background-color: green !important;
-  width: 45px !important;
-  height: 45px !important;
-  z-index: 100 !important;
-}
-
+.slick-prev,
 .slick-next {
-  background-color: blue !important;
-  width: 45px !important;
-  height: 45px !important;
-  z-index: 100 !important;
-}
+  width: 70px !important;
+  height: 70px !important;
 
-.slide {
-  margin-right: 20px !important;
+  font-size: 36px !important;
+
+  border-radius: 50%;
+  z-index: 100 !important;
+
+  transition: background-color map-get($effect, 'timer')
+    map-get($effect, 'function') !important;
+
+  &:hover {
+    background-color: map-get($bgColors, 'modal') !important;
+  }
 }

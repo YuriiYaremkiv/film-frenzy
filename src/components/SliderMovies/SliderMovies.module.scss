@@ -7,6 +7,8 @@
 .image {
   display: block;
   width: 100%;
+
+  border-radius: 10px;
 }
 
 .title {
@@ -14,4 +16,8 @@
   font-weight: 700;
   color: #000;
   white-space: normal;
+}
+
+.date {
+  margin-top: 6px;
 }

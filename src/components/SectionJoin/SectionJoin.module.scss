@@ -1,0 +1,40 @@
+@import '../../style/vars.scss';
+
+.title {
+  margin: 30px 0 20px 0;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  max-width: 700px;
+}
+
+.text {
+  margin-bottom: 19px;
+
+  font-size: 20px;
+  color: map-get($textColors, 'secondary');
+}
+
+.list {
+  width: 100%;
+  width: 450px;
+
+  color: #fff;
+
+  list-style: disc;
+}
+
+.item {
+  width: 450px;
+}
+
+.button {
+  margin-bottom: 50px;
+}
