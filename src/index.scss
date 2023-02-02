@@ -1,6 +1,6 @@
 @import-normalize; /* bring in normalize.css styles */
-
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap');
+@import '../src/style/vars.scss';
 
 *,
 ::before,
@@ -76,4 +76,8 @@ image {
   width: 45px !important;
   height: 45px !important;
   z-index: 100 !important;
+}
+
+.slide {
+  margin-right: 20px !important;
 }

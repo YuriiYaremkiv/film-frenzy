@@ -5,3 +5,74 @@
   color: map-get($textColors, 'primary');
   text-align: center;
 }
+
+.selector {
+  display: flex;
+  margin-bottom: 20px;
+
+  max-width: 220px;
+  font-size: 1em;
+
+  border: 1px solid rgba(3, 37, 65, 1);
+  border-radius: 30px;
+}
+
+.select__active {
+  position: relative;
+  display: block;
+  padding: 4px 20px;
+
+  // background-color: rgba(3, 37, 65, 1);
+  border-radius: 30px;
+  cursor: pointer;
+
+  transition: background-color 250ms linear;
+}
+
+.select__disable {
+  display: block;
+  padding: 4px 20px;
+
+  border-radius: 30px;
+  cursor: pointer;
+
+  transition: background-color 250ms linear;
+}
+
+.select__input {
+  display: none;
+}
+
+.select__activeTitle {
+  position: relative;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  background: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  transition: all 250ms linear;
+}
+
+.select__disableTitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  color: map-get($textColors, 'primary');
+
+  transition: all 250ms linear;
+}
+
+.backGroung {
+  position: absolute;
+  rigth: 0;
+  height: 24px;
+  width: 50px;
+
+  background-color: rgba(3, 37, 65, 1);
+}

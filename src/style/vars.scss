@@ -22,3 +22,10 @@ $effect: (
   'timerIcons': 100ms,
   'function': ease-in-out,
 );
+
+$breakpoints: (
+  'responsive': 'max-width: 479px',
+  'mobile': 'min-width: 480px',
+  'tablet': 'min-width: 767px',
+  'computer': 'min-width: 1280px',
+);
