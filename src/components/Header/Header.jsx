@@ -1,4 +1,3 @@
-import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import { Link } from 'react-router-dom';
 
 import css from './Header.module.scss';

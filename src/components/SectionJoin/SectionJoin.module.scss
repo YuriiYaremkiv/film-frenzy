@@ -7,24 +7,46 @@
   font-weight: 700;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
+.text {
+  margin-bottom: 20px;
 
-  width: 100%;
-  max-width: 700px;
+  font-size: 18px;
+  color: map-get($textColors, 'white');
+
+  user-select: none;
 }
 
-.text {
-  margin-bottom: 19px;
+.button {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 8px 16px;
 
-  font-size: 20px;
+  min-width: 90px;
+  width: fit-content;
+
+  font-size: 17px;
   color: map-get($textColors, 'secondary');
+  text-decoration: none;
+
+  background-color: map-get($bgColors, 'purple');
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: map-get($bgColors, 'ligthPurple');
+  }
+}
+
+.column {
+  width: 100%;
 }
 
 .list {
-  width: 100%;
-  width: 450px;
+  margin-left: 20px;
+  margin: 0 0 50px 20px;
 
   color: #fff;
 
@@ -32,9 +54,23 @@
 }
 
 .item {
-  width: 450px;
 }
 
-.button {
-  margin-bottom: 50px;
+@media screen and (map-get($breakpoints, 'mobile')) {
+}
+
+@media screen and (map-get($breakpoints, 'tablet')) {
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  .column {
+    width: 50%;
+  }
+}
+
+@media screen and (map-get($breakpoints, 'computer')) {
 }

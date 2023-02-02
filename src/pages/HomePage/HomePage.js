@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import css from './HomePage.module.scss';
 
 import { getFetchTrending } from '../../utils/fetchAPI';
 import { SectionSearch } from 'components/SectionSearch/SectionSearch';
