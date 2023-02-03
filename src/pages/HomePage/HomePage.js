@@ -9,6 +9,7 @@ import { SectionLatestTrailers } from 'components/SectionLatestTrailers/SectionL
 import { SectionJoin } from 'components/SectionJoin/SectionJoin';
 import { SectionFreeWatch } from 'components/SectionFreeWatch/SectionFreeWatch';
 import { SectionPopular } from 'components/SectionPopular/SectionPopular';
+import { SectionTV } from 'components/SectionTV/SectionTV';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -22,7 +23,7 @@ const HomePage = () => {
       <SectionLatestTrailers movies={movies} />
       <SectionPopular movies={movies} />
       <SectionJoin />
-      <SectionFreeWatch movies={movies} />
+      <SectionTV movies={movies} />
       {loading ? <Loader /> : null}
       {error ? <Error /> : null}
     </>

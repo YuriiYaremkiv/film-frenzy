@@ -1,0 +1,46 @@
+@import '../../../style/vars.scss';
+
+.card {
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 1em;
+  font-weight: 700;
+  color: #000;
+  white-space: normal;
+}
+
+.date {
+  margin-top: 6px;
+}
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+
+  background-color: map-get($bgColors, 'modal');
+}
+
+.link {
+  text-decoration: none;
+
+  border: 1px solid red;
+}

@@ -1,7 +1,8 @@
 import css from './SectionLatestTrailers.module.scss';
 
 import { useState } from 'react';
-import { SliderTrailers } from 'components/SliderTrailers/SliderTrailers';
+
+import { SliderTrailers } from './SliderTrailers/SliderTrailers';
 
 export const SectionLatestTrailers = ({ movies }) => {
   const [type, setType] = useState('streaming');

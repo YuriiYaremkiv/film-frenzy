@@ -7,6 +7,10 @@ import {
   getPopular,
   getTopRated,
   getUpComing,
+  getTVToday,
+  getTVOnTheAir,
+  getTVPopular,
+  getTVTopRated,
 } from './transactionsOperations';
 
 const initialState = {
@@ -15,6 +19,7 @@ const initialState = {
   error: null,
   trendingAll: { items: [], isLoading: false, error: '' },
   popular: { items: [], isLoading: false, error: '' },
+  tv: { items: [], isLoading: false, error: '' },
 };
 
 const moviesSlice = createSlice({
@@ -70,6 +75,46 @@ const moviesSlice = createSlice({
     },
     [getUpComing.rejected]: state => {
       state.popular.isLoading = false;
+    },
+    [getTVToday.pending]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVToday.fulfilled]: (state, action) => {
+      state.tv.items = action.payload;
+      state.tv.isLoading = false;
+    },
+    [getTVToday.rejected]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVOnTheAir.pending]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVOnTheAir.fulfilled]: (state, action) => {
+      state.tv.items = action.payload;
+      state.tv.isLoading = false;
+    },
+    [getTVOnTheAir.rejected]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVPopular.pending]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVPopular.fulfilled]: (state, action) => {
+      state.tv.items = action.payload;
+      state.tv.isLoading = false;
+    },
+    [getTVPopular.rejected]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVTopRated.pending]: state => {
+      state.tv.isLoading = false;
+    },
+    [getTVTopRated.fulfilled]: (state, action) => {
+      state.tv.items = action.payload;
+      state.tv.isLoading = false;
+    },
+    [getTVTopRated.rejected]: state => {
+      state.tv.isLoading = false;
     },
 
     /********************************************************************************* */
