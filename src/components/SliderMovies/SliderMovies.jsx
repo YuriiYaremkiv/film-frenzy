@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,7 +13,7 @@ import css from './SliderMovies.module.scss';
 
 export class SliderMovies extends Component {
   render() {
-    const { movies } = this.props;
+    const { movies = [], isLoading = false } = this.props;
 
     return (
       <Media
@@ -47,16 +51,25 @@ export class SliderMovies extends Component {
           >
             {movies.map(
               ({ id, title, name, poster_path: path, release_date: date }) => (
-                <div key={id} className={css.card}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${path}`}
-                    alt="ias"
-                    className={css.image}
-                  />
-                  <p className={css.title}>{title || name}</p>
-                  <p className={css.date}>{date}</p>
-                </div>
+                <Link to={`/movies/${id}`} className={css.link}>
+                  <div key={id} className={css.card}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${path}`}
+                      alt="ias"
+                      className={css.image}
+                    />
+                    <p className={css.title}>{title || name}</p>
+                    <p className={css.date}>{date}</p>
+                  </div>
+                </Link>
               )
+            )}
+            {isLoading && (
+              <div className={css.progress}>
+                <Box>
+                  <CircularProgress />
+                </Box>
+              </div>
             )}
           </Slider>
         )}

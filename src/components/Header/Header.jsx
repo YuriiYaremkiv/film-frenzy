@@ -7,7 +7,7 @@ import sprite from './icons/sprite.svg';
 export const Header = () => {
   return (
     <header className={css.header}>
-      <div className="container">
+      <div className="container header">
         <div className={css.header__container}>
           <div className={css.logo}>
             <Link to="/">

@@ -1,10 +1,21 @@
-import css from './SectionTrendingMovies.module.scss';
+import css from './SectionTrendingAll.module.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SliderMovies } from 'components/SliderMovies/SliderMovies';
+import { useSelector, useDispatch } from 'react-redux';
 
-export const SectionTrendingMovies = ({ movies }) => {
-  const [time, setTime] = useState('today');
+import { getTrendingAll } from 'redux/transactions/transactionsOperations';
+
+export const SectionTrendingAll = () => {
+  const [time, setTime] = useState('day');
+  const dispatch = useDispatch();
+
+  const list = useSelector(state => state.movies.trendingAll.items);
+  const isLoading = useSelector(state => state.movies.trendingAll.isLoading);
+
+  useEffect(() => {
+    dispatch(getTrendingAll(time));
+  }, [time, dispatch]);
 
   const handleChangeRadioButton = e => {
     setTime(e.target.value);
@@ -13,11 +24,11 @@ export const SectionTrendingMovies = ({ movies }) => {
   let styles = {};
 
   switch (time) {
-    case 'today':
+    case 'day':
       styles.left = 0;
       styles.width = '90px';
       break;
-    case 'this-week':
+    case 'week':
       styles.left = 0;
       styles.width = '125px';
 
@@ -35,34 +46,30 @@ export const SectionTrendingMovies = ({ movies }) => {
           <div className={css.selector}>
             <label>
               <h3
-                className={
-                  time === 'today' ? css.activeTitle : css.disableTitle
-                }
+                className={time === 'day' ? css.activeTitle : css.disableTitle}
               >
                 Today
               </h3>
               <input
                 type="radio"
-                checked={time === 'today'}
+                checked={time === 'day'}
                 name="time"
-                value="today"
+                value="day"
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
             </label>
             <label>
               <h3
-                className={
-                  time === 'this-week' ? css.activeTitle : css.disableTitle
-                }
+                className={time === 'week' ? css.activeTitle : css.disableTitle}
               >
                 This Week
               </h3>
               <input
                 type="radio"
-                checked={time === 'this-week'}
+                checked={time === 'week'}
                 name="time"
-                value="this-week"
+                value="week"
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -70,7 +77,7 @@ export const SectionTrendingMovies = ({ movies }) => {
             <div className={css.backGroung} style={styles}></div>
           </div>
         </div>
-        <SliderMovies movies={movies} />
+        <SliderMovies movies={list} isLoading={isLoading} />
       </div>
     </section>
   );

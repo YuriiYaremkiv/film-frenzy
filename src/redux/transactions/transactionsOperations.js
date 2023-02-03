@@ -7,14 +7,14 @@ const KEY = 'd08efe59ac708d7aace6afed9ba7eae9';
 // axios.defaults.baseURL = 'https://wallet.goit.ua/api';
 
 // запит на всі транзакції для таблиці
-export const getTrendingMovies = createAsyncThunk(
-  'transactions/getTrendingMovies',
-  async (_, { rejectWithValue }) => {
+export const getTrendingAll = createAsyncThunk(
+  'movies/getTrendingAll',
+  async (time, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}trending/all/day?api_key=${KEY}`
+        `${BASE_URL}trending/all/${time}?api_key=${KEY}`
       );
-      return response.data;
+      return response.data.results;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -22,7 +22,7 @@ export const getTrendingMovies = createAsyncThunk(
 );
 
 export const getQueryMoviesList = createAsyncThunk(
-  'transactions/getQueryMoviesList',
+  'movies/getQueryMoviesList',
   async (query, { rejectWithValue }) => {
     try {
       const response = await axios.get(
@@ -35,8 +35,64 @@ export const getQueryMoviesList = createAsyncThunk(
   }
 );
 
+export const getNowPlaying = createAsyncThunk(
+  'movies/getNowPlaying',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}movie/now_playing?api_key=${KEY}&language=en-US&page=1`
+      );
+      return response.data.results;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getPopular = createAsyncThunk(
+  'movies/getPopular',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}movie/popular?api_key=${KEY}&language=en-US&page=1`
+      );
+      return response.data.results;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getTopRated = createAsyncThunk(
+  'movies/getTopRated',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}movie/top_rated?api_key=${KEY}&language=en-US&page=1`
+      );
+      return response.data.results;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUpComing = createAsyncThunk(
+  'movies/getUpComing',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}movie/upcoming?api_key=${KEY}&language=en-US&page=1`
+      );
+      return response.data.results;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getQueryMoviesListRemove = createAsyncThunk(
-  'transactions/getQueryMoviesListRemove',
+  'movies/getQueryMoviesListRemove',
   async (_, { rejectWithValue }) => {
     return [];
   }

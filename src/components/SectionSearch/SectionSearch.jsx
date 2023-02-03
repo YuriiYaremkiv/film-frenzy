@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   getQueryMoviesList,
   getQueryMoviesListRemove,
-  getTrendingMovies,
+  getTrendingAll,
 } from 'redux/transactions/transactionsOperations';
 import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
 
@@ -23,8 +23,8 @@ export const SectionSearch = () => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
 
-  const list = useSelector(state => state.transactions.list);
-  const isLoading = useSelector(state => state.transactions.isLoading);
+  const list = useSelector(state => state.movies.list);
+  const isLoading = useSelector(state => state.movies.isLoading);
 
   useEffect(() => {
     if (query.length > 0) {
@@ -70,12 +70,12 @@ export const SectionSearch = () => {
     if (!inputRef.current.value) {
       return alert('dsshvdhjv');
     }
-    dispatch(getTrendingMovies(inputRef.current.value));
+    dispatch(getTrendingAll(inputRef.current.value));
   };
 
   return (
     <section className={css.section}>
-      <div className="container">
+      <div className="container SectionSearch">
         <div className={css.section__container}>
           <h2>Welcome</h2>
           <h3>

@@ -4,51 +4,86 @@
   background-color: map-get($bgColors, 'primary');
 }
 
-.header__container {
-  display: flex;
-}
-
 .logo {
-  display: flex;
-  align-items: center;
+  margin-bottom: 10px;
 
-  margin-right: 12px;
-}
-
-.list__menu {
-  display: flex;
-  align-items: center;
-  padding: 16px 0;
-  gap: 30px;
-}
-
-.list__contacts {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  padding: 16px 0;
-  gap: 30px;
-}
-
-.link {
-  display: block;
-  padding: 16px 0;
-
-  font-size: 18px;
-  font-weight: 600;
-  color: map-get($textColors, 'secondary');
-  text-decoration: none;
-
-  transition: color map-get($effect, 'timer') map-get($effect, 'function');
-
-  &:hover {
-    color: map-get($textColors, 'blue');
-  }
+  text-align: center;
 }
 
 .icon {
   fill: map-get($bgColors, 'green');
 
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
+}
+
+.list__menu {
+  margin-bottom: 20px;
+}
+
+.link {
+  display: block;
+  padding: 6px 0;
+
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: map-get($textColors, 'secondary');
+  text-decoration: none;
+
+  transition: color map-get($effect, 'timer') map-get($effect, 'function');
+
+  &:hover,
+  &:focus {
+    color: map-get($textColors, 'blue');
+  }
+}
+
+@media screen and (map-get($breakpoints, 'mobile')) {
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+  }
+  .logo {
+    margin-bottom: 0;
+  }
+
+  .icon {
+    width: 75px;
+    height: 75px;
+  }
+
+  .list__container {
+    display: flex;
+    justify-content: space-around;
+
+    margin-right: 20px;
+  }
+
+  .list__menu {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (map-get($breakpoints, 'tablet')) {
+  .header__container {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .list__menu,
+  .list__contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .list__contacts {
+    margin-left: auto;
+  }
 }

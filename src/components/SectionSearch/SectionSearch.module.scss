@@ -1,20 +1,5 @@
 @import '../../style/vars.scss';
 
-.section {
-  padding: 90px 0;
-  min-height: 350px;
-
-  background-image: linear-gradient(
-      to right,
-      rgba(3, 37, 65, 0.8) 0%,
-      rgba(3, 37, 65, 0) 100%
-    ),
-    url('./images/poster.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 .section__container {
   max-width: 900px;
   margin: 0 auto;

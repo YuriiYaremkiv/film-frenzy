@@ -1,0 +1,78 @@
+@import '../../style/vars.scss';
+
+.title__container {
+  display: flex;
+  align-items: center;
+
+  padding-top: 25px;
+
+  margin-bottom: 15px;
+}
+
+.title {
+  margin-right: 20px;
+
+  font-size: 1.5em;
+  font-weight: 600;
+  color: map-get($textColors, 'primary');
+}
+
+.selector {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  max-width: 460px;
+
+  border: 1px solid map-get($bgColors, 'primary');
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.activeTitle {
+  margin: 0;
+  padding: 4px 20px;
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  background: map-get($textColors, 'linear');
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  cursor: pointer;
+
+  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+}
+
+.disableTitle {
+  margin: 0;
+  padding: 4px 20px;
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  color: map-get($textColors, 'primary');
+
+  cursor: pointer;
+
+  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+}
+
+.select__input {
+  display: none;
+}
+
+.backGroung {
+  position: absolute;
+  height: 30px;
+
+  background-color: map-get($bgColors, 'primary');
+  border-radius: 30px;
+  z-index: -1;
+
+  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+}

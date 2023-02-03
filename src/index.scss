@@ -42,10 +42,56 @@ code {
 }
 
 .container {
-  max-width: 1300px;
   margin: 0 auto;
   padding: 0 15px;
-  border: 1px solid green;
+}
+
+.container.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media screen and (map-get($breakpoints, 'mobile')) {
+  .container {
+    max-width: 480px;
+  }
+}
+
+@media screen and (map-get($breakpoints, 'tablet')) {
+  .container {
+    max-width: 767px;
+  }
+
+  .container.header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (map-get($breakpoints, 'computer')) {
+  .container {
+    max-width: 1280px;
+  }
+
+  .container.header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.container.SectionSearch {
+  padding: 90px 0;
+  min-height: 350px;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(3, 37, 65, 0.8) 0%,
+      rgba(3, 37, 65, 0) 100%
+    ),
+    url('../src/components/SectionSearch/images/poster.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .container.SectionLatestTrailers {
@@ -62,6 +108,7 @@ code {
 }
 
 .container.SectionJoin {
+  padding: 20px 15px 30px 15px;
   background-image: linear-gradient(
       to right,
       rgba(3, 37, 65, 0.8) 0%,
