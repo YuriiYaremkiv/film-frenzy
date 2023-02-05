@@ -46,7 +46,7 @@ export class SliderTrailers extends Component {
                 ? 2
                 : matches.tablet
                 ? 2
-                : 2
+                : 4
             }
           >
             {movies.map(
