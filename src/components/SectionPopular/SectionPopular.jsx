@@ -17,7 +17,6 @@ export const SectionPopular = () => {
 
   const list = useSelector(state => state.movies.popular.items);
   const isLoading = useSelector(state => state.movies.popular.isLoading);
-  console.log(list);
 
   useEffect(() => {
     switch (type) {

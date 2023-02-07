@@ -36,8 +36,8 @@ export class SliderMovies extends Component {
                 : matches.mobile
                 ? 2
                 : matches.tablet
-                ? 6
-                : 8
+                ? 4
+                : 6
             }
             slidesToScroll={
               matches.responsive
@@ -51,12 +51,13 @@ export class SliderMovies extends Component {
           >
             {movies.map(
               ({ id, title, name, poster_path: path, release_date: date }) => (
-                <Link to={`/movies/${id}`} className={css.link}>
-                  <div key={id} className={css.card}>
+                <Link key={id} to={`/movies/${id}`} className={css.link}>
+                  <div className={css.card} style={{ 'min-height': '300px' }}>
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${path}`}
                       alt="ias"
                       className={css.image}
+                      style={{ 'min-height': '300px' }}
                     />
                     <p className={css.title}>{title || name}</p>
                     <p className={css.date}>{date}</p>

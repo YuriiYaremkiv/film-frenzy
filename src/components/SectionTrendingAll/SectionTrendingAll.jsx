@@ -6,20 +6,36 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getTrendingAll } from 'redux/transactions/transactionsOperations';
 
+import mediaApi from 'redux/media/mediaOperations';
+import tmdbConfigs from 'api/configs/tmdb.configs';
+
 export const SectionTrendingAll = () => {
   const [time, setTime] = useState('day');
   const dispatch = useDispatch();
 
-  const list = useSelector(state => state.movies.trendingAll.items);
-  const isLoading = useSelector(state => state.movies.trendingAll.isLoading);
+  const list = useSelector(state => state.media.popularMovies.items);
 
-  useEffect(() => {
-    dispatch(getTrendingAll(time));
-  }, [time, dispatch]);
+  const isLoading = useSelector(state => state.media.popularMovies.isLoading);
+
+  // useEffect(() => {
+  //   dispatch(getTrendingAll(time));
+  // }, [time, dispatch]);
 
   const handleChangeRadioButton = e => {
     setTime(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(
+      mediaApi.getList({
+        mediaType: tmdbConfigs.mediaType.all,
+        timeWindow:
+          time === 'day'
+            ? tmdbConfigs.mediaTime.day
+            : tmdbConfigs.mediaTime.week,
+      })
+    );
+  }, [time, dispatch]);
 
   let styles = {};
 
@@ -42,7 +58,7 @@ export const SectionTrendingAll = () => {
     <section className={css.section}>
       <div className="container">
         <div className={css.title__container}>
-          <h2 className={css.title}>Trending</h2>
+          <h2 className={css.title}>Popular Movies</h2>
           <div className={css.selector}>
             <label>
               <h3
