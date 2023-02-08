@@ -13,7 +13,12 @@ import css from './SliderTrailers.module.scss';
 
 export class SliderTrailers extends Component {
   render() {
-    const { movies = [], isLoading = false } = this.props;
+    const {
+      movies = [],
+      isLoading = false,
+      changeBgImagesFunc,
+      showTrailerFunc,
+    } = this.props;
 
     return (
       <Media
@@ -36,8 +41,8 @@ export class SliderTrailers extends Component {
                 : matches.mobile
                 ? 2
                 : matches.tablet
-                ? 6
-                : 8
+                ? 2
+                : 4
             }
             slidesToScroll={
               matches.responsive
@@ -50,18 +55,33 @@ export class SliderTrailers extends Component {
             }
           >
             {movies.map(
-              ({ id, title, name, poster_path: path, release_date: date }) => (
-                <Link to={`/movies/${id}`} className={css.link}>
-                  <div key={id} className={css.card}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${path}`}
-                      alt="ias"
-                      className={css.image}
-                    />
+              ({
+                id,
+                title,
+                name,
+                poster_path: path,
+                backdrop_path: bgPath,
+                release_date: date,
+              }) => (
+                <div key={id} className={css.card}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w710_and_h400_multi_faces/${path}`}
+                    alt="ias"
+                    className={css.image}
+                    onMouseEnter={() => changeBgImagesFunc(bgPath)}
+                  />
+                  <button
+                    className={css.button}
+                    onClick={() => showTrailerFunc(id)}
+                  >
+                    Youtube
+                  </button>
+
+                  <Link to={`/movies/${id}`} className={css.link}>
                     <p className={css.title}>{title || name}</p>
                     <p className={css.date}>{date}</p>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               )
             )}
             {isLoading && (

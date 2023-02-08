@@ -1,5 +1,9 @@
 @import '../../style/vars.scss';
 
+.section {
+  margin-bottom: 24px;
+}
+
 .title__container {
   display: flex;
   align-items: center;
@@ -75,4 +79,8 @@
   z-index: -1;
 
   transition: all map-get($effect, 'timer') map-get($effect, 'function');
+}
+
+.slider {
+  margin-bottom: 24px;
 }

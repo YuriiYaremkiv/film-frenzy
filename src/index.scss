@@ -95,16 +95,16 @@ code {
 }
 
 .container.SectionLatestTrailers {
-  background-image: linear-gradient(
-      to right,
-      rgba(3, 37, 65, 0.8) 0%,
-      rgba(3, 37, 65, 0) 100%
-    ),
-    url('../src/components/SectionLatestTrailers/images/bcGround.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  z-index: -100;
+  // background-image: linear-gradient(
+  //     to right,
+  //     rgba(3, 37, 65, 0.8) 0%,
+  //     rgba(3, 37, 65, 0) 100%
+  //   ),
+  //   url('../src/components/SectionLatestTrailers/images/bcGround.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
+  // z-index: -100;
 }
 
 .container.SectionJoin {
@@ -136,6 +136,16 @@ image {
 }
 
 /* Styles of slider */
+.slick-slide {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.slider {
+  height: 100vh !important;
+}
+
 .slick-prev:before,
 .slick-next:before {
   font-size: 36px !important;
@@ -158,5 +168,14 @@ image {
 
   &:hover {
     background-color: map-get($bgColors, 'modal') !important;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

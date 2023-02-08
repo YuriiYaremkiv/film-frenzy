@@ -1,41 +1,45 @@
-import css from './SectionTrendingAll.module.scss';
-
 import { useEffect, useState } from 'react';
-import { SliderMovies } from 'components/SliderMovies/SliderMovies';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { getTrendingAll } from 'redux/transactions/transactionsOperations';
-
-import mediaApi from 'redux/media/mediaOperations';
+import { SliderList } from 'components/SliderList/SliderList';
+import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import css from './SectionTrendinMovie.module.scss';
 
-export const SectionTrendingAll = () => {
-  const [time, setTime] = useState('day');
-  const dispatch = useDispatch();
+export const SectionTrendinMovie = () => {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const list = useSelector(state => state.media.popularMovies.items);
-
-  const isLoading = useSelector(state => state.media.popularMovies.isLoading);
-
-  // useEffect(() => {
-  //   dispatch(getTrendingAll(time));
-  // }, [time, dispatch]);
+  const [time, setTime] = useState(tmdbConfigs.mediaTime.day);
 
   const handleChangeRadioButton = e => {
     setTime(e.target.value);
   };
 
   useEffect(() => {
-    dispatch(
-      mediaApi.getList({
-        mediaType: tmdbConfigs.mediaType.all,
+    const start = async () => {
+      setIsLoading(true);
+
+      const { response, err } = await mediaApi.getList({
+        mediaType: tmdbConfigs.mediaType.movie,
         timeWindow:
-          time === 'day'
+          time === tmdbConfigs.mediaTime.day
             ? tmdbConfigs.mediaTime.day
             : tmdbConfigs.mediaTime.week,
-      })
-    );
-  }, [time, dispatch]);
+      });
+
+      if (response) {
+        setMovies(response.data.results);
+        setIsLoading(false);
+      }
+
+      if (err) {
+        console.log(err);
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
+    start();
+  }, [time]);
 
   let styles = {};
 
@@ -68,9 +72,9 @@ export const SectionTrendingAll = () => {
               </h3>
               <input
                 type="radio"
-                checked={time === 'day'}
+                checked={time === tmdbConfigs.mediaTime.day}
                 name="time"
-                value="day"
+                value={tmdbConfigs.mediaTime.day}
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -83,9 +87,9 @@ export const SectionTrendingAll = () => {
               </h3>
               <input
                 type="radio"
-                checked={time === 'week'}
+                checked={time === tmdbConfigs.mediaTime.week}
                 name="time"
-                value="week"
+                value={tmdbConfigs.mediaTime.week}
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -93,7 +97,8 @@ export const SectionTrendingAll = () => {
             <div className={css.backGroung} style={styles}></div>
           </div>
         </div>
-        <SliderMovies movies={list} isLoading={isLoading} />
+        {error && <div>{error}</div>}
+        <SliderList movies={movies} isLoading={isLoading} />
       </div>
     </section>
   );

@@ -4,11 +4,32 @@
   position: relative;
 }
 
+.wrapper {
+  position: relative;
+  padding: 24px 12px 24px 12px;
+
+  background: linear-gradient(
+    to right,
+    rgba(3, 37, 65, 0.2) 0%,
+    rgba(3, 37, 65, 0.05) 100%
+  );
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 250ms;
+}
+
+.wrapper__container {
+  background-color: linear-gradient(
+    to right,
+    rgba(3, 37, 65, 1) 0%,
+    rgba(3, 37, 65, 1) 100%
+  );
+}
+
 .title__container {
   display: flex;
   align-items: center;
-
-  margin-top: 32px;
 
   margin-bottom: 15px;
 }
