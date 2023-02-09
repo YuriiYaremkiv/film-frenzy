@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Autoplay } from 'swiper';
 import { toast } from 'react-toastify';
@@ -8,7 +8,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 // import { setGlobalLoading } from '../../redux/features/globalLoadingSlice';
 // import { routesGen } from '../../routes/routes';
 
-import uiConfigs from '../../configs/ui.configs';
 import 'swiper/css';
 import {
   Box,
@@ -30,11 +29,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import uiConfigs from '../../configs/ui.configs';
+import themeConfigs from 'configs/theme.configs';
 
 export const SliderBg = () => {
   const [movies, setMovies] = useState([]);
 
-  console.log('movies is: ', movies);
+  const theme = useTheme();
+  console.log(theme);
+
+  const { themeMode } = useSelector(state => state.themeMode);
+  console.log('themeMode: ', themeMode);
 
   useEffect(() => {
     (async () => {
@@ -56,10 +61,6 @@ export const SliderBg = () => {
     },
     spaceBetween: 50,
     slidesPerView: 1,
-    onSlideChange: () => console.log('slide change'),
-    on: {
-      init: swiper => console.log(swiper),
-    },
   };
 
   return (
@@ -76,8 +77,7 @@ export const SliderBg = () => {
           left: 0,
           zIndex: 2,
           pointerEvents: 'none',
-          backgroundImage:
-            'linear-gradient(to top, rgba(245,245,245,1), rgba(0,0,0,0))',
+          ...uiConfigs.style.gradientBgImage[themeMode],
         },
       }}
     >
@@ -107,8 +107,7 @@ export const SliderBg = () => {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  backgroundImage:
-                    'linear-gradient(to right, rgba(245,245,245,1), rgba(0,0,0,0))',
+                  ...uiConfigs.style.horizontalGradientBgImage[themeMode],
                 }}
               >
                 <Box

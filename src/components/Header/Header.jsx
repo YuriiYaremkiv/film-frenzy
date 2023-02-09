@@ -4,7 +4,13 @@ import css from './Header.module.scss';
 
 import sprite from './icons/sprite.svg';
 
+import { SelectThemeMode } from 'components/SelectThemeMode/SelectThemeMode';
+
+import { useTheme } from '@mui/material';
+
 export const Header = () => {
+  const theme = useTheme();
+
   return (
     <header className={css.header}>
       <div className="container header">
@@ -41,7 +47,7 @@ export const Header = () => {
           <ul className={css.list__contacts}>
             <li>
               <a href="/" className={css.link}>
-                Theme
+                <SelectThemeMode />
               </a>
             </li>
             <li>
