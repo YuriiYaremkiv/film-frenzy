@@ -1,30 +1,26 @@
-import css from './SectionTV.module.scss';
-
 import { useEffect, useState } from 'react';
 import { SliderList } from 'components/SliderList/SliderList';
-
-import tvApi from 'api/modules/tv.api';
+import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import css from './SectionMoreMovies.module.scss';
 
-import { SliderTV } from './SliderTV/SliderTV';
-
-export const SectionTV = () => {
-  const [series, setSeries] = useState([]);
+export const SectionMoreMovies = () => {
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const [type, setType] = useState(tmdbConfigs.tvType.popular);
+  const [type, setType] = useState(tmdbConfigs.movieType.now_playing);
+
+  const handleChangeRadioButton = e => {
+    setType(e.target.value);
+  };
 
   useEffect(() => {
     (async () => {
-      const { response, err } = await tvApi.getList({
-        mediaType: tmdbConfigs.mediaType.tv,
-        tvType: type,
-        page: 1,
-      });
+      const { response, err } = await mediaApi.getMovies({ movieType: type });
 
       if (response) {
-        setSeries(response.data.results);
+        setMovies(response.data.results);
         setIsLoading(false);
       }
 
@@ -36,27 +32,21 @@ export const SectionTV = () => {
     })();
   }, [type]);
 
-  const handleChangeRadioButton = e => {
-    setType(e.target.value);
-  };
-
   let styles = {};
-
   switch (type) {
-    case 'popular':
+    case 'now_playing':
       styles.left = 0;
-      styles.width = '105px';
-      styles.transform = 'translateX(0px)';
+      styles.width = '135px';
       break;
     case 'top_rated':
       styles.left = 0;
-      styles.width = '115px';
-      styles.transform = 'translateX(105px)';
+      styles.width = '110px';
+      styles.transform = 'translateX(140px)';
       break;
-    case 'on_the_air':
+    case 'upcoming':
       styles.left = 0;
-      styles.width = '125px';
-      styles.transform = 'translateX(220px)';
+      styles.width = '120px';
+      styles.transform = 'translateX(255px)';
       break;
     default:
       return styles;
@@ -66,23 +56,23 @@ export const SectionTV = () => {
     <section className={css.section}>
       <div className="container">
         <div className={css.title__container}>
-          <h2 className={css.title}>Television</h2>
+          <h2 className={css.title}>More Movies</h2>
           <div className={css.selector}>
             <label>
               <h3
                 className={
-                  type === tmdbConfigs.tvType.popular
+                  type === tmdbConfigs.movieType.now_playing
                     ? css.activeTitle
                     : css.disableTitle
                 }
               >
-                Popular
+                Now Playing
               </h3>
               <input
                 type="radio"
-                checked={type === tmdbConfigs.tvType.popular}
+                checked={type === tmdbConfigs.movieType.now_playing}
                 name="time"
-                value={tmdbConfigs.tvType.popular}
+                value={tmdbConfigs.movieType.now_playing}
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -90,7 +80,7 @@ export const SectionTV = () => {
             <label>
               <h3
                 className={
-                  type === tmdbConfigs.tvType.top_rated
+                  type === tmdbConfigs.movieType.top_rated
                     ? css.activeTitle
                     : css.disableTitle
                 }
@@ -99,9 +89,9 @@ export const SectionTV = () => {
               </h3>
               <input
                 type="radio"
-                checked={type === tmdbConfigs.tvType.top_rated}
+                checked={type === tmdbConfigs.movieType.top_rated}
                 name="time"
-                value={tmdbConfigs.tvType.top_rated}
+                value={tmdbConfigs.movieType.top_rated}
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -109,18 +99,18 @@ export const SectionTV = () => {
             <label>
               <h3
                 className={
-                  type === tmdbConfigs.tvType.on_the_air
+                  type === tmdbConfigs.movieType.upcoming
                     ? css.activeTitle
                     : css.disableTitle
                 }
               >
-                On The Air
+                Upcoming
               </h3>
               <input
                 type="radio"
-                checked={type === tmdbConfigs.tvType.on_the_air}
+                checked={type === tmdbConfigs.movieType.upcoming}
                 name="time"
-                value={tmdbConfigs.tvType.on_the_air}
+                value={tmdbConfigs.movieType.upcoming}
                 onChange={handleChangeRadioButton}
                 className={css.select__input}
               />
@@ -128,7 +118,7 @@ export const SectionTV = () => {
             <div className={css.backGroung} style={styles}></div>
           </div>
         </div>
-        <SliderTV movies={series} isLoading={isLoading} />
+        <SliderList movies={movies} isLoading={isLoading} />
       </div>
     </section>
   );

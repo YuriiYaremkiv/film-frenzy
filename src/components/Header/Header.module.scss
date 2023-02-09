@@ -5,9 +5,23 @@
 }
 
 .logo {
-  margin-bottom: 10px;
-
+  margin-right: 20px;
   text-align: center;
+}
+
+.logo__link {
+  padding: 18px;
+
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.logo__text {
+  span {
+    color: map-get($textColors, 'blue');
+  }
 }
 
 .icon {

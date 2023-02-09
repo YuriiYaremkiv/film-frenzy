@@ -16,13 +16,9 @@ export const SectionLatestTrailers = () => {
   const [type, setType] = useState('streaming');
   const [path, setPath] = useState(movies);
 
-  console.log(trailer, isLoading, error);
-
   useEffect(() => {
     setPath(movies[0]?.backdrop_path);
   }, [movies]);
-
-  console.log(path);
 
   useEffect(() => {
     const start = async () => {

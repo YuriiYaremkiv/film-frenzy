@@ -10,43 +10,43 @@ export const Header = () => {
       <div className="container header">
         <div className={css.header__container}>
           <div className={css.logo}>
-            <Link to="/">
-              <svg className={css.icon}>
-                <use href={sprite + '#logo'}></use>
-              </svg>
+            <Link to="/" className={css.logo__link}>
+              <p className={css.logo__text}>
+                Film<span>Frenzy</span>
+              </p>
             </Link>
           </div>
           <ul className={css.list__menu}>
             <li>
-              <a href="/" className={css.link}>
-                Movies
-              </a>
+              <Link to="/" className={css.link}>
+                HOME
+              </Link>
             </li>
             <li>
-              <a href="/" className={css.link}>
-                TV Shows
-              </a>
+              <Link to="/movies" className={css.link}>
+                MOVIES
+              </Link>
             </li>
             <li>
-              <a href="/" className={css.link}>
-                People
-              </a>
+              <Link to="/tv" className={css.link}>
+                TV SERIES
+              </Link>
+            </li>
+            <li>
+              <Link to="/search" className={css.link}>
+                SEARCH
+              </Link>
             </li>
           </ul>
           <ul className={css.list__contacts}>
             <li>
               <a href="/" className={css.link}>
-                EN
+                Theme
               </a>
             </li>
             <li>
               <a href="/" className={css.link}>
-                Login
-              </a>
-            </li>
-            <li>
-              <a href="/" className={css.link}>
-                Join
+                SIGN IN
               </a>
             </li>
           </ul>

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { SliderList } from 'components/SliderList/SliderList';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
-import css from './SectionTrendinMovie.module.scss';
+import css from './SectionPopularMovie.module.scss';
 
-export const SectionTrendinMovie = () => {
+export const SectionPopularMovie = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');

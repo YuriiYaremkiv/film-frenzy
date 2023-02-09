@@ -1,5 +1,9 @@
 @import '../../style/vars.scss';
 
+.section {
+  margin-bottom: 20px;
+}
+
 .title__container {
   display: flex;
   align-items: center;
@@ -23,7 +27,7 @@
   display: flex;
   align-items: center;
 
-  max-width: 310px;
+  max-width: 610px;
 
   border: 1px solid map-get($bgColors, 'primary');
   border-radius: 30px;
