@@ -15,11 +15,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setThemeMode } from 'redux/themeModeSlice';
 
-const FormControlStyled = styled(FormControl)`
-  .MuiSelect-selectMenu {
-    background-color: #234567;
-  }
-`;
+import modeConfig from 'configs/mode.config';
 
 export const SelectThemeMode = () => {
   const [mode, setMode] = useState('light');
@@ -37,20 +33,29 @@ export const SelectThemeMode = () => {
   }, [mode, dispatch]);
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControlStyled fullWidth className={css.form}>
-        <Select value={mode} onChange={handleChange}>
-          <MenuItem value="light">
-            <LightModeOutlinedIcon style={{ color: '#fff' }} />
-          </MenuItem>
-          <MenuItem value="dark">
-            <DarkModeOutlinedIcon style={{ color: '#fff' }} />
-          </MenuItem>
-          <MenuItem value="red">
-            <NightsStayOutlinedIcon style={{ color: '#fff' }} />
-          </MenuItem>
-        </Select>
-      </FormControlStyled>
-    </Box>
+    <FormControl fullWidth className={css.form}>
+      <Select
+        value={mode}
+        onChange={handleChange}
+        className={css.select}
+        variant="standard"
+      >
+        <MenuItem value="light" className={css.item}>
+          <LightModeOutlinedIcon
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          />
+        </MenuItem>
+        <MenuItem value="dark" className={css.item}>
+          <DarkModeOutlinedIcon
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          />
+        </MenuItem>
+        <MenuItem value="red" className={css.item}>
+          <NightsStayOutlinedIcon
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          />
+        </MenuItem>
+      </Select>
+    </FormControl>
   );
 };

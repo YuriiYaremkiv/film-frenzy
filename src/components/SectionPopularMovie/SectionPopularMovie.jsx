@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SliderList } from 'components/SliderList/SliderList';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import modeConfig from 'configs/mode.config';
 import css from './SectionPopularMovie.module.scss';
 
 export const SectionPopularMovie = () => {
@@ -10,6 +12,8 @@ export const SectionPopularMovie = () => {
   const [error, setError] = useState('');
 
   const [time, setTime] = useState(tmdbConfigs.mediaTime.day);
+
+  const { themeMode } = useSelector(state => state.themeMode);
 
   const handleChangeRadioButton = e => {
     setTime(e.target.value);
@@ -62,11 +66,20 @@ export const SectionPopularMovie = () => {
     <section className={css.section}>
       <div className="container">
         <div className={css.title__container}>
-          <h2 className={css.title}>Popular Movies</h2>
-          <div className={css.selector}>
+          <h2
+            className={css.title}
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          >
+            Popular Movies
+          </h2>
+          <div className={css[`selector__${themeMode}`]}>
             <label>
               <h3
-                className={time === 'day' ? css.activeTitle : css.disableTitle}
+                className={
+                  time === 'day'
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
+                }
               >
                 Today
               </h3>
@@ -81,7 +94,11 @@ export const SectionPopularMovie = () => {
             </label>
             <label>
               <h3
-                className={time === 'week' ? css.activeTitle : css.disableTitle}
+                className={
+                  time === 'week'
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
+                }
               >
                 This Week
               </h3>
@@ -94,11 +111,18 @@ export const SectionPopularMovie = () => {
                 className={css.select__input}
               />
             </label>
-            <div className={css.backGroung} style={styles}></div>
+            <div
+              className={css[`backGroung__${themeMode}`]}
+              style={styles}
+            ></div>
           </div>
         </div>
         {error && <div>{error}</div>}
-        <SliderList movies={movies} isLoading={isLoading} />
+        <SliderList
+          movies={movies}
+          isLoading={isLoading}
+          themeMode={themeMode}
+        />
       </div>
     </section>
   );

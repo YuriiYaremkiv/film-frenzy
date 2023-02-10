@@ -79,20 +79,20 @@ code {
   }
 }
 
-.container.SectionSearch {
-  padding: 90px 0;
-  min-height: 350px;
+// .container.SectionSearch {
+//   padding: 90px 0;
+//   min-height: 350px;
 
-  background-image: linear-gradient(
-      to right,
-      rgba(3, 37, 65, 0.8) 0%,
-      rgba(3, 37, 65, 0) 100%
-    ),
-    url('../src/components/SectionSearch/images/poster.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+//   background-image: linear-gradient(
+//       to right,
+//       rgba(3, 37, 65, 0.8) 0%,
+//       rgba(3, 37, 65, 0) 100%
+//     ),
+//     url('../src/components/SectionSearch/images/poster.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center;
+// }
 
 .container.SectionLatestTrailers {
   // background-image: linear-gradient(
@@ -161,7 +161,7 @@ image {
   font-size: 36px !important;
 
   border-radius: 50%;
-  z-index: 100 !important;
+  z-index: 10 !important;
 
   transition: background-color map-get($effect, 'timer')
     map-get($effect, 'function') !important;
@@ -178,4 +178,31 @@ image {
   to {
     opacity: 1;
   }
+}
+
+// theme modes
+.MuiList-root {
+  background-color: #e0e0e0;
+}
+
+.css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root:before {
+  border: none !important;
+}
+
+.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+  color: red;
+}
+
+.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+  color: #050505 !important;
+  color: red;
+}
+
+.MuiSelect-select {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.MuiSelect-icon {
+  display: none !important;
 }

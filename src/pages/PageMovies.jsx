@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { useSelector } from 'react-redux';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 
@@ -19,12 +19,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { SliderBg } from 'components/SliderBg/SliderBg';
 
+import modeConfig from 'configs/mode.config';
+
 const PageMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoadind, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [error, setError] = useState('');
+
+  const { themeMode } = useSelector(state => state.themeMode);
 
   useEffect(() => {
     (async () => {
@@ -58,7 +62,7 @@ const PageMovies = () => {
   };
 
   return (
-    <>
+    <main style={{ ...modeConfig.style.backgroundColorMain[themeMode] }}>
       <SliderBg />
       <div>
         <MoviesList movies={movies} />
@@ -69,7 +73,7 @@ const PageMovies = () => {
           Load more
         </button>
       </div>
-    </>
+    </main>
   );
 };
 

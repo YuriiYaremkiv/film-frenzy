@@ -1,3 +1,24 @@
+:root {
+  --bgPrimary: rgba(3, 37, 65, 1);
+  --bgBlue: rgba(1, 180, 228, 1);
+  --bgRed: #d50000;
+
+  --textBlack: #000;
+  --textWhite: #fff;
+  --textBlue: rgba(1, 180, 228, 1);
+  --textRed: #d50000;
+  --textLinear: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+
+  --effectTimer: 300ms;
+  --effectLongTimer: 500ms;
+  --effectFunction: ease-in-out;
+
+  --responsiveBreakpoints: 'max-width: 479px';
+  --mobileBreakpoints: 'min-width: 480px';
+  --tabletBreakpoints: 'min-width: 768px';
+  --computerBreakpoints: 'min-width: 1280px';
+}
+
 $bgColors: (
   'primary': rgba(3, 37, 65, 1),
   'white': #fff,

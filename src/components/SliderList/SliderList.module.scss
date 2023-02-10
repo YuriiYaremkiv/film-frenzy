@@ -70,16 +70,40 @@
   align-items: center;
   padding: 4px;
 
+  font-size: 19px;
+  font-weight: 600;
+  color: white;
+  white-space: normal;
+  color: map-get($textColors, 'white');
+
   opacity: 0;
   border-radius: 6px;
   transform: translateY(-14px);
 
-  transition: opacity 250ms linear, transform 250ms linear,
-    background-color 250ms linear;
+  transition: opacity 250ms linear, transform 250ms linear;
+}
 
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+.rating__text__light,
+.rating__text__dark {
+  color: var(--textWhite);
+}
+
+.rating__text__red {
+  color: var(--textRed);
+}
+
+.rating__icon__light,
+.rating__icon__dark,
+.rating__icon__red {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: 6px !important;
+
+  color: var(--textWhite);
+}
+
+.rating__icon__red {
+  color: var(--textRed);
 }
 
 .image {
@@ -90,18 +114,29 @@
   transition: transform 250ms ease-in-out;
 }
 
-.date {
+.date__light,
+.date__dark,
+.date__red {
   margin-bottom: 8px;
 
   font-size: 19px;
-  color: map-get($textColors, 'white');
+  color: var(--textWhite);
 }
 
-.title {
+.date__red {
+  color: var(--textRed);
+}
+
+.title__light,
+.title__dark,
+.title__red {
   font-size: 19px;
   font-weight: 700;
-  color: white;
-  white-space: normal;
+  color: var(--textWhite);
+}
+
+.title__red {
+  color: var(--textRed);
 }
 
 .progress {

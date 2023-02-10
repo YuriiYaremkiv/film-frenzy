@@ -8,13 +8,6 @@ export const Footer = () => {
     <footer className={css.footer}>
       <div className="container ">
         <div className={css.footer__container}>
-          <div className={css.logo}>
-            <Link to="/" style={{ display: 'block' }}>
-              <svg className={css.icon}>
-                <use href={sprite + '#logo'}></use>
-              </svg>
-            </Link>
-          </div>
           <button className={css.button}>JOIN THE COMMUNITY</button>
           <div className={css.container__list}>
             <ul className={css.list}>

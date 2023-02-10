@@ -1,55 +1,112 @@
 @import '../../style/vars.scss';
 
 .header {
-  background-color: map-get($bgColors, 'primary');
+  position: sticky;
+  top: 0;
+
+  z-index: 20;
 }
 
 .logo {
-  margin-right: 20px;
-  text-align: center;
-}
-
-.logo__link {
+  display: block;
   padding: 18px;
 
   font-size: 32px;
   font-weight: 700;
-  color: white;
+  color: var(--textBlack);
+  text-align: center;
   text-decoration: none;
-}
 
-.logo__text {
-  span {
-    color: map-get($textColors, 'blue');
+  transition: transform var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
   }
 }
 
-.icon {
-  fill: map-get($bgColors, 'green');
+.logo__light,
+.logo__dark {
+  color: var(--bgBlue);
+}
 
-  width: 100px;
-  height: 100px;
+.logo__red {
+  color: var(--textRed);
 }
 
 .list__menu {
   margin-bottom: 20px;
 }
 
-.link {
+.link__light,
+.link__dark,
+.link__red {
   display: block;
-  padding: 6px 0;
+  padding: 8px 12px;
 
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  color: map-get($textColors, 'secondary');
+  color: var(--textBlack);
   text-decoration: none;
 
-  transition: color map-get($effect, 'timer') map-get($effect, 'function');
+  border-radius: 8px;
+
+  transition: color var(--effectTimer) var(--effectFunction),
+    background-color var(--effectTimer) var(--effectFunction);
+}
+
+.link__light:hover,
+.link__light:focus {
+  color: var(--textWhite);
+  background-color: var(--bgBlue);
+}
+
+.link__dark {
+  color: var(--textWhite);
 
   &:hover,
   &:focus {
-    color: map-get($textColors, 'blue');
+    background-color: var(--bgBlue);
+  }
+}
+
+.link__red {
+  color: var(--textWhite);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRed);
+  }
+}
+
+.list__mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.select__light,
+.select__dark,
+.select__red {
+  padding: 4px 6px 0px 6px;
+  border-radius: 50%;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+}
+
+.select__light,
+.select__dark {
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlue);
+  }
+}
+.select__red {
+  &:hover,
+  &:focus {
+    background-color: var(--bgRed);
   }
 }
 
@@ -61,13 +118,9 @@
 
     width: 100%;
   }
+
   .logo {
     margin-bottom: 0;
-  }
-
-  .icon {
-    width: 75px;
-    height: 75px;
   }
 
   .list__container {
@@ -80,6 +133,10 @@
   .list__menu {
     margin-bottom: 0;
   }
+
+  .list__mode {
+    flex-direction: column-reverse;
+  }
 }
 
 @media screen and (map-get($breakpoints, 'tablet')) {
@@ -91,13 +148,15 @@
   }
 
   .list__menu,
-  .list__contacts {
+  .list__mode {
     display: flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 16px;
   }
 
-  .list__contacts {
+  .list__mode {
+    flex-direction: row;
+
     margin-left: auto;
   }
 }

@@ -4,12 +4,17 @@ import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import css from './SectionMoreMovies.module.scss';
 
+import { useSelector } from 'react-redux';
+import modeConfig from 'configs/mode.config';
+
 export const SectionMoreMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const [type, setType] = useState(tmdbConfigs.movieType.now_playing);
+
+  const { themeMode } = useSelector(state => state.themeMode);
 
   const handleChangeRadioButton = e => {
     setType(e.target.value);
@@ -56,14 +61,19 @@ export const SectionMoreMovies = () => {
     <section className={css.section}>
       <div className="container">
         <div className={css.title__container}>
-          <h2 className={css.title}>More Movies</h2>
-          <div className={css.selector}>
+          <h2
+            className={css.title}
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          >
+            More Movies
+          </h2>
+          <div className={css[`selector__${themeMode}`]}>
             <label>
               <h3
                 className={
                   type === tmdbConfigs.movieType.now_playing
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 Now Playing
@@ -81,8 +91,8 @@ export const SectionMoreMovies = () => {
               <h3
                 className={
                   type === tmdbConfigs.movieType.top_rated
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 Top Rated
@@ -100,8 +110,8 @@ export const SectionMoreMovies = () => {
               <h3
                 className={
                   type === tmdbConfigs.movieType.upcoming
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 Upcoming
@@ -115,7 +125,10 @@ export const SectionMoreMovies = () => {
                 className={css.select__input}
               />
             </label>
-            <div className={css.backGroung} style={styles}></div>
+            <div
+              className={css[`backGroung__${themeMode}`]}
+              style={styles}
+            ></div>
           </div>
         </div>
         <SliderList movies={movies} isLoading={isLoading} />

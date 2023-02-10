@@ -21,62 +21,82 @@
   color: map-get($textColors, 'primary');
 }
 
-.selector {
+.selector__light,
+.selector__dark,
+.selector__red {
   position: relative;
 
   display: flex;
   align-items: center;
 
-  max-width: px;
+  max-width: 700px;
 
-  border: 1px solid map-get($bgColors, 'primary');
+  border: 1px solid var(--textBlue);
   border-radius: 30px;
   overflow: hidden;
+
+  z-index: 0;
 }
 
-.activeTitle {
+.selector__red {
+  border: 1px solid var(--textRed);
+}
+
+.activeTitle__light,
+.activeTitle__dark,
+.activeTitle__red,
+.disableTitle__light,
+.disableTitle__dark,
+.disableTitle__red {
   margin: 0;
   padding: 4px 20px;
 
   font-size: 18px;
   line-height: 1.2;
   font-weight: 600;
-
-  background: map-get($textColors, 'linear');
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
+  color: var(--textBlack);
   cursor: pointer;
 
-  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+  z-index: 10;
+  transition: color var(--effectLongTimer) var(--effectFunction);
 }
 
-.disableTitle {
-  margin: 0;
-  padding: 4px 20px;
+.activeTitle__light {
+  color: var(--textBlue);
+}
 
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 600;
+.disableTitle__dark,
+.disableTitle__red {
+  color: var(--textWhite);
+}
 
-  color: map-get($textColors, 'primary');
-
-  cursor: pointer;
-
-  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+.activeTitle__dark,
+.activeTitle__red {
+  color: var(--textWhite);
 }
 
 .select__input {
   display: none;
 }
 
-.backGroung {
+.backGroung__light,
+.backGroung__dark,
+.backGroung__red {
   position: absolute;
   height: 30px;
 
-  background-color: map-get($bgColors, 'primary');
+  background-color: var(--bgPrimary);
   border-radius: 30px;
-  z-index: -1;
 
   transition: all map-get($effect, 'timer') map-get($effect, 'function');
+
+  z-index: -1;
+}
+
+.backGroung__dark {
+  background-color: var(--bgBlue);
+}
+
+.backGroung__red {
+  background-color: var(--bgRed);
 }

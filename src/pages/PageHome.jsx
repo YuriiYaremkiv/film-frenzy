@@ -5,17 +5,22 @@ import { SectionJoin } from 'components/SectionJoin/SectionJoin';
 import { SectionMoreMovies } from 'components/SectionMoreMovies/SectionMoreMovies';
 import { SectionTV } from 'components/SectionTV/SectionTV';
 
-const HomePage = () => {
+import { useSelector } from 'react-redux';
+import modeConfig from 'configs/mode.config';
+
+const PageHome = () => {
+  const { themeMode } = useSelector(state => state.themeMode);
+
   return (
-    <>
+    <main style={{ ...modeConfig.style.backgroundColorMain[themeMode] }}>
       <SectionSearch />
       <SectionPopularMovie />
-      <SectionLatestTrailers />
+      {/* <SectionLatestTrailers /> */}
       <SectionMoreMovies />
       <SectionJoin />
       <SectionTV />
-    </>
+    </main>
   );
 };
 
-export default HomePage;
+export default PageHome;
