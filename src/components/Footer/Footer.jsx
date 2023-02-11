@@ -1,111 +1,43 @@
 import { Link } from 'react-router-dom';
 import css from './Footer.module.scss';
 
-import sprite from './icons/sprite.svg';
+import { useSelector } from 'react-redux';
+import modeConfig from 'configs/mode.config';
 
 export const Footer = () => {
+  const { themeMode } = useSelector(state => state.themeMode);
+
   return (
-    <footer className={css.footer}>
-      <div className="container ">
+    <footer
+      className={css.footer}
+      style={{ ...modeConfig.style.backgroundColorHeader[themeMode] }}
+    >
+      <div className="container">
         <div className={css.footer__container}>
-          <button className={css.button}>JOIN THE COMMUNITY</button>
-          <div className={css.container__list}>
-            <ul className={css.list}>
-              <li>
-                <h3 className={css.list__title}>THE BASICS</h3>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  About TMDB
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Support Forums
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  API
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  TSystem Status
-                </Link>
-              </li>
-            </ul>
-            <ul className={css.list}>
-              <li>
-                <h3 className={css.list__title}>GET INVOLVED</h3>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Contribution Bible
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Add New Movie
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Add New TV Show
-                </Link>
-              </li>
-            </ul>
-            <ul className={css.list}>
-              <li>
-                <h3 className={css.list__title}>COMMUNITY</h3>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Guidelines
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Discussions
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Leaderboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Twitter
-                </Link>
-              </li>
-            </ul>
-            <ul className={css.list}>
-              <li>
-                <h3 className={css.list__title}>LEGAL</h3>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Terms of Use
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  API Terms of Use
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={css.link}>
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <Link
+            to="/"
+            className={css.logo}
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          >
+            Film<span className={css[`logo__${themeMode}`]}>Frenzy</span>
+          </Link>
+          <ul className={css.list__menu}>
+            <li>
+              <Link to="/movies" className={css[`link__${themeMode}`]}>
+                MOVIES
+              </Link>
+            </li>
+            <li>
+              <Link to="/tv" className={css[`link__${themeMode}`]}>
+                TV SERIES
+              </Link>
+            </li>
+            <li>
+              <Link to="/search" className={css[`link__${themeMode}`]}>
+                SEARCH
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

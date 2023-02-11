@@ -5,15 +5,44 @@
 
   font-size: 32px;
   font-weight: 700;
+  color: var(--textWhite);
 }
 
 .text {
   margin-bottom: 20px;
 
   font-size: 18px;
-  color: map-get($textColors, 'white');
+  color: var(--textWhite);
 
   user-select: none;
+}
+
+.wrapper {
+  margin: 0 4px;
+  padding: 20px 20px 30px 20px;
+  background-image: linear-gradient(
+      to right,
+      rgba(3, 37, 65, 0.8) 0%,
+      rgba(3, 37, 65, 0) 100%
+    ),
+    url('./images/poster.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -100;
+  animation: move-background 120s linear infinite;
+}
+
+@keyframes move-background {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .button {
@@ -28,15 +57,16 @@
   color: map-get($textColors, 'secondary');
   text-decoration: none;
 
-  background-color: map-get($bgColors, 'purple');
+  background-color: var(--bgPurple);
   border: none;
   border-radius: 5px;
-
   cursor: pointer;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
 
   &:hover,
   &:focus {
-    background-color: map-get($bgColors, 'ligthPurple');
+    background-color: var(--bgLightPurple);
   }
 }
 

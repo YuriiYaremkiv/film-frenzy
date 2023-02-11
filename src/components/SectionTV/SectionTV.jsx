@@ -1,12 +1,14 @@
-import css from './SectionTV.module.scss';
-
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SliderList } from 'components/SliderList/SliderList';
 
 import tvApi from 'api/modules/tv.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 
 import { SliderTV } from './SliderTV/SliderTV';
+import css from './SectionTV.module.scss';
+
+import modeConfig from 'configs/mode.config';
 
 export const SectionTV = () => {
   const [series, setSeries] = useState([]);
@@ -14,6 +16,8 @@ export const SectionTV = () => {
   const [error, setError] = useState('');
 
   const [type, setType] = useState(tmdbConfigs.tvType.popular);
+
+  const { themeMode } = useSelector(state => state.themeMode);
 
   useEffect(() => {
     (async () => {
@@ -66,14 +70,19 @@ export const SectionTV = () => {
     <section className={css.section}>
       <div className="container">
         <div className={css.title__container}>
-          <h2 className={css.title}>Television</h2>
-          <div className={css.selector}>
+          <h2
+            className={css.title}
+            style={{ ...modeConfig.style.textColor[themeMode] }}
+          >
+            Television
+          </h2>
+          <div className={css[`selector__${themeMode}`]}>
             <label>
               <h3
                 className={
                   type === tmdbConfigs.tvType.popular
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 Popular
@@ -91,8 +100,8 @@ export const SectionTV = () => {
               <h3
                 className={
                   type === tmdbConfigs.tvType.top_rated
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 Top Rated
@@ -110,8 +119,8 @@ export const SectionTV = () => {
               <h3
                 className={
                   type === tmdbConfigs.tvType.on_the_air
-                    ? css.activeTitle
-                    : css.disableTitle
+                    ? css[`activeTitle__${themeMode}`]
+                    : css[`disableTitle__${themeMode}`]
                 }
               >
                 On The Air
@@ -125,7 +134,10 @@ export const SectionTV = () => {
                 className={css.select__input}
               />
             </label>
-            <div className={css.backGroung} style={styles}></div>
+            <div
+              className={css[`backGroung__${themeMode}`]}
+              style={styles}
+            ></div>
           </div>
         </div>
         <SliderTV movies={series} isLoading={isLoading} />

@@ -1,105 +1,155 @@
 @import '../../style/vars.scss';
 
-.footer {
-  padding: 32px 0 48px 0;
-
-  background-color: map-get($bgColors, 'primary');
-}
-
-.footer__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .logo {
+  display: block;
+  padding: 32px 18px;
+
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--textBlack);
+  text-align: center;
+  text-decoration: none;
+
+  transition: transform var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
+  }
+}
+
+.logo__light,
+.logo__dark {
+  color: var(--bgBlue);
+}
+
+.logo__red {
+  color: var(--textRed);
+}
+
+.list__menu {
   margin-bottom: 20px;
 }
 
-.icon {
-  fill: map-get($bgColors, 'green');
-
-  width: 150px;
-  height: 150px;
-
-  transition: transform map-get($effect, 'timer') map-get($effect, 'function');
-  &:hover,
-  &:focus {
-    transform: scale(1.02);
-  }
-}
-
-.button {
+.link__light,
+.link__dark,
+.link__red {
   display: block;
-  margin: 0 auto 20px auto;
-  padding: 8px 16px;
+  padding: 8px 12px;
 
-  font-size: 18px;
-  font-weight: 700;
-  color: map-get($textColors, 'blue');
-
-  background-color: map-get($bgColors, 'white');
-  border: none;
-  border-radius: 5px;
-
-  cursor: pointer;
-
-  transition: color map-get($effect, 'timer') map-get($effect, 'function'),
-    background-color map-get($effect, 'timer') map-get($effect, 'function');
-
-  &:hover,
-  &:focus {
-    color: map-get($textColors, 'secondary');
-    background-color: map-get($bgColors, 'blue');
-  }
-}
-
-.list {
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-}
-
-.list__title {
-  margin: 0;
-
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: map-get($textColors, 'secondary');
-}
-
-.link {
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 1.2em;
-  color: map-get($textColors, 'secondary');
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--textBlack);
   text-decoration: none;
 
-  transition: color map-get($effect, 'timer') map-get($effect, 'function');
+  border-radius: 8px;
+
+  transition: color var(--effectTimer) var(--effectFunction),
+    background-color var(--effectTimer) var(--effectFunction);
+}
+
+.link__light:hover,
+.link__light:focus {
+  color: var(--textWhite);
+  background-color: var(--bgBlue);
+}
+
+.link__dark {
+  color: var(--textWhite);
 
   &:hover,
   &:focus {
-    color: map-get($textColors, 'blue');
+    background-color: var(--bgBlue);
+  }
+}
+
+.link__red {
+  color: var(--textWhite);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRed);
+  }
+}
+
+.list__mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.select__light,
+.select__dark,
+.select__red {
+  padding: 4px 6px 0px 6px;
+  border-radius: 50%;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+}
+
+.select__light,
+.select__dark {
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlue);
+  }
+}
+.select__red {
+  &:hover,
+  &:focus {
+    background-color: var(--bgRed);
   }
 }
 
 @media screen and (map-get($breakpoints, 'mobile')) {
   .footer__container {
     display: flex;
-    gap: 45px;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .logo {
+    margin-bottom: 0;
+  }
+
+  .list__container {
+    display: flex;
+    justify-content: space-around;
+
+    margin-right: 20px;
+  }
+
+  .list__menu {
+    margin-bottom: 0;
+  }
+
+  .list__mode {
+    flex-direction: column-reverse;
   }
 }
 
-@media screen and (map-get($breakpoints, 'computer')) {
+@media screen and (map-get($breakpoints, 'tablet')) {
   .footer__container {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
   }
 
-  .container__list {
+  .list__menu,
+  .list__mode {
     display: flex;
-    gap: 45px;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .list__mode {
+    flex-direction: row;
+
+    margin-left: auto;
   }
 }

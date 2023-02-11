@@ -194,11 +194,11 @@ h3 {
 
   background-color: rgba(1, 180, 228, 1);
 
-  transition: color map-get($effect, 'timer') map-get($effect, 'function');
+  transition: background-color var(--effectTimer) var(--effectFunction);
 
   &:hover,
   &:focus {
-    background-color: rgba(1, 180, 228, 0.7);
+    background-color: rgba(1, 180, 228, 0.6);
   }
 }
 

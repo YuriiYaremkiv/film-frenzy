@@ -14,7 +14,7 @@ export const Header = () => {
       style={{ ...modeConfig.style.backgroundColorHeader[themeMode] }}
       className={css.header}
     >
-      <div className="container header">
+      <div className="container">
         <div className={css.header__container}>
           <Link
             to="/"
