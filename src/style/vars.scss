@@ -2,6 +2,7 @@
   --bgPrimary: rgba(3, 37, 65, 1);
   --bgBlue: rgba(1, 180, 228, 1);
   --bgRed: #d50000;
+  --bgWhite: #fff;
   --bgPurple: #805be7;
   --bgLightPurple: rgba(128, 91, 231, 0.8);
 
@@ -14,11 +15,6 @@
   --effectTimer: 300ms;
   --effectLongTimer: 500ms;
   --effectFunction: ease-in-out;
-
-  --responsiveBreakpoints: 'max-width: 479px';
-  --mobileBreakpoints: 'min-width: 480px';
-  --tabletBreakpoints: 'min-width: 768px';
-  --computerBreakpoints: 'min-width: 1280px';
 }
 
 $bgColors: (

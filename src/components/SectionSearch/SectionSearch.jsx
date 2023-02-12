@@ -18,7 +18,6 @@ import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
 
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import uiConfigs from 'configs/ui.configs';
 import { Autoplay } from 'swiper';
 
 import mediaApi from 'api/modules/media.api';
@@ -42,8 +41,6 @@ export const SectionSearch = () => {
 
   useEffect(() => {
     (async () => {
-      // setIsLoading(true);
-
       const { response, err } = await mediaApi.getList({
         mediaType: tmdbConfigs.mediaType.movie,
         timeWindow: tmdbConfigs.mediaTime.week,
@@ -52,13 +49,11 @@ export const SectionSearch = () => {
 
       if (response) {
         setPosterMovies(response.data.results);
-        // setIsLoading(false);
       }
 
       if (err) {
         console.log(err);
         setError(err.message);
-        // setIsLoading(false);
       }
     })();
   }, []);

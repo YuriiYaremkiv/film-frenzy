@@ -7,6 +7,7 @@ const mediaEndpoints = {
     `${BASE_URL}trending/${mediaType}/${timeWindow}?api_key=${KEY}&page=${page}`,
   listMovies: ({ movieType, page }) =>
     `${BASE_URL}movie/${movieType}?api_key=${KEY}&page=${page}`,
+  detailsMovie: ({ movieId }) => `${BASE_URL}movie/${movieId}?api_key=${KEY}`,
   trailer: ({ mediaId }) => `${BASE_URL}movie/${mediaId}/videos?api_key=${KEY}`,
 };
 
@@ -35,6 +36,16 @@ const mediaApi = {
   getTrailer: async ({ mediaId }) => {
     try {
       const response = await axios.get(mediaEndpoints.trailer({ mediaId }));
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+  getDetailsForMovie: async ({ movieId }) => {
+    try {
+      const response = await axios.get(
+        mediaEndpoints.detailsMovie({ movieId })
+      );
       return { response };
     } catch (err) {
       return { err };

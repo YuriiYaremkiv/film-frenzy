@@ -20,5 +20,3 @@ const tvApi = {
   },
 };
 export default tvApi;
-
-// https://api.themoviedb.org/3/tv/popular?api_key=<<api_key>>&language=en-US&page=1

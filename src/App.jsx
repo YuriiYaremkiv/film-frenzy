@@ -1,9 +1,9 @@
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-const Layout = lazy(() => import('./pages/Layout/Layout'));
+const Layout = lazy(() => import('./pages/Layout'));
 const PageHome = lazy(() => import('./pages/PageHome'));
-const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
+const PageMovieDetails = lazy(() => import('./pages/PageMovieDetails'));
 const Movies = lazy(() => import('./pages/Movies/Movies'));
 const Cast = lazy(() => import('./components/Cast/Cast'));
 const Reviews = lazy(() => import('./components/Reviews/Reviews'));
@@ -19,7 +19,7 @@ export const App = () => {
         <Route path="movies" element={<PageMovies />} />
         <Route path="tv" element={<PageTV />} />
         <Route path="search" element={<Movies />} />
-        <Route path="movies/:movieId" element={<MovieDetails />}>
+        <Route path="movies/:movieId" element={<PageMovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
