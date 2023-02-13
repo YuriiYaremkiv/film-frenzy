@@ -7,8 +7,10 @@ const mediaEndpoints = {
     `${BASE_URL}trending/${mediaType}/${timeWindow}?api_key=${KEY}&page=${page}`,
   listMovies: ({ movieType, page }) =>
     `${BASE_URL}movie/${movieType}?api_key=${KEY}&page=${page}`,
+  listRecommendationMovies: ({ movieId, page }) =>
+    `${BASE_URL}movie/${movieId}/recommendations?api_key=${KEY}&page=${page}`,
   detailsMovie: ({ movieId }) => `${BASE_URL}movie/${movieId}?api_key=${KEY}`,
-  trailer: ({ mediaId }) => `${BASE_URL}movie/${mediaId}/videos?api_key=${KEY}`,
+  trailer: ({ movieId }) => `${BASE_URL}movie/${movieId}/videos?api_key=${KEY}`,
 };
 
 const mediaApi = {
@@ -33,9 +35,20 @@ const mediaApi = {
       return { err };
     }
   },
-  getTrailer: async ({ mediaId }) => {
+  getRecommendationMovies: async ({ movieId, page = 1 }) => {
     try {
-      const response = await axios.get(mediaEndpoints.trailer({ mediaId }));
+      const response = await axios.get(
+        mediaEndpoints.listRecommendationMovies({ movieId, page })
+      );
+
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+  getTrailer: async ({ movieId }) => {
+    try {
+      const response = await axios.get(mediaEndpoints.trailer({ movieId }));
       return { response };
     } catch (err) {
       return { err };

@@ -27,8 +27,17 @@ const mediaTime = {
 const sectionBgImage = imageId =>
   `url(https://image.tmdb.org/t/p/w1920_and_h427_multi_faces/${imageId})`;
 
+const personImage = imageId =>
+  `https://image.tmdb.org/t/p/w138_and_h175_face/${imageId}`;
+
+const avatarImage = avatarId =>
+  `https://image.tmdb.org/t/p/w64_and_h64_face/${avatarId}`;
+
 const backdropPath = imgEndpoint =>
   `https://image.tmdb.org/t/p/original${imgEndpoint}`;
+
+const youtubePath = videoId =>
+  `https://www.youtube.com/embed/${videoId}?controls=0`;
 
 const tmdbConfigs = {
   mediaType,
@@ -36,7 +45,10 @@ const tmdbConfigs = {
   movieType,
   tvType,
   sectionBgImage,
+  personImage,
+  avatarImage,
   backdropPath,
+  youtubePath,
 };
 
 export default tmdbConfigs;

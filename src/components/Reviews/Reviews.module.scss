@@ -1,0 +1,40 @@
+.title {
+  margin-bottom: 12px;
+
+  font-size: 24px;
+}
+
+.card {
+  display: flex;
+  padding: 8px;
+
+  border: 1px solid rgba(227, 227, 227, 1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+.card__img {
+  display: block;
+  margin-right: 12px;
+
+  background-color: crimson;
+
+  border-radius: 50%;
+}
+
+.card__name {
+  margin-bottom: 4px;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.card__data {
+  margin-bottom: 16px;
+
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.card__content {
+  cursor: default;
+}

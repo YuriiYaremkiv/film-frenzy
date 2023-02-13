@@ -11,6 +11,8 @@ import { SectionMovieDetails } from 'components/SectionMovieDetails/SectionMovie
 import mediaApi from 'api/modules/media.api';
 import { SliderList } from 'components/SliderList/SliderList';
 import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
+import { SectionRecommendation } from 'components/SectionRecommendation/SectionRecommendation';
 
 const PageMovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
@@ -46,6 +48,8 @@ const PageMovieDetails = () => {
         <SectionMovieDetails movieInfo={movieInfo} />
       ) : null}
       <Cast />
+      <Reviews />
+      <SectionRecommendation />
     </div>
   );
 };

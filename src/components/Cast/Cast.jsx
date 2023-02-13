@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Loader } from '../../components/Loader/Loader';
-import { Error } from '../../components/Error/Error';
+import { Loader } from '../Loader/Loader';
+import { Error } from '../Error/Error';
 import { getFetchByCredits } from '../../utils/fetchAPI';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import { useLocation } from 'react-router-dom';
 
 import css from './Cast.module.scss';
 
@@ -23,6 +19,9 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
+import modeConfig from 'configs/mode.config';
+import tmdbConfigs from 'api/configs/tmdb.configs';
+
 const Cast = () => {
   const [actors, setActors] = useState([]);
   const [isLoading, setIsLoadind] = useState(false);
@@ -34,12 +33,20 @@ const Cast = () => {
 
   const { themeMode } = useSelector(state => state.themeMode);
 
+  const location = useLocation();
+
   useEffect(() => {
     setIsLoadind(true);
     (async () => {
       try {
         const movie = await getFetchByCredits(movieId);
-        setActors(movie);
+        const actors = movie.filter(actor => {
+          if (actor.profile_path) {
+            return actor;
+          }
+        });
+
+        setActors(actors);
         setIsLoadind(false);
       } catch (error) {
         setIsLoadind(false);
@@ -62,6 +69,12 @@ const Cast = () => {
 
   return (
     <div className="container">
+      <h3
+        style={{ ...modeConfig.style.textColor[themeMode] }}
+        className={css.title}
+      >
+        Top Billed Cast
+      </h3>
       <Media
         queries={{
           responsive: '(max-width: 479px)',
@@ -78,12 +91,12 @@ const Cast = () => {
             swipeToSlide={true}
             slidesToShow={
               matches.responsive
-                ? 1
+                ? 3
                 : matches.mobile
-                ? 2
+                ? 3
                 : matches.tablet
                 ? 5
-                : 8
+                : 9
             }
             slidesToScroll={
               matches.responsive
@@ -91,19 +104,38 @@ const Cast = () => {
                 : matches.mobile
                 ? 2
                 : matches.tablet
-                ? 2
-                : 2
+                ? 4
+                : 4
             }
           >
-            {actors.map(({ id, name, profile_path: path }) => (
+            {actors.map(({ id, name, profile_path: path, character }) => (
               <div key={id} className={css.card}>
-                <div className={css.card__container}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${path}`}
-                    alt="ias"
-                    className={css.image}
-                  />
-                </div>
+                <Link
+                  to={`/person/${id}`}
+                  state={{ from: location }}
+                  style={{ ...modeConfig.style.textColor[themeMode] }}
+                  className={css[`link__${themeMode}`]}
+                >
+                  <div
+                    className={css.card__container}
+                    style={{
+                      ...modeConfig.style.backgroundColorSecondary[themeMode],
+                    }}
+                  >
+                    <img
+                      src={tmdbConfigs.personImage(path)}
+                      alt={name}
+                      className={css.card__image}
+                    />
+                    <div
+                      className={css.card__tumb}
+                      style={{ minHeight: '90px' }}
+                    >
+                      <p className={css.card__name}>{name}</p>
+                      <p className={css.card__character}>{character}</p>
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))}
             {isLoading && (

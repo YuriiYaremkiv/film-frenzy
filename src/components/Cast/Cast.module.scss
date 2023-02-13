@@ -1,31 +1,62 @@
-.actorsList {
-  margin: 0;
-  padding: 0;
-  padding-top: 16px;
-  list-style: none;
+.title {
+  margin: 16px 0 12px 0;
+
+  font-size: 24px;
 }
 
-.actorsList__item {
-  display: flex;
-  align-items: center;
+.card {
+  padding: 4px;
+}
 
-  &:not(:last-child) {
-    margin-bottom: 12px;
+.link__light,
+.link__dark,
+.link__red {
+  display: block;
+  text-decoration: none;
+
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+
+  &:hover .card__name,
+  &:focus .card__name,
+  &:hover .card__character,
+  &:focus .card__character {
+    color: var(--textBlue);
   }
 }
 
-.actorsList__img {
-  display: block;
-  margin-right: 20px;
+.link__red {
+  &:hover .card__name,
+  &:focus .card__name,
+  &:hover .card__character,
+  &:focus .card__character {
+    color: var(--textRed);
+  }
 }
 
-.actorsList__other {
-  border-bottom: 1px solid #6c757d;
+.card__container {
+  background-color: #6c757d;
 }
 
-.image {
+.card__image {
   display: block;
-  padding-top: 4px;
+  margin-bottom: 6px;
 
   width: 100%;
+}
+
+.card__tumb {
+  padding: 8px;
+}
+
+.card__name {
+  margin-bottom: 2px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  transition: color var(--effectTimer) var(--effectFunction);
+}
+
+.card__character {
+  transition: color var(--effectTimer) var(--effectFunction);
 }

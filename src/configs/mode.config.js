@@ -22,6 +22,28 @@ const modeConfig = {
         backgroundColor: '#000',
       },
     },
+    backgroundColorSecondary: {
+      light: {
+        backgroundColor: '#fafafa',
+      },
+      dark: {
+        backgroundColor: '#212121',
+      },
+      red: {
+        backgroundColor: '#212121',
+      },
+    },
+    backgroundColorModal: {
+      light: {
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+      },
+      dark: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      },
+      red: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      },
+    },
     textColor: {
       light: {
         color: '#000',
