@@ -1,0 +1,54 @@
+.section {
+}
+
+.container {
+  display: flex;
+}
+
+.container__image {
+  border: 1px solid red;
+}
+
+.contaner__description {
+  display: block;
+
+  overflow: hidden;
+  border: 1px solid green;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.item__link__light,
+.item__link__dark,
+.item__link__red {
+  margin-right: 8px;
+
+  font-weight: 700;
+  text-decoration: inherit;
+
+  transition: color var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    color: var(--textBlue) !important;
+  }
+}
+
+.item__link__red {
+  &:hover,
+  &:focus {
+    color: var(--textRed) !important;
+  }
+}
+
+.item {
+  display: flex;
+}
+
+.item__date {
+  margin: 0 20px 0 12px;
+}

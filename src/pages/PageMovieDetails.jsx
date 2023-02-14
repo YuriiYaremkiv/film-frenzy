@@ -1,15 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { MovieDetail } from '../components/MovieDetail/MovieDetail';
 import { Loader } from '../components/Loader/Loader';
 import { Error } from '../components/Error/Error';
-import { getFetchById } from '../utils/fetchAPI';
 
 import { SectionMovieDetails } from 'components/SectionMovieDetails/SectionMovieDetails';
 
 import mediaApi from 'api/modules/media.api';
-import { SliderList } from 'components/SliderList/SliderList';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
 import { SectionRecommendation } from 'components/SectionRecommendation/SectionRecommendation';

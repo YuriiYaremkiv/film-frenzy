@@ -1,17 +1,9 @@
-import React from 'react';
+import { SectionPerson } from 'components/SectionPerson/SectionPerson';
 
 const PagePerson = () => {
   return (
     <>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
-      <div>PagePerson</div>
+      <SectionPerson />
     </>
   );
 };

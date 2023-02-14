@@ -94,8 +94,6 @@ export const SectionMovieDetails = ({ movieInfo }) => {
     },
   };
 
-  console.log(officailTrailer[0]?.key);
-
   return (
     <section
       style={{
@@ -105,17 +103,6 @@ export const SectionMovieDetails = ({ movieInfo }) => {
     >
       <div className={css.wrapper}>
         <div className="container">
-          <button
-            className={css.details__btn}
-            type="button"
-            onClick={onBtnClick}
-          >
-            <IconContext.Provider value={{ size: '20px' }}>
-              <AiOutlineArrowLeft className={css.details__icon} />
-            </IconContext.Provider>
-            Go back
-          </button>
-
           <div className={css.details__container}>
             <img
               src={`https://image.tmdb.org/t/p/w500/${poster}`}
@@ -167,11 +154,10 @@ export const SectionMovieDetails = ({ movieInfo }) => {
                   style={customStyles}
                   onRequestClose={() => setModalIsOpen(false)}
                 >
-                  {/* <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" /> */}
                   <ReactPlayer
                     url={tmdbConfigs.youtubePath(officailTrailer[0]?.key)}
-                    width="50%"
-                    height="50%"
+                    width="1268px"
+                    height="713px"
                   />
                 </Modal>
               </div>
