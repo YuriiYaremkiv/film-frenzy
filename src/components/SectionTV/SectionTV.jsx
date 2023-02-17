@@ -44,26 +44,26 @@ export const SectionTV = () => {
     setType(e.target.value);
   };
 
-  let styles = {};
+  let stylesHorizontal = {};
 
   switch (type) {
     case 'popular':
-      styles.left = 0;
-      styles.width = '105px';
-      styles.transform = 'translateX(0px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '105px';
+      stylesHorizontal.transform = 'translateX(0px)';
       break;
     case 'top_rated':
-      styles.left = 0;
-      styles.width = '115px';
-      styles.transform = 'translateX(105px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '115px';
+      stylesHorizontal.transform = 'translateX(105px)';
       break;
     case 'on_the_air':
-      styles.left = 0;
-      styles.width = '125px';
-      styles.transform = 'translateX(220px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '125px';
+      stylesHorizontal.transform = 'translateX(220px)';
       break;
     default:
-      return styles;
+      return stylesHorizontal;
   }
 
   return (
@@ -76,6 +76,7 @@ export const SectionTV = () => {
           >
             Television
           </h2>
+          {/* selector */}
           <div className={css[`selector__${themeMode}`]}>
             <label>
               <h3
@@ -135,10 +136,15 @@ export const SectionTV = () => {
               />
             </label>
             <div
-              className={css[`backGroung__${themeMode}`]}
-              style={styles}
+              className={css[`backGroungHorizontal__${themeMode}`]}
+              style={stylesHorizontal}
+            ></div>
+            <div
+              className={css[`backGroungVertical__${themeMode}`]}
+              style={stylesHorizontal}
             ></div>
           </div>
+          {/* selector */}
         </div>
         <SliderTV movies={series} isLoading={isLoading} />
       </div>

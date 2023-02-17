@@ -5,19 +5,17 @@
 }
 
 .title__container {
-  display: flex;
-  align-items: center;
-
   padding-top: 25px;
 
   margin-bottom: 15px;
 }
 
 .title {
-  margin-right: 20px;
+  margin-bottom: 20px;
 
   font-size: 1.5em;
   font-weight: 600;
+  text-align: center;
   color: map-get($textColors, 'primary');
 }
 
@@ -27,9 +25,11 @@
   position: relative;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 
-  max-width: 610px;
+  max-width: 345px;
 
   border: 1px solid var(--textBlue);
   border-radius: 30px;
@@ -79,24 +79,73 @@
   display: none;
 }
 
-.backGroung__light,
-.backGroung__dark,
-.backGroung__red {
-  position: absolute;
-  height: 30px;
-
-  background-color: var(--bgPrimary);
-  border-radius: 30px;
-
-  transition: all map-get($effect, 'timer') map-get($effect, 'function');
-
-  z-index: -1;
+.backGroungHorizontal__light,
+.backGroungHorizontal__dark,
+.backGroungHorizontal__red {
+  display: none;
 }
 
-.backGroung__dark {
-  background-color: var(--bgBlue);
+@media screen and (min-width: 480px) {
+  .selector__light,
+  .selector__dark,
+  .selector__red {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+
+    max-width: 345px;
+
+    border-radius: 30px;
+    overflow: hidden;
+
+    z-index: 0;
+  }
+
+  .backGroungHorizontal__light,
+  .backGroungHorizontalg__dark,
+  .backGroungHorizontal__red {
+    display: block;
+    position: absolute;
+    height: 30px;
+
+    background-color: var(--bgPrimary);
+    border-radius: 30px;
+
+    transition: all map-get($effect, 'timer') map-get($effect, 'function');
+
+    z-index: -1;
+  }
+
+  .backGroungHorizontal__dark {
+    background-color: var(--bgBlue);
+  }
+
+  .backGroungHorizontal__red {
+    background-color: var(--bgRed);
+  }
 }
 
-.backGroung__red {
-  background-color: var(--bgRed);
+@media screen and (min-width: 768px) {
+  .title__container {
+    display: flex;
+    align-items: center;
+  }
+
+  .title {
+    margin: 0 20px 0 0;
+
+    text-align: left;
+  }
+
+  .selector__light,
+  .selector__dark,
+  .selector__red {
+    flex-direction: row;
+    margin: 0 auto 0 0;
+
+    max-width: 610px;
+  }
 }
