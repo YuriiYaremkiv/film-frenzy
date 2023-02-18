@@ -86,15 +86,29 @@ const modeConfig = {
     horizontalGradientBgImage: {
       light: {
         backgroundImage:
-          'linear-gradient(to right, rgba(245,245,245,1), rgba(0,0,0,0))',
+          'linear-gradient(to right, rgba(245,245,245,0.8), rgba(0,0,0,0))',
       },
       dark: {
         backgroundImage:
-          'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+          'linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0))',
       },
       red: {
         backgroundImage:
-          'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+          'linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0))',
+      },
+    },
+    verticalGradientBgImage: {
+      light: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(245,245,245,0.9), rgba(0,0,0,0))',
+      },
+      dark: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
+      },
+      red: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
       },
     },
   },

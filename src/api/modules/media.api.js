@@ -11,6 +11,7 @@ const mediaEndpoints = {
     `${BASE_URL}movie/${movieId}/recommendations?api_key=${KEY}&page=${page}`,
   detailsMovie: ({ movieId }) => `${BASE_URL}movie/${movieId}?api_key=${KEY}`,
   trailer: ({ movieId }) => `${BASE_URL}movie/${movieId}/videos?api_key=${KEY}`,
+  genres: () => `${BASE_URL}genre/movie/list?api_key=${KEY}`,
 };
 
 const mediaApi = {
@@ -59,6 +60,14 @@ const mediaApi = {
       const response = await axios.get(
         mediaEndpoints.detailsMovie({ movieId })
       );
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+  getGenres: async () => {
+    try {
+      const response = await axios.get(mediaEndpoints.genres());
       return { response };
     } catch (err) {
       return { err };

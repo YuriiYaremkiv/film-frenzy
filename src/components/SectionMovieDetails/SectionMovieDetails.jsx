@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, Outlet, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { IconContext } from 'react-icons';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 

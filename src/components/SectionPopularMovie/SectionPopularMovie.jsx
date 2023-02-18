@@ -45,21 +45,23 @@ export const SectionPopularMovie = () => {
     start();
   }, [time]);
 
-  let styles = {};
+  let stylesHorizontal = {};
+  let stylesVertical = {};
 
   switch (time) {
     case 'day':
-      styles.left = 0;
-      styles.width = '90px';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '90px';
+      stylesVertical.transform = 'translateY(0px)';
       break;
     case 'week':
-      styles.left = 0;
-      styles.width = '125px';
-
-      styles.transform = 'translateX(85px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '125px';
+      stylesHorizontal.transform = 'translateX(85px)';
+      stylesVertical.transform = 'translateY(30px)';
       break;
     default:
-      return styles;
+      return stylesHorizontal;
   }
 
   return (
@@ -112,8 +114,12 @@ export const SectionPopularMovie = () => {
               />
             </label>
             <div
-              className={css[`backGroung__${themeMode}`]}
-              style={styles}
+              className={css[`backGroungHorizontal__${themeMode}`]}
+              style={stylesHorizontal}
+            ></div>
+            <div
+              className={css[`backGroungVertical__${themeMode}`]}
+              style={stylesVertical}
             ></div>
           </div>
         </div>

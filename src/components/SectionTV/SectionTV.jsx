@@ -45,22 +45,26 @@ export const SectionTV = () => {
   };
 
   let stylesHorizontal = {};
+  let stylesVertical = {};
 
   switch (type) {
     case 'popular':
       stylesHorizontal.left = 0;
       stylesHorizontal.width = '105px';
-      stylesHorizontal.transform = 'translateX(0px)';
+      stylesVertical.transform = 'translateY(0px)';
+
       break;
     case 'top_rated':
       stylesHorizontal.left = 0;
       stylesHorizontal.width = '115px';
       stylesHorizontal.transform = 'translateX(105px)';
+      stylesVertical.transform = 'translateY(28px)';
       break;
     case 'on_the_air':
       stylesHorizontal.left = 0;
       stylesHorizontal.width = '125px';
       stylesHorizontal.transform = 'translateX(220px)';
+      stylesVertical.transform = 'translateY(60px)';
       break;
     default:
       return stylesHorizontal;
@@ -141,7 +145,7 @@ export const SectionTV = () => {
             ></div>
             <div
               className={css[`backGroungVertical__${themeMode}`]}
-              style={stylesHorizontal}
+              style={stylesVertical}
             ></div>
           </div>
           {/* selector */}

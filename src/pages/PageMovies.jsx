@@ -5,18 +5,6 @@ import tmdbConfigs from 'api/configs/tmdb.configs';
 
 import { MoviesList } from 'components/MoviesList/MoviesList';
 
-import {
-  Box,
-  Button,
-  Chip,
-  Divider,
-  Stack,
-  Typography,
-  useTheme,
-} from '@mui/material';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import { SliderBg } from 'components/SliderBg/SliderBg';
 
 import modeConfig from 'configs/mode.config';

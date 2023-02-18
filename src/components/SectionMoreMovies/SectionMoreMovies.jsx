@@ -37,24 +37,29 @@ export const SectionMoreMovies = () => {
     })();
   }, [type]);
 
-  let styles = {};
+  let stylesHorizontal = {};
+  let stylesVertical = {};
+
   switch (type) {
     case 'now_playing':
-      styles.left = 0;
-      styles.width = '135px';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '135px';
+      stylesVertical.transform = 'translateY(0px)';
       break;
     case 'top_rated':
-      styles.left = 0;
-      styles.width = '110px';
-      styles.transform = 'translateX(140px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '110px';
+      stylesHorizontal.transform = 'translateX(140px)';
+      stylesVertical.transform = 'translateY(28px)';
       break;
     case 'upcoming':
-      styles.left = 0;
-      styles.width = '120px';
-      styles.transform = 'translateX(255px)';
+      stylesHorizontal.left = 0;
+      stylesHorizontal.width = '120px';
+      stylesHorizontal.transform = 'translateX(255px)';
+      stylesVertical.transform = 'translateY(60px)';
       break;
     default:
-      return styles;
+      return stylesHorizontal;
   }
 
   return (
@@ -126,8 +131,12 @@ export const SectionMoreMovies = () => {
               />
             </label>
             <div
-              className={css[`backGroung__${themeMode}`]}
-              style={styles}
+              className={css[`backGroungHorizontal__${themeMode}`]}
+              style={stylesHorizontal}
+            ></div>
+            <div
+              className={css[`backGroungVertical__${themeMode}`]}
+              style={stylesVertical}
             ></div>
           </div>
         </div>
