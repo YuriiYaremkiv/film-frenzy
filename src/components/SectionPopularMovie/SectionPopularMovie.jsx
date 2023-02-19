@@ -10,9 +10,7 @@ export const SectionPopularMovie = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
   const [time, setTime] = useState(tmdbConfigs.mediaTime.day);
-
   const { themeMode } = useSelector(state => state.themeMode);
 
   const handleChangeRadioButton = e => {

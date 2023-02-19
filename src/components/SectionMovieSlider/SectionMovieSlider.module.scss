@@ -2,7 +2,7 @@
   position: relative;
   padding-top: 86px;
 
-  height: 750px;
+  min-height: 750px;
 
   background-position: top;
   background-size: cover;
@@ -15,6 +15,7 @@
 
 .title {
   margin-bottom: 24px;
+  max-width: 550px;
 
   font-size: 64px;
 
@@ -73,4 +74,73 @@
 
 .rating__icon__red {
   color: var(--textRed);
+}
+
+.genres {
+  display: flex;
+  gap: 15px;
+
+  margin-bottom: 16px;
+}
+
+.genres__item__light,
+.genres__item__dark,
+.genres__item__red {
+  padding: 6px 12px;
+
+  font-size: 16px;
+  color: var(--textWhite);
+
+  background-color: var(--bgBlue);
+  border-radius: 20px;
+}
+
+.genres__item__red {
+  background-color: var(--bgRed);
+}
+
+.overview {
+  margin-bottom: 16px;
+  max-width: 550px;
+
+  font-size: 18px;
+}
+
+.date {
+  margin-bottom: 16px;
+  max-width: 550px;
+
+  font-size: 18px;
+}
+
+.link__light,
+.link__dark,
+.link__red {
+  display: block;
+  padding: 6px 18px;
+  max-width: 150px;
+
+  font-size: 18px;
+  text-decoration: none;
+  text-align: center;
+  color: var(--textWhite);
+
+  background-color: var(--bgBlue);
+  border-radius: 20px;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlueHover);
+  }
+}
+
+.link__red {
+  background-color: var(--bgRed);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRedHover);
+  }
 }

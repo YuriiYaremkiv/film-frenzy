@@ -1,26 +1,20 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Autoplay } from 'swiper';
-import { toast } from 'react-toastify';
-
-import 'swiper/css';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import 'swiper/css';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
-
-import css from './SliderBg.module.scss';
 import modeConfig from 'configs/mode.config';
+import css from './SectionMovieSlider.module.scss';
 
-export const SliderBg = () => {
+export const SectionMovieSlider = () => {
   const [movies, setMovies] = useState([]);
   const [AllGenres, setAllGenres] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState('');
   const { themeMode } = useSelector(state => state.themeMode);
 
@@ -67,7 +61,7 @@ export const SliderBg = () => {
       delay: 114500,
       disableOnInteraction: false,
     },
-    spaceBetween: 50,
+    spaceBetween: 0,
     slidesPerView: 1,
   };
 
@@ -84,6 +78,7 @@ export const SliderBg = () => {
             vote_average: rating,
             genre_ids: genres,
             overview,
+            release_date: date,
           },
           index
         ) => {
@@ -122,12 +117,14 @@ export const SliderBg = () => {
                         {rating ? rating.toFixed(2) : null}
                       </p>
                     </Stack>
-                    {/* genres */}
                     {genres.length && AllGenres.length ? (
-                      <ul>
+                      <ul className={css.genres}>
                         {genres?.map((genreId, index) => {
                           return (
-                            <li key={index}>
+                            <li
+                              key={index}
+                              className={css[`genres__item__${themeMode}`]}
+                            >
                               {
                                 AllGenres.find(item => {
                                   return item.id === genreId;
@@ -138,7 +135,29 @@ export const SliderBg = () => {
                         })}
                       </ul>
                     ) : null}
-                    {/* genres */}
+                    <p
+                      style={{ ...modeConfig.style.textColor[themeMode] }}
+                      className={css.overview}
+                    >
+                      {overview}
+                    </p>
+                    <p
+                      style={{ ...modeConfig.style.textColor[themeMode] }}
+                      className={css.date}
+                    >
+                      <b>Release date: </b>
+                      {new Date(date).toLocaleDateString('en-GB', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </p>
+                    <Link
+                      to={`/movies/${id}`}
+                      className={css[`link__${themeMode}`]}
+                    >
+                      Go To Movie
+                    </Link>
                   </div>
                 </div>
                 <div
@@ -169,65 +188,3 @@ export const SliderBg = () => {
     </Swiper>
   );
 };
-
-//  <Stack spacing={4} direction="column">
-//    {/* title */}
-//    <Typography
-//      variant="h4"
-//      fontSize={{ xs: '2rem', md: '2rem', lg: '4rem' }}
-//      fontWeight="700"
-//      sx={{
-//        ...uiConfigs.style.typoLines(2, 'left'),
-//      }}
-//    >
-//      {title || name}
-//    </Typography>
-//    {/* title */}
-
-//    <Stack direction="row" spacing={1} alignItems="center">
-//      {/* rating */}
-//      <CircularRate value={rating} />
-//      {/* rating */}
-
-//      <Divider orientation="vertical" />
-//      {/* genres */}
-//      {[...genres].splice(0, 2).map((genreId, index) => (
-//        <Chip
-//          variant="filled"
-//          color="primary"
-//          key={index}
-//          // label={
-//          //   genres.find(e => e.id === genreId) &&
-//          //   genres.find(e => e.id === genreId).name
-//          // }
-//        />
-//      ))}
-//      {/* genres */}
-//    </Stack>
-//    {/* overview */}
-//    <Typography
-//      variant="body1"
-//      sx={{
-//        textAlign: 'justify',
-//        display: '-webkit-box',
-//        overflow: 'hidden',
-//        WebkitBoxOrient: 'vertical',
-//        WebkitLineClamp: 3,
-//      }}
-//    >
-//      {overview}
-//    </Typography>
-//    {/* overview */}
-
-//    {/* buttons */}
-//    <Button
-//      variant="contained"
-//      size="large"
-//      startIcon={<PlayArrowIcon />}
-//      component={Link}
-//      sx={{ width: 'max-content' }}
-//    >
-//      watch now
-//    </Button>
-//    {/* buttons */}
-//  </Stack>;
