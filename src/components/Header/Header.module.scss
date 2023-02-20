@@ -56,30 +56,6 @@
     background-color var(--effectTimer) var(--effectFunction);
 }
 
-.link__light:hover,
-.link__light:focus {
-  color: var(--textWhite);
-  background-color: var(--bgBlue);
-}
-
-.link__dark {
-  color: var(--textWhite);
-
-  &:hover,
-  &:focus {
-    background-color: var(--bgBlue);
-  }
-}
-
-.link__red {
-  color: var(--textWhite);
-
-  &:hover,
-  &:focus {
-    background-color: var(--bgRed);
-  }
-}
-
 .list__mode {
   display: flex;
   justify-content: center;

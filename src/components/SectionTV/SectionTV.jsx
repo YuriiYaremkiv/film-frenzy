@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SliderList } from 'components/SliderList/SliderList';
 
-import tvApi from 'api/modules/tv.api';
+import tvAPI from 'api/modules/tv.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 
 import { SliderTV } from './SliderTV/SliderTV';
@@ -21,7 +21,7 @@ export const SectionTV = () => {
 
   useEffect(() => {
     (async () => {
-      const { response, err } = await tvApi.getList({
+      const { response, err } = await tvAPI.getTV({
         mediaType: tmdbConfigs.mediaType.tv,
         tvType: type,
         page: 1,

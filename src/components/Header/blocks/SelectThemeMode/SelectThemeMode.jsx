@@ -18,8 +18,7 @@ import { setThemeMode } from 'redux/themeModeSlice';
 import modeConfig from 'configs/mode.config';
 
 export const SelectThemeMode = () => {
-  const [mode, setMode] = useState('light');
-
+  const [mode, setMode] = useState(modeConfig.themeConfig.light);
   const { themeMode } = useSelector(state => state.themeMode);
 
   const dispatch = useDispatch();
@@ -32,9 +31,21 @@ export const SelectThemeMode = () => {
     dispatch(setThemeMode(mode));
   }, [mode, dispatch]);
 
+  const StyledSelect = styled(Select)`
+    .MuiList-root {
+      color: #456543 !important;
+    }
+    .MuiMenu-list {
+      color: #451111 !important;
+    }
+    .MuiList-root {
+      color: #456543 !important;
+    }
+  `;
+
   return (
     <FormControl fullWidth className={css.form}>
-      <Select
+      <StyledSelect
         value={mode}
         onChange={handleChange}
         className={css.select}
@@ -55,7 +66,7 @@ export const SelectThemeMode = () => {
             style={{ ...modeConfig.style.textColor[themeMode] }}
           />
         </MenuItem>
-      </Select>
+      </StyledSelect>
     </FormControl>
   );
 };

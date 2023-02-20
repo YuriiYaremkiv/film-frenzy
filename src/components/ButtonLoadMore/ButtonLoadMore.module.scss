@@ -1,0 +1,31 @@
+.button__light,
+.button__dark,
+.button__red {
+  display: block;
+  padding: 10px 24px;
+
+  font-size: 16px;
+  text-transform: none;
+  color: var(--textWhite);
+
+  background-color: var(--bgBlue);
+  border: none;
+  border-radius: 12px;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlueHover);
+  }
+}
+
+.button__red {
+  background-color: var(--bgRed);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRedHover);
+  }
+}

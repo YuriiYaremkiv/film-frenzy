@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import StarIcon from '@mui/icons-material/Star';
-import css from './SectionMoviesList.module.scss';
+import css from './SectionSearchList.module.scss';
 
-export const SectionMoviesList = ({ movies }) => {
+export const SectionSearchList = ({ movies }) => {
   const { themeMode } = useSelector(state => state.themeMode);
 
   return (
@@ -15,7 +15,7 @@ export const SectionMoviesList = ({ movies }) => {
             id,
             title,
             name,
-            poster_path: path,
+            profile_path: path,
             release_date: date,
             vote_average: rating,
           }) => {

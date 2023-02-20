@@ -1,0 +1,68 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.input__light,
+.input__dark,
+.input__red {
+  display: block;
+  padding: 10px 20px;
+
+  width: 70%;
+  min-height: 46px;
+
+  font-size: 16px;
+
+  border: 1px solid var(--bgBlue);
+  border-radius: 30px;
+
+  &:focus-visible {
+    outline: 1px solid var(--bgBlue);
+  }
+}
+
+.input__red {
+  border: 1px solid var(--bgRed);
+
+  &:focus-visible {
+    outline: 1px solid var(--bgRed);
+  }
+}
+
+.button__light,
+.button__dark,
+.button__red {
+  display: block;
+  padding: 10px 20px;
+
+  min-height: 46px;
+
+  font-size: 16px;
+  color: var(--textWhite);
+
+  background-color: var(--bgBlue);
+  border: none;
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlueHover);
+  }
+}
+
+.button__red {
+  background-color: var(--bgRed);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRedHover);
+  }
+}

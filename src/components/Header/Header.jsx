@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import css from './Header.module.scss';
 
-import { SelectThemeMode } from 'components/SelectThemeMode/SelectThemeMode';
+import { SelectThemeMode } from './blocks/SelectThemeMode/SelectThemeMode';
 
 import modeConfig from 'configs/mode.config';
+import { Navigation } from './blocks/Navigation/Navigation';
 
 export const Header = () => {
   const { themeMode } = useSelector(state => state.themeMode);
@@ -23,23 +24,14 @@ export const Header = () => {
           >
             Film<span className={css[`logo__${themeMode}`]}>Frenzy</span>
           </Link>
-          <ul className={css.list__menu}>
-            <li>
-              <Link to="/movies" className={css[`link__${themeMode}`]}>
-                MOVIES
-              </Link>
-            </li>
-            <li>
-              <Link to="/tv" className={css[`link__${themeMode}`]}>
-                TV SERIES
-              </Link>
-            </li>
-            <li>
-              <Link to="/search" className={css[`link__${themeMode}`]}>
-                SEARCH
-              </Link>
-            </li>
-          </ul>
+          <Navigation
+            list={[
+              { category: 'HOME', link: '/' },
+              { category: 'MOVIES', link: '/movies' },
+              { category: 'TV SERIES', link: '/tv' },
+              { category: 'SEARCH', link: '/search' },
+            ]}
+          />
           <ul className={css.list__mode}>
             <li>
               <div className={css[`select__${themeMode}`]}>

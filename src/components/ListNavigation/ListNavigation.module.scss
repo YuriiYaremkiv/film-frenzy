@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selector {
+  display: flex;
+  gap: 16px;
+
+  margin: 16px 0 16px 0;
+}
+
+.activeTitle__light,
+.activeTitle__dark,
+.activeTitle__red,
+.disableTitle__light,
+.disableTitle__dark,
+.disableTitle__red {
+  margin: 0;
+  padding: 6px 20px;
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--textBlack);
+  cursor: pointer;
+
+  border-radius: 16px;
+
+  z-index: 10;
+
+  transition: color var(--effectLongTimer) var(--effectFunction),
+    background-color var(--effectLongTimer) var(--effectFunction);
+}
+
+.activeTitle__light,
+.activeTitle__dark {
+  color: var(--textWhite);
+
+  background-color: var(--bgBlue);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgBlueHover);
+  }
+}
+
+.disableTitle__dark,
+.disableTitle__red {
+  color: var(--textWhite);
+
+  background-color: none;
+}
+
+.activeTitle__red {
+  color: var(--textWhite);
+
+  background-color: var(--bgRed);
+
+  &:hover,
+  &:focus {
+    background-color: var(--bgRedHover);
+  }
+}
+
+.select__input {
+  display: none;
+}
