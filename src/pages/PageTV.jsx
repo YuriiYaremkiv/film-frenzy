@@ -6,7 +6,6 @@ import { SectionMovieSlider } from 'components/SectionMovieSlider/SectionMovieSl
 import { SectionMoviesList } from 'components/SectionMoviesList/SectionMoviesList';
 import { ButtonLoadMore } from 'components/ButtonLoadMore/ButtonLoadMore';
 import tvAPI from 'api/modules/tv.api';
-import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import { ListNavigation } from 'components/ListNavigation/ListNavigation';

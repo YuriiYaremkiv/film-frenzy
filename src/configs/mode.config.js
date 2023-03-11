@@ -44,6 +44,21 @@ const modeConfig = {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
       },
     },
+    backgroundColorMenu: {
+      light: {
+        backgroundColor: '#fff',
+      },
+      dark: {
+        backgroundColor: 'rgb(19, 19, 19)',
+        backgroundImage:
+          'linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15))',
+      },
+      red: {
+        backgroundColor: 'rgb(19, 19, 19)',
+        backgroundImage:
+          'linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15))',
+      },
+    },
     textColor: {
       light: {
         color: '#000',

@@ -1,20 +1,18 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import * as React from 'react';
-
-import css from './SectionSearch.module.scss';
-
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash/debounce';
 
+import debounce from 'lodash/debounce';
+import Media from 'react-media';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 
 import {
-  getQueryMoviesList,
   getQueryMoviesListRemove,
   getTrendingAll,
 } from 'redux/transactions/transactionsOperations';
 import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
+
+import { getQueryMoviesList } from 'redux/transactions/transactionsOperations';
 
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,6 +21,10 @@ import { Autoplay } from 'swiper';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
+
+import css from './SectionSearch.module.scss';
+import { InputSearchMultiMobile } from 'components/InputSearchMultiMobile/InputSearchMultiMobile';
+import { InputSearchMultiTablet } from 'components/InputSearchMultiTablet/InputSearchMultiTablet';
 
 export const SectionSearch = () => {
   const [query, setQuery] = useState('');
@@ -109,7 +111,7 @@ export const SectionSearch = () => {
     modules: [Autoplay],
     speed: 2000,
     autoplay: {
-      delay: 4500,
+      delay: 8500,
       disableOnInteraction: false,
     },
     spaceBetween: 0,
@@ -122,13 +124,10 @@ export const SectionSearch = () => {
       <div className="container">
         <div className={css.section__container}>
           <div className={css.wrapper}>
-            {/* ****************************************************** */}
+            {/* Slider - start */}
             <Swiper {...params}>
               {posterMovies.map(
-                (
-                  { id, backdrop_path: backdrop, poster_path: poster },
-                  index
-                ) => {
+                ({ id, backdrop_path: backdrop, poster_path: poster }) => {
                   return (
                     <SwiperSlide key={id}>
                       <div
@@ -168,7 +167,7 @@ export const SectionSearch = () => {
                 }
               )}
             </Swiper>
-            {/* *********************************************************** */}
+            {/* Slider - end */}
             <div />
             <div className={css.title__container}>
               <h2
@@ -186,53 +185,45 @@ export const SectionSearch = () => {
                 Millions of movies, TV shows and people to discover. Explore
                 now.
               </h3>
-              <div className={css.container}>
-                <div className={css.input__container}>
-                  <input
-                    type="text"
-                    ref={inputRef}
-                    onChange={throttledChangeHandler}
-                    onBlur={handleShowList}
-                    className={css[`input__${themeMode}`]}
-                  />
-                  <div className={css.options}>
-                    {list.length && !showList ? (
-                      <button
-                        onClick={handleShoeListBtn}
-                        className={
-                          showList ? css.button__open : css.button__close
-                        }
-                      >
-                        <KeyboardArrowDownIcon />
-                      </button>
-                    ) : null}
+              {/* Inpur search - start */}
 
-                    {showClearBtn && (
-                      <button
-                        onClick={handleClearSearch}
-                        className={css.button__clear}
-                      >
-                        <CloseIcon />
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleSearchMovies}
-                  className={css[`button__search__${themeMode}`]}
-                >
-                  SEARCH
-                </button>
-
-                <div className={css.list}>
-                  <MyInputSearch
-                    options={list}
-                    showList={showList}
-                    isLoading={isLoading}
-                  />
-                </div>
-              </div>
+              <Media queries={{ small: { maxWidth: 767 } }}>
+                {matches =>
+                  matches.small ? (
+                    <>
+                      <InputSearchMultiMobile
+                        list={list}
+                        handleShoeListBtn={handleShoeListBtn}
+                        throttledChangeHandler={throttledChangeHandler}
+                        handleShowList={handleShowList}
+                      />
+                      <MyInputSearch
+                        options={list}
+                        showList={showList}
+                        isLoading={isLoading}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <InputSearchMultiTablet
+                        list={list}
+                        throttledChangeHandler={throttledChangeHandler}
+                        handleShowList={handleShowList}
+                        showList={showList}
+                        handleShoeListBtn={handleShoeListBtn}
+                        showClearBtn={showClearBtn}
+                        handleClearSearch={handleClearSearch}
+                        handleSearchMovies={handleSearchMovies}
+                      />
+                      <MyInputSearch
+                        options={list}
+                        showList={showList}
+                        isLoading={isLoading}
+                      />
+                    </>
+                  )
+                }
+              </Media>
             </div>
           </div>
         </div>

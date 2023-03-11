@@ -1,14 +1,21 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Navigation } from '../Navigation/Navigation';
+import { SelectThemeMode } from '../SelectThemeMode/SelectThemeMode';
+import { Logo } from 'components/Logo/Logo';
+import { Sidebar } from 'components/Sidebar/Sidebar';
+import { IconButton } from '@mui/material';
+import { Button } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Media from 'react-media';
+import modeConfig from 'configs/mode.config';
 import css from './Header.module.scss';
 
-import { SelectThemeMode } from './blocks/SelectThemeMode/SelectThemeMode';
-
-import modeConfig from 'configs/mode.config';
-import { Navigation } from './blocks/Navigation/Navigation';
-
 export const Header = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { themeMode } = useSelector(state => state.themeMode);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
     <header
@@ -16,34 +23,53 @@ export const Header = () => {
       className={css.header}
     >
       <div className="container">
-        <div className={css.header__container}>
-          <Link
-            to="/"
-            className={css.logo}
-            style={{ ...modeConfig.style.textColor[themeMode] }}
-          >
-            Film<span className={css[`logo__${themeMode}`]}>Frenzy</span>
-          </Link>
-          <Navigation
-            list={[
-              { category: 'HOME', link: '/' },
-              { category: 'MOVIES', link: '/movies' },
-              { category: 'TV SERIES', link: '/tv' },
-              { category: 'SEARCH', link: '/search' },
-            ]}
-          />
-          <ul className={css.list__mode}>
-            <li>
-              <div className={css[`select__${themeMode}`]}>
-                <SelectThemeMode />
+        <Media query={{ maxWidth: 767 }}>
+          {matches =>
+            matches ? (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '10px 0',
+                }}
+              >
+                <div
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  <IconButton
+                    onClick={toggleSidebar}
+                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                  >
+                    <MenuIcon fontSize="large" />
+                  </IconButton>
+                  <Logo />
+                </div>
+                <Button className={css[`button__${themeMode}`]}>SIGN IN</Button>
               </div>
-            </li>
-            <li>
-              <Link className={css[`link__${themeMode}`]}>SIGN IN</Link>
-            </li>
-          </ul>
-        </div>
+            ) : (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '10px 0',
+                }}
+              >
+                <div
+                  style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
+                >
+                  <Logo />
+                  <Navigation />
+                  <SelectThemeMode />
+                </div>
+                <Button className={css[`button__${themeMode}`]}>SIGN IN</Button>
+              </div>
+            )
+          }
+        </Media>
       </div>
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
     </header>
   );
 };

@@ -21,6 +21,7 @@ const PageMovies = () => {
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const { response, err } = await mediaApi.getMovies({
         movieType: type,
         page,
@@ -38,6 +39,7 @@ const PageMovies = () => {
         setIsLoading(false);
       }
     })();
+    // eslint-disable-next-line
   }, [type]);
 
   const handleChangeType = type => {

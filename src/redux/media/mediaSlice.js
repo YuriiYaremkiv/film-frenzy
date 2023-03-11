@@ -8,12 +8,13 @@ const initialState = {
 const mediaSlice = createSlice({
   name: 'media',
   initialState,
-  extraReducers: {
-    [mediaApi.getList.pending]: state => {},
-    [mediaApi.getList.fulfilled]: (state, action) => {
-      state.popularMovies.items = action.payload;
-    },
-    [mediaApi.getList.rejected]: (state, action) => {},
+  extraReducers: builder => {
+    builder
+      .addCase(mediaApi.getList.pending, state => {})
+      .addCase(mediaApi.getList.fulfilled, (state, action) => {
+        state.popularMovies.items = action.payload;
+      })
+      .addCase(mediaApi.getList.rejected, (state, action) => {});
   },
 });
 

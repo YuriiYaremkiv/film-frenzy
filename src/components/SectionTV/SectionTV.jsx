@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { SliderList } from 'components/SliderList/SliderList';
-
 import tvAPI from 'api/modules/tv.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
-
 import { SliderTV } from './SliderTV/SliderTV';
-import css from './SectionTV.module.scss';
-
 import modeConfig from 'configs/mode.config';
+import css from './SectionTV.module.scss';
 
 export const SectionTV = () => {
   const [series, setSeries] = useState([]);

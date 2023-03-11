@@ -1,0 +1,48 @@
+.list {
+  display: flex;
+  gap: 4px;
+}
+
+.link__light,
+.link__dark,
+.link__red {
+  display: block;
+
+  text-decoration: none;
+
+  border-radius: 4px;
+
+  transition: background-color var(--effectTimer) var(--effectFunction);
+}
+
+.link__light,
+.link__dark {
+  &:hover,
+  &:focus {
+    color: var(--textWhite);
+    background-color: var(--bgBlueOpacityHover) !important;
+  }
+}
+
+.link__red {
+  &:hover,
+  &:focus {
+    background-color: var(--bgRedOpacityHover) !important;
+  }
+}
+
+.button__light,
+.button__dark,
+.button__red {
+  padding: 2px 12px !important;
+
+  font-family: 'Source Sans Pro', Arial, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: inherit !important;
+
+  &:hover,
+  &:focus {
+    color: var(--textWhite) !important;
+  }
+}

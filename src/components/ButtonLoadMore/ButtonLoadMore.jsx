@@ -5,11 +5,7 @@ export const ButtonLoadMore = ({ handleLoadMore, isLoading }) => {
   const { themeMode } = useSelector(state => state.themeMode);
 
   return (
-    <button
-      onClick={handleLoadMore}
-      loading={isLoading}
-      className={css[`button__${themeMode}`]}
-    >
+    <button onClick={handleLoadMore} className={css[`button__${themeMode}`]}>
       <span>Load More</span>
     </button>
   );

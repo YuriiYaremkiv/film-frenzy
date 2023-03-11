@@ -7,132 +7,21 @@
   z-index: 20;
 }
 
-.logo {
+.button__light,
+.button__dark,
+.button__red {
   display: block;
-  padding: 18px;
+  padding: 2px 16px !important;
 
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--textBlack);
-  text-align: center;
-  text-decoration: none;
+  font-family: 'Source Sans Pro', Arial, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--textWhite) !important;
+  white-space: nowrap;
 
-  transition: transform var(--effectTimer) var(--effectFunction);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.07);
-  }
+  background-color: var(--bgBlue) !important;
 }
 
-.logo__light,
-.logo__dark {
-  color: var(--bgBlue);
-}
-
-.logo__red {
-  color: var(--textRed);
-}
-
-.list__menu {
-  margin-bottom: 20px;
-}
-
-.link__light,
-.link__dark,
-.link__red {
-  display: block;
-  padding: 8px 12px;
-
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  color: var(--textBlack);
-  text-decoration: none;
-
-  border-radius: 8px;
-
-  transition: color var(--effectTimer) var(--effectFunction),
-    background-color var(--effectTimer) var(--effectFunction);
-}
-
-.list__mode {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.select__light,
-.select__dark,
-.select__red {
-  padding: 4px 6px 0px 6px;
-  border-radius: 50%;
-
-  transition: background-color var(--effectTimer) var(--effectFunction);
-}
-
-.select__light,
-.select__dark {
-  &:hover,
-  &:focus {
-    background-color: var(--bgBlue);
-  }
-}
-.select__red {
-  &:hover,
-  &:focus {
-    background-color: var(--bgRed);
-  }
-}
-
-@media screen and (map-get($breakpoints, 'mobile')) {
-  .header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-  }
-
-  .logo {
-    margin-bottom: 0;
-  }
-
-  .list__container {
-    display: flex;
-    justify-content: space-around;
-
-    margin-right: 20px;
-  }
-
-  .list__menu {
-    margin-bottom: 0;
-  }
-
-  .list__mode {
-    flex-direction: column-reverse;
-  }
-}
-
-@media screen and (map-get($breakpoints, 'tablet')) {
-  .header__container {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-  }
-
-  .list__menu,
-  .list__mode {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-  }
-
-  .list__mode {
-    flex-direction: row;
-
-    margin-left: auto;
-  }
+.button__red {
+  background-color: var(--bgRed) !important;
 }

@@ -1,0 +1,23 @@
+.logo {
+  display: block;
+
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--textBlack);
+  user-select: none;
+}
+
+.logo__light,
+.logo__dark {
+  color: var(--bgBlue);
+}
+
+.logo__red {
+  color: var(--textRed);
+}
+
+@media screen and (min-width: 480px) {
+  .logo {
+    font-size: 32px;
+  }
+}

@@ -25,126 +25,117 @@ const initialState = {
 const moviesSlice = createSlice({
   name: 'movies',
   initialState,
-  extraReducers: {
-    [getTrendingAll.pending]: state => {
+  extraReducers: builder => {
+    builder.addCase(getTrendingAll.pending, state => {
       state.trendingAll.isLoading = true;
-    },
-    [getTrendingAll.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTrendingAll.fulfilled, (state, action) => {
       state.trendingAll.items = action.payload;
       state.trendingAll.isLoading = false;
-    },
-    [getTrendingAll.rejected]: (state, action) => {
+    });
+    builder.addCase(getTrendingAll.rejected, (state, action) => {
       state.trendingAll.isLoading = false;
-    },
-    [getNowPlaying.pending]: state => {
+    });
+    builder.addCase(getNowPlaying.pending, state => {
       state.popular.isLoading = false;
-    },
-    [getNowPlaying.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getNowPlaying.fulfilled, (state, action) => {
       state.popular.items = action.payload;
       state.popular.isLoading = false;
-    },
-    [getNowPlaying.rejected]: state => {
+    });
+    builder.addCase(getNowPlaying.rejected, state => {
       state.popular.isLoading = false;
-    },
-    [getPopular.pending]: state => {
+    });
+    builder.addCase(getPopular.pending, state => {
       state.popular.isLoading = false;
-    },
-    [getPopular.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getPopular.fulfilled, (state, action) => {
       state.popular.items = action.payload;
       state.popular.isLoading = false;
-    },
-    [getPopular.rejected]: state => {
+    });
+    builder.addCase(getPopular.rejected, state => {
       state.popular.isLoading = false;
-    },
-    [getTopRated.pending]: state => {
+    });
+    builder.addCase(getTopRated.pending, state => {
       state.popular.isLoading = false;
-    },
-    [getTopRated.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTopRated.fulfilled, (state, action) => {
       state.popular.items = action.payload;
       state.popular.isLoading = false;
-    },
-    [getTopRated.rejected]: state => {
+    });
+    builder.addCase(getTopRated.rejected, state => {
       state.popular.isLoading = false;
-    },
-    [getUpComing.pending]: state => {
+    });
+    builder.addCase(getUpComing.pending, state => {
       state.popular.isLoading = false;
-    },
-    [getUpComing.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getUpComing.fulfilled, (state, action) => {
       state.popular.items = action.payload;
       state.popular.isLoading = false;
-    },
-    [getUpComing.rejected]: state => {
+    });
+    builder.addCase(getUpComing.rejected, state => {
       state.popular.isLoading = false;
-    },
-    [getTVToday.pending]: state => {
+    });
+    builder.addCase(getTVToday.pending, state => {
       state.tv.isLoading = false;
-    },
-    [getTVToday.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTVToday.fulfilled, (state, action) => {
       state.tv.items = action.payload;
       state.tv.isLoading = false;
-    },
-    [getTVToday.rejected]: state => {
+    });
+    builder.addCase(getTVToday.rejected, state => {
       state.tv.isLoading = false;
-    },
-    [getTVOnTheAir.pending]: state => {
+    });
+    builder.addCase(getTVOnTheAir.pending, state => {
       state.tv.isLoading = false;
-    },
-    [getTVOnTheAir.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTVOnTheAir.fulfilled, (state, action) => {
       state.tv.items = action.payload;
       state.tv.isLoading = false;
-    },
-    [getTVOnTheAir.rejected]: state => {
+    });
+    builder.addCase(getTVOnTheAir.rejected, state => {
       state.tv.isLoading = false;
-    },
-    [getTVPopular.pending]: state => {
+    });
+    builder.addCase(getTVPopular.pending, state => {
       state.tv.isLoading = false;
-    },
-    [getTVPopular.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTVPopular.fulfilled, (state, action) => {
       state.tv.items = action.payload;
       state.tv.isLoading = false;
-    },
-    [getTVPopular.rejected]: state => {
+    });
+    builder.addCase(getTVPopular.rejected, state => {
       state.tv.isLoading = false;
-    },
-    [getTVTopRated.pending]: state => {
+    });
+    builder.addCase(getTVTopRated.pending, state => {
       state.tv.isLoading = false;
-    },
-    [getTVTopRated.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTVTopRated.fulfilled, (state, action) => {
       state.tv.items = action.payload;
       state.tv.isLoading = false;
-    },
-    [getTVTopRated.rejected]: state => {
+    });
+    builder.addCase(getTVTopRated.rejected, state => {
       state.tv.isLoading = false;
-    },
-
-    /********************************************************************************* */
-    [getQueryMoviesList.pending]: state => {
-      state.nowPlaying.isLoading = true;
-    },
-    [getQueryMoviesList.fulfilled]: (state, action) => {
-      state.nowPlaying.isLoading = false;
-    },
-    [getQueryMoviesList.rejected]: state => {
-      state.nowPlaying.isLoading = false;
-    },
-    [getQueryMoviesList.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getQueryMoviesList.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(getQueryMoviesList.fulfilled, (state, action) => {
       state.list = action.payload.results;
       state.isLoading = false;
-    },
-    [getQueryMoviesList.rejected]: (state, action) => {
-      state.list = [];
+    });
+    builder.addCase(getQueryMoviesList.rejected, (state, action) => {
       state.isLoading = false;
-    },
-    [getQueryMoviesListRemove.pending]: state => {
+    });
+    builder.addCase(getQueryMoviesListRemove.pending, state => {
       state.isLoading = true;
-    },
-    [getQueryMoviesListRemove.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getQueryMoviesListRemove.fulfilled, (state, action) => {
       state.list = [];
       state.isLoading = false;
-    },
-    [getQueryMoviesListRemove.rejected]: (state, action) => {
+    });
+    builder.addCase(getQueryMoviesListRemove.rejected, (state, action) => {
       state.isLoading = false;
-    },
+    });
   },
 });
 

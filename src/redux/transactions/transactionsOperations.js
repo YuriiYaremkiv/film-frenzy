@@ -4,9 +4,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const KEY = 'd08efe59ac708d7aace6afed9ba7eae9';
 
-// axios.defaults.baseURL = 'https://wallet.goit.ua/api';
-
-// запит на всі транзакції для таблиці
 export const getTrendingAll = createAsyncThunk(
   'movies/getTrendingAll',
   async (time, { rejectWithValue }) => {
@@ -25,11 +22,13 @@ export const getQueryMoviesList = createAsyncThunk(
   'movies/getQueryMoviesList',
   async (query, { rejectWithValue }) => {
     try {
+      console.log('query start');
       const response = await axios.get(
         `${BASE_URL}search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`
       );
       return response.data;
     } catch (error) {
+      console.log('query start');
       return rejectWithValue(error.message);
     }
   }

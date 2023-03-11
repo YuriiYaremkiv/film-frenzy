@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
-import css from './Footer.module.scss';
-
 import { useSelector } from 'react-redux';
+import { Navigation } from 'components/Navigation/Navigation';
+import { Logo } from 'components/Logo/Logo';
+import Media from 'react-media';
 import modeConfig from 'configs/mode.config';
+import css from './Footer.module.scss';
 
 export const Footer = () => {
   const { themeMode } = useSelector(state => state.themeMode);
@@ -10,34 +11,15 @@ export const Footer = () => {
   return (
     <footer
       className={css.footer}
-      style={{ ...modeConfig.style.backgroundColorHeader[themeMode] }}
+      style={{
+        ...modeConfig.style.backgroundColorHeader[themeMode],
+        marginTop: 'auto',
+      }}
     >
       <div className="container">
-        <div className={css.footer__container}>
-          <Link
-            to="/"
-            className={css.logo}
-            style={{ ...modeConfig.style.textColor[themeMode] }}
-          >
-            Film<span className={css[`logo__${themeMode}`]}>Frenzy</span>
-          </Link>
-          <ul className={css.list__menu}>
-            <li>
-              <Link to="/movies" className={css[`link__${themeMode}`]}>
-                MOVIES
-              </Link>
-            </li>
-            <li>
-              <Link to="/tv" className={css[`link__${themeMode}`]}>
-                TV SERIES
-              </Link>
-            </li>
-            <li>
-              <Link to="/search" className={css[`link__${themeMode}`]}>
-                SEARCH
-              </Link>
-            </li>
-          </ul>
+        <div className={css.wrapper}>
+          <Logo />
+          <Media query="(min-width: 767px)" render={() => <Navigation />} />
         </div>
       </div>
     </footer>

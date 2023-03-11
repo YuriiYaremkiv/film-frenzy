@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { ListNavigation } from 'components/ListNavigation/ListNavigation';
 import searchAPI from 'api/modules/search.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import { InputSearch } from 'components/InputSearch/InputSearch';
 import { SectionMoviesList } from 'components/SectionMoviesList/SectionMoviesList';
-import { SectionSearchList } from 'components/SectionSearchList/SectionSearchList';
 import { SectionPeopleList } from 'components/SectionPeopleList/SectionPeopleList';
-import modeConfig from 'configs/mode.config';
 import { ButtonLoadMore } from 'components/ButtonLoadMore/ButtonLoadMore';
-import { styled } from '@mui/material/styles';
-import Pagination from '@mui/material/Pagination';
 
 import { PaginationList } from 'components/PaginationList/PaginationList';
 
@@ -23,7 +18,6 @@ const PageSearch = () => {
   const [type, setType] = useState(tmdbConfigs.searchType.movie);
   const [page, setPage] = useState(1);
   const [allPages, setAllPages] = useState(1);
-  const { themeMode } = useSelector(state => state.themeMode);
 
   useEffect(() => {
     if (!query) return;
@@ -130,65 +124,63 @@ const PageSearch = () => {
   };
 
   return (
-    <main style={{ ...modeConfig.style.backgroundColorHeader[themeMode] }}>
-      <div className="container">
-        <ListNavigation
-          title="Search"
-          type={type}
-          handleChangeType={handleChangeType}
-          categories={[
-            { category: 'Movie', type: tmdbConfigs.searchType.movie },
-            { category: 'TV Series', type: tmdbConfigs.searchType.tv },
-            { category: 'People', type: tmdbConfigs.searchType.people },
-          ]}
-        />
+    <div className="container">
+      <ListNavigation
+        title="Search"
+        type={type}
+        handleChangeType={handleChangeType}
+        categories={[
+          { category: 'Movie', type: tmdbConfigs.searchType.movie },
+          { category: 'TV Series', type: tmdbConfigs.searchType.tv },
+          { category: 'People', type: tmdbConfigs.searchType.people },
+        ]}
+      />
+      <div
+        style={{
+          margin: '0 auto',
+          maxWidth: '750px',
+        }}
+      >
+        <InputSearch query={query} handleChangeQuery={handleChangeQuery} />
+      </div>
+
+      {type !== tmdbConfigs.searchType.people ? (
+        <SectionMoviesList movies={movies} />
+      ) : (
+        <SectionPeopleList people={people} />
+      )}
+
+      {!isLoading && (movies.length || people.length) ? (
         <div
           style={{
-            margin: '0 auto',
-            maxWidth: '750px',
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '8px 0 ',
           }}
         >
-          <InputSearch query={query} handleChangeQuery={handleChangeQuery} />
+          <ButtonLoadMore
+            handleLoadMore={handleLoadMore}
+            isLoading={isLoading}
+          />
         </div>
-
-        {type !== tmdbConfigs.searchType.people ? (
-          <SectionMoviesList movies={movies} />
-        ) : (
-          <SectionPeopleList people={people} />
-        )}
-
-        {!isLoading && (movies.length || people.length) ? (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              padding: '8px 0 ',
-            }}
-          >
-            <ButtonLoadMore
-              handleLoadMore={handleLoadMore}
-              isLoading={isLoading}
-            />
-          </div>
-        ) : null}
-        {!isLoading && (movies.length || people.length) ? (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              padding: '8px 0 ',
-            }}
-          >
-            <PaginationList
-              currentPage={page}
-              allPages={allPages}
-              paginationPage={handlePaginationPageChange}
-            />
-          </div>
-        ) : null}
-      </div>
+      ) : null}
+      {!isLoading && (movies.length || people.length) ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '8px 0 ',
+          }}
+        >
+          <PaginationList
+            currentPage={page}
+            allPages={allPages}
+            paginationPage={handlePaginationPageChange}
+          />
+        </div>
+      ) : null}
       {error && <p>{error}</p>}
-    </main>
+    </div>
   );
 };
 

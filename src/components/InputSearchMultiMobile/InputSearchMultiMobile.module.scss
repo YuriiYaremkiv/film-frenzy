@@ -1,0 +1,129 @@
+@import '../../style/vars.scss';
+
+.input__container {
+  position: relative;
+  margin-right: 24px;
+
+  width: 100%;
+}
+
+.input__light,
+.input__dark,
+.input__red {
+  display: block;
+  padding: 10px 20px;
+
+  width: 100%;
+
+  line-height: 46px;
+  font-size: 16px;
+  color: var(--textBlack);
+
+  height: 46px;
+  border: 1px solid rgba(1, 180, 228, 1);
+  border-radius: 34px;
+}
+
+.input__red {
+  border: 1px solid var(--bgRed);
+}
+
+.button__search__light,
+.button__search__dark,
+.button__search__red {
+  position: absolute;
+  top: 0;
+  right: 1px;
+
+  color: var(--textBlue);
+}
+
+.button__search__red {
+  color: red;
+}
+
+// .button__clear {
+//   position: absolute;
+//   top: 50%;
+//   right: 16px;
+
+//   padding: 0;
+//   margin: 0;
+//   display: block;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   text-align: center;
+
+//   width: 30px;
+//   height: 30px;
+
+//   background-color: #fff;
+
+//   border: none;
+//   border-radius: 50%;
+//   cursor: pointer;
+
+//   transform: translateY(-50%);
+
+//   transition: background-color map-get($effect, 'timerIcons')
+//     map-get($effect, 'function');
+
+//   &:hover {
+//     background-color: map-get($bgColors, 'gray');
+//   }
+//   &:active {
+//     background-color: map-get($bgColors, 'modal');
+//   }
+// }
+
+// .button__open {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   width: 30px;
+//   height: 30px;
+
+//   background-color: map-get($bgColors, 'white');
+//   border: none;
+//   border-radius: 50%;
+//   cursor: pointer;
+
+//   transition: transform map-get($effect, 'timer') map-get($effect, 'function'),
+//     background-color map-get($effect, 'timerIcons') map-get($effect, 'function');
+
+//   &:hover {
+//     background-color: map-get($bgColors, 'gray');
+//   }
+//   &:active {
+//     background-color: map-get($bgColors, 'modal');
+//   }
+// }
+
+// .button__close {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   width: 30px;
+//   height: 30px;
+
+//   background-color: map-get($bgColors, 'white');
+//   border: none;
+//   border-radius: 50%;
+//   cursor: pointer;
+
+//   transform: rotate(180deg);
+//   transition: transform map-get($effect, 'timer') map-get($effect, 'function'),
+//     background-color map-get($effect, 'timerIcons') map-get($effect, 'function');
+
+//   &:hover {
+//     background-color: map-get($bgColors, 'gray');
+//   }
+
+//   &:active {
+//     background-color: map-get($bgColors, 'modal');
+//   }
+// }

@@ -9,11 +9,14 @@ import modeConfig from 'configs/mode.config';
 const Layout = () => {
   const { themeMode } = useSelector(state => state.themeMode);
   return (
-    <>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+    >
       <Header />
       <main
         style={{
           ...modeConfig.style.backgroundColorMain[themeMode],
+          flex: 1,
         }}
       >
         <Suspense>
@@ -21,7 +24,7 @@ const Layout = () => {
         </Suspense>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
