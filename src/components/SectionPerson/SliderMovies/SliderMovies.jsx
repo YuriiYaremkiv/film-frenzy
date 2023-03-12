@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Media from 'react-media';
 import StarIcon from '@mui/icons-material/Star';
+import modeConfig from 'configs/mode.config';
 import css from './SliderMovies.module.scss';
 
 export const SliderMovies = ({ movies = [], isLoading = false }) => {
@@ -20,7 +21,16 @@ export const SliderMovies = ({ movies = [], isLoading = false }) => {
       style={{
         padding: '0 26px',
       }}
+      className="container"
     >
+      <h3
+        style={{
+          ...modeConfig.style.textColor[themeMode],
+          marginBottom: '4px',
+        }}
+      >
+        Known For
+      </h3>
       <Media
         queries={{
           responsive: '(max-width: 479px)',
@@ -39,10 +49,10 @@ export const SliderMovies = ({ movies = [], isLoading = false }) => {
               matches.responsive
                 ? 1
                 : matches.mobile
-                ? 2
+                ? 1
                 : matches.tablet
-                ? 2
-                : 4
+                ? 3
+                : 5
             }
             slidesToScroll={
               matches.responsive

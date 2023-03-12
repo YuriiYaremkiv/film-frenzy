@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const themeModelSlice = createSlice({
+export const themeModeSlice = createSlice({
   name: 'ThemeMode',
   initialState: {
     themeMode: 'light',
@@ -12,4 +12,4 @@ export const themeModelSlice = createSlice({
   },
 });
 
-export const { setThemeMode } = themeModelSlice.actions;
+export const { setThemeMode } = themeModeSlice.actions;
