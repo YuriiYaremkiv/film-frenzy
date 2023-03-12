@@ -1,29 +1,26 @@
-@import '../../style/vars.scss';
-
 .container {
-  position: relative;
+  position: absolute;
+  top: 47;
   width: 100%;
+  max-width: 501px;
 
-  max-height: 312px;
+  max-height: 180px;
 
   border-radius: 12px;
   overflow: hidden;
-  z-index: 10;
 }
 
 .list__open {
   max-height: 312px;
-  max-width: 998px;
   overflow-y: auto;
   overflow-x: hidden;
 
   width: 100%;
 
-  background-color: map-get($bgColors, 'white');
+  background-color: var(--bgWhite);
   border-radius: 12px;
 
   transition: transform 250ms linear;
-  z-index: 100;
 
   &::-webkit-scrollbar {
     width: 3px;
@@ -44,7 +41,7 @@
 
   width: 100%;
 
-  background-color: map-get($bgColors, 'white');
+  background-color: var(--bgWhite);
   border-radius: 12px;
 
   transform: translateY(-100%);
@@ -68,15 +65,12 @@
   padding: 4px 8px;
 
   text-decoration: none;
-  color: map-get($textColors, 'primary');
+  color: var(--textBlack);
 
-  transition: background-color map-get($effect, 'timer')
-    map-get($effect, 'function');
+  z-index: 100;
 
   &:hover {
-    background-color: map-get($bgColors, 'modal');
-
-    transform: scale(1.01);
+    background-color: var(--bgModal);
   }
 }
 
@@ -87,7 +81,7 @@
   max-height: 100%;
   height: auto;
 
-  background-color: map-get($textColors, 'gray');
+  background-color: var(--bgGray);
   object-position: center;
   object-fit: center;
 }
@@ -95,11 +89,11 @@
 .title {
   margin-right: 10px;
 
-  color: map-get($textColors, 'primary');
+  color: var(--textBlack);
 }
 
 .data {
-  color: map-get($textColors, 'primary');
+  color: var(--textBlack);
 }
 
 .rating {
@@ -120,5 +114,14 @@
 
   z-index: 150;
 
-  background-color: #fff;
+  background-color: var(--bgWhite);
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1010px;
+  }
+  .list__open {
+    max-width: 1010px;
+  }
 }

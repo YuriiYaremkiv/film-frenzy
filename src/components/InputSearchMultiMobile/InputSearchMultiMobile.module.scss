@@ -42,6 +42,43 @@
   color: red;
 }
 
+.button__clear {
+  position: absolute;
+  top: 50%;
+  right: 50px;
+
+  padding: 0;
+  margin: 0;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  width: 30px;
+  height: 30px;
+
+  background-color: #fff;
+
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  z-index: 100;
+  transform: translateY(-50%);
+
+  transition: background-color map-get($effect, 'timerIcons')
+    map-get($effect, 'function');
+
+  &:hover {
+    background-color: map-get($bgColors, 'gray');
+  }
+  &:active {
+    background-color: map-get($bgColors, 'modal');
+  }
+}
+
 // .button__clear {
 //   position: absolute;
 //   top: 50%;

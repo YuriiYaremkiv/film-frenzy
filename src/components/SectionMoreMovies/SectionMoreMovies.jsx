@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SliderList } from 'components/SliderList/SliderList';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
-import css from './SectionMoreMovies.module.scss';
-
-import { useSelector } from 'react-redux';
 import modeConfig from 'configs/mode.config';
+import css from './SectionMoreMovies.module.scss';
+import { Error } from 'components/Error/Error';
 
 export const SectionMoreMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
   const [type, setType] = useState(tmdbConfigs.movieType.now_playing);
-
   const { themeMode } = useSelector(state => state.themeMode);
 
   const handleChangeRadioButton = e => {
@@ -22,18 +20,25 @@ export const SectionMoreMovies = () => {
 
   useEffect(() => {
     (async () => {
-      const { response, err } = await mediaApi.getMovies({ movieType: type });
+      setIsLoading(true);
 
-      if (response) {
-        setMovies(response.data.results);
-        setIsLoading(false);
-      }
+      const timer = setTimeout(async () => {
+        const { response, err } = await mediaApi.getMovies({ movieType: type });
 
-      if (err) {
-        console.log(err);
-        setError(err.message);
-        setIsLoading(false);
-      }
+        if (response) {
+          setMovies(response.data.results);
+          setIsLoading(false);
+        }
+
+        if (err) {
+          setError(err.message);
+          setIsLoading(false);
+        }
+      }, 600);
+
+      return () => {
+        clearTimeout(timer);
+      };
     })();
   }, [type]);
 
@@ -140,7 +145,16 @@ export const SectionMoreMovies = () => {
             ></div>
           </div>
         </div>
-        <SliderList movies={movies} isLoading={isLoading} />
+
+        {!error ? (
+          <SliderList
+            movies={movies}
+            isLoading={isLoading}
+            themeMode={themeMode}
+          />
+        ) : (
+          <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
+        )}
       </div>
     </section>
   );

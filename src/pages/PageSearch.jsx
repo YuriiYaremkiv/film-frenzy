@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ListNavigation } from 'components/ListNavigation/ListNavigation';
-import searchAPI from 'api/modules/search.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import { InputSearch } from 'components/InputSearch/InputSearch';
 import { SectionMoviesList } from 'components/SectionMoviesList/SectionMoviesList';
@@ -9,132 +9,120 @@ import { ButtonLoadMore } from 'components/ButtonLoadMore/ButtonLoadMore';
 
 import { PaginationList } from 'components/PaginationList/PaginationList';
 
+import {
+  getSearchMedia,
+  getSearchPeople,
+  getSearchMediaAdd,
+  getSearchPeopleAdd,
+} from 'redux/search/searchOperations';
+
+import { setPage, setQuery } from 'redux/search/searchSlice';
+
 const PageSearch = () => {
-  const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState([]);
-  const [people, setPeople] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  // const [query, setQuery] = useState('');
   const [type, setType] = useState(tmdbConfigs.searchType.movie);
-  const [page, setPage] = useState(1);
-  const [allPages, setAllPages] = useState(1);
+  const dispatch = useDispatch();
+
+  const media = useSelector(state => state.search.media);
+  const people = useSelector(state => state.search.people);
+  const query = useSelector(state => state.search.query);
+  const page = useSelector(state => state.search.page);
+  const totalPages = useSelector(state => state.search.totalPages);
+  const isLoading = useSelector(state => state.search.isLoading);
+  const error = useSelector(state => state.search.error);
 
   useEffect(() => {
     if (!query) return;
-    (async () => {
-      setIsLoading(true);
-      const { response, err } = await searchAPI.getSearch({
-        searchType: type,
-        query,
-        page,
-      });
 
-      if (response) {
-        if (type === tmdbConfigs.searchType.people) {
-          setPeople(response.data.results);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setMovies([]);
-        } else {
-          setMovies(response.data.results);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setPeople([]);
-        }
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    })();
+    if (type === tmdbConfigs.searchType.people) {
+      dispatch(
+        getSearchPeople({
+          searchType: type,
+          query,
+          page,
+        })
+      );
+    } else {
+      dispatch(
+        getSearchMedia({
+          searchType: type,
+          query,
+          page,
+        })
+      );
+    }
     //eslint-disable-next-line
   }, [query, type]);
 
   const handleLoadMore = () => {
-    (async () => {
-      const { response, err } = await searchAPI.getSearch({
-        searchType: type,
-        query,
-        page: page + 1,
-      });
+    dispatch(setPage(page + 1));
 
-      if (response) {
-        if (type === tmdbConfigs.searchType.people) {
-          setPeople([...people, ...response.data.results]);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setMovies([]);
-        } else {
-          setMovies([...movies, ...response.data.results]);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setPeople([]);
-        }
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    })();
+    if (type === tmdbConfigs.searchType.people) {
+      dispatch(
+        getSearchPeopleAdd({
+          searchType: type,
+          query,
+          page: page + 1,
+        })
+      );
+    } else {
+      dispatch(
+        getSearchMediaAdd({
+          searchType: type,
+          query,
+          page: page + 1,
+        })
+      );
+    }
   };
 
   const handlePaginationPageChange = newPage => {
     if (page === newPage) return;
 
-    (async () => {
-      const { response, err } = await searchAPI.getSearch({
-        searchType: type,
-        query,
-        page: newPage,
-      });
+    dispatch(setPage(newPage));
 
-      if (response) {
-        if (type === tmdbConfigs.searchType.people) {
-          setPeople(response.data.results);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setMovies([]);
-        } else {
-          setMovies(response.data.results);
-          setPage(response.data.page);
-          setAllPages(response.data.total_pages);
-          setPeople([]);
-        }
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    })();
+    if (type === tmdbConfigs.searchType.people) {
+      dispatch(
+        getSearchPeople({
+          searchType: type,
+          query,
+          page: newPage,
+        })
+      );
+    } else {
+      dispatch(
+        getSearchMedia({
+          searchType: type,
+          query,
+          page: newPage,
+        })
+      );
+    }
   };
 
   const handleChangeType = type => {
     setType(type);
-    setPage(1);
+    dispatch(setPage(1));
   };
 
   const handleChangeQuery = value => {
-    setQuery(value);
+    dispatch(setQuery(value));
+    dispatch(setPage(1));
   };
 
   return (
     <div className="container">
-      <ListNavigation
-        title="Search"
-        type={type}
-        handleChangeType={handleChangeType}
-        categories={[
-          { category: 'Movie', type: tmdbConfigs.searchType.movie },
-          { category: 'TV Series', type: tmdbConfigs.searchType.tv },
-          { category: 'People', type: tmdbConfigs.searchType.people },
-        ]}
-      />
+      <div style={{ display: 'flex', justifyContent: 'right' }}>
+        <ListNavigation
+          type={type}
+          handleChangeType={handleChangeType}
+          categories={[
+            { category: 'Movie', type: tmdbConfigs.searchType.movie },
+            { category: 'TV Series', type: tmdbConfigs.searchType.tv },
+            { category: 'People', type: tmdbConfigs.searchType.people },
+          ]}
+        />
+      </div>
       <div
         style={{
           margin: '0 auto',
@@ -145,12 +133,12 @@ const PageSearch = () => {
       </div>
 
       {type !== tmdbConfigs.searchType.people ? (
-        <SectionMoviesList movies={movies} />
+        <SectionMoviesList movies={media} />
       ) : (
         <SectionPeopleList people={people} />
       )}
 
-      {!isLoading && (movies.length || people.length) ? (
+      {!isLoading && (media.length || people.length) ? (
         <div
           style={{
             display: 'flex',
@@ -164,7 +152,7 @@ const PageSearch = () => {
           />
         </div>
       ) : null}
-      {!isLoading && (movies.length || people.length) ? (
+      {!isLoading && (media.length || people.length) ? (
         <div
           style={{
             display: 'flex',
@@ -174,7 +162,7 @@ const PageSearch = () => {
         >
           <PaginationList
             currentPage={page}
-            allPages={allPages}
+            allPages={totalPages}
             paginationPage={handlePaginationPageChange}
           />
         </div>

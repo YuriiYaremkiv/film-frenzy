@@ -1,20 +1,16 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
+import Button from '@mui/material/Button';
 import css from './InputSearchMultiTablet.module.scss';
 
 export const InputSearchMultiTablet = ({
-  list,
+  inputRef,
   throttledChangeHandler,
-  handleShowList,
-  showList,
-  handleShoeListBtn,
   showClearBtn,
   handleClearSearch,
   handleSearchMovies,
+  handleShowList,
 }) => {
-  const inputRef = useRef(null);
   const { themeMode } = useSelector(state => state.themeMode);
 
   return (
@@ -27,29 +23,19 @@ export const InputSearchMultiTablet = ({
         className={css[`input__${themeMode}`]}
       />
 
-      <div className={css.options}>
-        {list.length && !showList ? (
-          <button
-            onClick={handleShoeListBtn}
-            className={showList ? css.button__open : css.button__close}
-          >
-            <KeyboardArrowDownIcon />
-          </button>
-        ) : null}
+      {showClearBtn && (
+        <button onClick={handleClearSearch} className={css.button__clear}>
+          <CloseIcon />
+        </button>
+      )}
 
-        {showClearBtn && (
-          <button onClick={handleClearSearch} className={css.button__clear}>
-            <CloseIcon />
-          </button>
-        )}
-      </div>
-
-      <button
+      <Button
+        variant="contained"
         onClick={handleSearchMovies}
         className={css[`button__search__${themeMode}`]}
       >
         SEARCH
-      </button>
+      </Button>
     </div>
   );
 };

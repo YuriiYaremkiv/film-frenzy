@@ -126,6 +126,20 @@ const modeConfig = {
           'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
       },
     },
+    horizontalGradientBgProgress: {
+      light: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(245,245,245,0.95), rgba(245,245,245,0.3))',
+      },
+      dark: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
+      },
+      red: {
+        backgroundImage:
+          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
+      },
+    },
   },
   themeConfig: {
     light: 'light',

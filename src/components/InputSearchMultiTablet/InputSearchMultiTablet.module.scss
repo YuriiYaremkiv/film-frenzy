@@ -30,7 +30,7 @@
 .button__clear {
   position: absolute;
   top: 50%;
-  right: -40px;
+  right: 130px;
 
   padding: 0;
   margin: 0;
@@ -63,54 +63,27 @@
   }
 }
 
-.button__open,
-.button__close {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-
-  background-color: var(--bgWhite);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-
-  transition: transform map-get($effect, 'timer') map-get($effect, 'function'),
-    background-color map-get($effect, 'timerIcons') map-get($effect, 'function');
-
-  &:hover {
-    background-color: map-get($bgColors, 'gray');
-  }
-  &:active {
-    background-color: map-get($bgColors, 'modal');
-  }
-}
-
-.button__close {
-  transform: rotate(180deg);
-}
-
 .button__search__light,
 .button__search__dark,
 .button__search__red {
-  padding: 10px 26px;
-  min-height: 47px;
+  padding: 10px 26px !important;
+  min-height: 47px !important;
 
   border: none;
   border-radius: 30px;
 
+  font-family: 'Source Sans Pro', Arial, sans-serif !important;
+  font-size: 16px;
+  font-weight: 700 !important;
   color: var(--textWhite);
-  font-weight: 700;
-  cursor: pointer;
 
-  background-color: rgba(1, 180, 228, 1);
+  background-color: var(--bgBlue);
 
   transition: background-color var(--effectTimer) var(--effectFunction);
 
   &:hover,
   &:focus {
-    background-color: rgba(1, 180, 228, 0.6);
+    background-color: var(--bgBlue);
   }
 }
 
@@ -119,25 +92,6 @@
 
   &:hover,
   &:focus {
-    background-color: rgba(213, 0, 0, 0.7);
+    background-color: var(--bgRed);
   }
-}
-
-.list {
-  position: absolute;
-  width: 100%;
-}
-
-.options {
-  position: absolute;
-  top: 50%;
-  right: 180px;
-
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px;
-  height: 100%;
-
-  transform: translateY(-50%);
 }

@@ -1,5 +1,9 @@
 @import '../../style/vars.scss';
 
+.container {
+  position: relative;
+}
+
 .card {
   padding: 4px;
   width: 100%;
@@ -148,11 +152,10 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 24px;
+  align-items: top;
 
-  background-color: map-get($bgColors, 'modal');
-  border-radius: 10px;
+  background-color: var(--bgDarkModal);
+  z-index: 1;
 }
 
 .link {

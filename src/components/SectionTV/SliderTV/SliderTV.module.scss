@@ -1,5 +1,9 @@
 @import '../../../style/vars.scss';
 
+.container {
+  position: relative;
+}
+
 .card {
   padding: 4px;
   width: 100%;

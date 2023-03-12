@@ -5,6 +5,7 @@ import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionPopularMovie.module.scss';
+import { Error } from 'components/Error/Error';
 
 export const SectionPopularMovie = () => {
   const [movies, setMovies] = useState([]);
@@ -18,29 +19,34 @@ export const SectionPopularMovie = () => {
   };
 
   useEffect(() => {
-    const start = async () => {
+    (() => {
       setIsLoading(true);
 
-      const { response, err } = await mediaApi.getList({
-        mediaType: tmdbConfigs.mediaType.movie,
-        timeWindow:
-          time === tmdbConfigs.mediaTime.day
-            ? tmdbConfigs.mediaTime.day
-            : tmdbConfigs.mediaTime.week,
-      });
+      const timer = setTimeout(async () => {
+        const { response, err } = await mediaApi.getList({
+          mediaType: tmdbConfigs.mediaType.movie,
+          timeWindow:
+            time === tmdbConfigs.mediaTime.day
+              ? tmdbConfigs.mediaTime.day
+              : tmdbConfigs.mediaTime.week,
+        });
 
-      if (response) {
-        setMovies(response.data.results);
-        setIsLoading(false);
-      }
+        if (response) {
+          setMovies(response.data.results);
+          setIsLoading(false);
+        }
 
-      if (err) {
-        console.log(err);
-        setError(err.message);
-        setIsLoading(false);
-      }
-    };
-    start();
+        if (err) {
+          console.log(err);
+          setError(err.message);
+          setIsLoading(false);
+        }
+      }, 600);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    })();
   }, [time]);
 
   let stylesHorizontal = {};
@@ -121,12 +127,16 @@ export const SectionPopularMovie = () => {
             ></div>
           </div>
         </div>
-        {error && <div>{error}</div>}
-        <SliderList
-          movies={movies}
-          isLoading={isLoading}
-          themeMode={themeMode}
-        />
+
+        {!error ? (
+          <SliderList
+            movies={movies}
+            isLoading={isLoading}
+            themeMode={themeMode}
+          />
+        ) : (
+          <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
+        )}
       </div>
     </section>
   );

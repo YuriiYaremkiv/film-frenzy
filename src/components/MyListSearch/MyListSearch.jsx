@@ -1,16 +1,15 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import CircularProgress from '@mui/material/CircularProgress';
-
-import css from './MyListSearch.module.scss';
-
 import photoNotFound from './images/not_found.jpg';
-
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import css from './MyListSearch.module.scss';
 
-export const MyInputSearch = ({ options = [], showList = true, isLoading }) => {
+export const MyInputSearch = ({
+  options = [],
+  showList = true,
+  isLoading = false,
+}) => {
   return (
     <>
       {options.length ? (
@@ -64,5 +63,3 @@ export const MyInputSearch = ({ options = [], showList = true, isLoading }) => {
     </>
   );
 };
-
-// `https://image.tmdb.org/t/p/w500/${poster_path}`;

@@ -1,7 +1,5 @@
-@import '../../../style/vars.scss';
-
 .card {
-  padding: 4px;
+  padding: 6px;
   width: 100%;
   height: 100%;
 
@@ -45,7 +43,7 @@
 
   opacity: 0;
 
-  transition: opacity 250ms ease-in-out;
+  transition: opacity var(--effectTimer) var(--effectFunction);
 }
 
 .card__tumb {
@@ -57,7 +55,8 @@
   opacity: 0;
   transform: translateY(20px);
 
-  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition: transform var(--effectTimer) var(--effectFunction),
+    opacity var(--effectTimer) var(--effectFunction);
 }
 
 .rating {
@@ -74,13 +73,14 @@
   font-weight: 600;
   color: white;
   white-space: normal;
-  color: map-get($textColors, 'white');
+  color: var(--textWhite);
 
   opacity: 0;
   border-radius: 6px;
   transform: translateY(-14px);
 
-  transition: opacity 250ms linear, transform 250ms linear;
+  transition: opacity var(--effectTimer) var(--effectFunction),
+    transform var(--effectTimer) var(--effectFunction);
 }
 
 .rating__text__light,
@@ -111,7 +111,7 @@
   width: 100%;
   min-height: 363px;
 
-  transition: transform 250ms ease-in-out;
+  transition: transform var(--effectTimer) var(--effectFunction);
 }
 
 .date__light,
@@ -151,7 +151,7 @@
   align-items: center;
   padding: 24px;
 
-  background-color: map-get($bgColors, 'modal');
+  background-color: var(--bgModal);
   border-radius: 10px;
 }
 

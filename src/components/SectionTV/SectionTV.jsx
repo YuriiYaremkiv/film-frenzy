@@ -1,38 +1,45 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { SliderTV } from './SliderTV/SliderTV';
 import tvAPI from 'api/modules/tv.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
-import { SliderTV } from './SliderTV/SliderTV';
 import modeConfig from 'configs/mode.config';
 import css from './SectionTV.module.scss';
+import { Error } from 'components/Error/Error';
 
 export const SectionTV = () => {
   const [series, setSeries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
   const [type, setType] = useState(tmdbConfigs.tvType.popular);
-
   const { themeMode } = useSelector(state => state.themeMode);
 
   useEffect(() => {
     (async () => {
-      const { response, err } = await tvAPI.getTV({
-        mediaType: tmdbConfigs.mediaType.tv,
-        tvType: type,
-        page: 1,
-      });
+      setIsLoading(true);
 
-      if (response) {
-        setSeries(response.data.results);
-        setIsLoading(false);
-      }
+      const timer = setTimeout(async () => {
+        const { response, err } = await tvAPI.getTV({
+          mediaType: tmdbConfigs.mediaType.tv,
+          tvType: type,
+          page: 1,
+        });
 
-      if (err) {
-        console.log(err);
-        setError(err.message);
-        setIsLoading(false);
-      }
+        if (response) {
+          setSeries(response.data.results);
+          setIsLoading(false);
+        }
+
+        if (err) {
+          console.log(err);
+          setError(err.message);
+          setIsLoading(false);
+        }
+      }, 600);
+
+      return () => {
+        clearTimeout(timer);
+      };
     })();
   }, [type]);
 
@@ -76,7 +83,6 @@ export const SectionTV = () => {
           >
             Television
           </h2>
-          {/* selector */}
           <div className={css[`selector__${themeMode}`]}>
             <label>
               <h3
@@ -144,9 +150,12 @@ export const SectionTV = () => {
               style={stylesVertical}
             ></div>
           </div>
-          {/* selector */}
         </div>
-        <SliderTV movies={series} isLoading={isLoading} />
+        {!error ? (
+          <SliderTV movies={series} isLoading={isLoading} />
+        ) : (
+          <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
+        )}
       </div>
     </section>
   );

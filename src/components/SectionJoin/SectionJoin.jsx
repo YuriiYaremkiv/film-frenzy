@@ -1,7 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Button from '@mui/material/Button';
 import css from './SectionJoin.module.scss';
 
 export const SectionJoin = () => {
+  const message = () => Notify.warning('This section is under development.');
+
   return (
     <section className={css.section}>
       <div className="container">
@@ -16,9 +19,9 @@ export const SectionJoin = () => {
                 popular streaming services like Netflix, Amazon Prime Video,
                 Disney Plus, Apple TV Plus, and fuboTV.
               </p>
-              <Link to="/" className={css.button}>
+              <Button onClick={message} className={css.button}>
                 Sign Up
-              </Link>
+              </Button>
             </div>
             <div className={css.column}>
               <ul className={css.list}>

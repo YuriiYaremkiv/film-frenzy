@@ -5,9 +5,31 @@ import personApi from 'api/modules/person.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import { SliderMovies } from './SliderMovies/SliderMovies';
 import { Link } from 'react-router-dom';
-
 import modeConfig from 'configs/mode.config';
 import css from './SectionPerson.module.scss';
+
+function splitIntoParts(text) {
+  var sentences = text.split('. ');
+  var parts = [];
+  var part = '';
+  var count = 0;
+
+  for (var i = 0; i < sentences.length; i++) {
+    part += sentences[i] + '. ';
+    count++;
+
+    if (count === 4) {
+      parts.push(part);
+      part = '';
+      count = 0;
+    }
+  }
+
+  if (part.length > 0) {
+    parts.push(part);
+  }
+  return parts;
+}
 
 export const SectionPerson = () => {
   const [personInfo, setPersonInfo] = useState([]);
@@ -91,7 +113,11 @@ export const SectionPerson = () => {
         <div className="container">
           <div className={css.container}>
             <div className={css.container__image}>
-              <img src={tmdbConfigs.personDetailImage(path)} alt={name} />
+              <img
+                src={tmdbConfigs.personDetailImage(path)}
+                alt={name}
+                className={css.image}
+              />
               <h3 style={{ ...modeConfig.style.textColor[themeMode] }}>
                 Personal Info
               </h3>
@@ -130,11 +156,46 @@ export const SectionPerson = () => {
               <h3 style={{ ...modeConfig.style.textColor[themeMode] }}>
                 Biography
               </h3>
-              <p style={{ ...modeConfig.style.textColor[themeMode] }}>
-                {biography}
-              </p>
+              {/* {biography} */}
+              <ul
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '14px',
+                  marginBottom: '16px',
+                }}
+              >
+                {biography &&
+                  splitIntoParts(biography).map((el, index) => {
+                    return (
+                      <li key={index}>
+                        <p
+                          style={{ ...modeConfig.style.textColor[themeMode] }}
+                          className={css.text__biography}
+                        >
+                          {el}
+                        </p>
+                      </li>
+                    );
+                  })}
+              </ul>
+              <h3
+                style={{
+                  ...modeConfig.style.textColor[themeMode],
+                  marginBottom: '4px',
+                }}
+              >
+                Known For
+              </h3>
+
               <SliderMovies movies={movies} />
-              <h3 style={{ ...modeConfig.style.textColor[themeMode] }}>
+
+              <h3
+                style={{
+                  ...modeConfig.style.textColor[themeMode],
+                  marginTop: '8px',
+                }}
+              >
                 Acting
               </h3>
               <ul className={css.list}>

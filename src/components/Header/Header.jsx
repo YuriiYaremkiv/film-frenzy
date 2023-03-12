@@ -6,6 +6,7 @@ import { Logo } from 'components/Logo/Logo';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { IconButton } from '@mui/material';
 import { Button } from '@mui/material';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import MenuIcon from '@mui/icons-material/Menu';
 import Media from 'react-media';
 import modeConfig from 'configs/mode.config';
@@ -16,6 +17,8 @@ export const Header = () => {
   const { themeMode } = useSelector(state => state.themeMode);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+  const message = () => Notify.warning('This section is under development.');
 
   return (
     <header
@@ -45,7 +48,12 @@ export const Header = () => {
                   </IconButton>
                   <Logo />
                 </div>
-                <Button className={css[`button__${themeMode}`]}>SIGN IN</Button>
+                <Button
+                  onClick={message}
+                  className={css[`button__${themeMode}`]}
+                >
+                  SIGN IN
+                </Button>
               </div>
             ) : (
               <div
@@ -63,7 +71,12 @@ export const Header = () => {
                   <Navigation />
                   <SelectThemeMode />
                 </div>
-                <Button className={css[`button__${themeMode}`]}>SIGN IN</Button>
+                <Button
+                  onClick={message}
+                  className={css[`button__${themeMode}`]}
+                >
+                  SIGN IN
+                </Button>
               </div>
             )
           }
