@@ -18,8 +18,8 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
         queries={{
           responsive: '(max-width: 479px)',
           mobile: '(max-width: 767px)',
-          tablet: '(min-width: 768px) and (max-width: 1300px)',
-          desktop: '(min-width: 1300px)',
+          tablet: '(min-width: 768px) and (max-width: 1279px)',
+          desktop: '(min-width: 1280px)',
         }}
       >
         {matches => (
@@ -54,6 +54,7 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                 name,
                 poster_path: path,
                 release_date: date,
+                first_air_date = '',
                 vote_average: rating,
               }) => (
                 <Link key={id} to={`/movies/${id}`} className={css.link}>
@@ -76,7 +77,7 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                       </Stack>
                       <div className={css.card__tumb}>
                         <p className={css[`date__${themeMode}`]}>
-                          {date.slice(0, 4)}
+                          {date ? date.slice(0, 4) : first_air_date.slice(0, 4)}
                         </p>
                         <p className={css[`title__${themeMode}`]}>
                           {title || name}

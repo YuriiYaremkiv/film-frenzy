@@ -21,8 +21,8 @@ export const ListActing = ({ allMovies }) => {
           {allMovies?.map(
             ({ id, release_date: date, title, character }, index, array) => {
               return (
-                <>
-                  <li key={index} className={css.item}>
+                <li key={index}>
+                  <div className={css.item}>
                     <p
                       style={{ ...modeConfig.style.textColor[themeMode] }}
                       className={css[`item__date__${themeMode}`]}
@@ -39,12 +39,12 @@ export const ListActing = ({ allMovies }) => {
                     <p style={{ ...modeConfig.style.textColor[themeMode] }}>
                       as {character}
                     </p>
-                  </li>
+                  </div>
                   {date.slice(0, 4) ===
                   array[index + 1]?.release_date.slice(0, 4) ? null : (
                     <hr className={css.line} />
                   )}
-                </>
+                </li>
               );
             }
           )}

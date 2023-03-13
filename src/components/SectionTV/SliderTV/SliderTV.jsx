@@ -18,8 +18,8 @@ export const SliderTV = ({ movies = [], isLoading = false }) => {
         queries={{
           responsive: '(max-width: 479px)',
           mobile: '(max-width: 767px)',
-          tablet: '(min-width: 768px) and (max-width: 1300px)',
-          desktop: '(min-width: 1300px)',
+          tablet: '(min-width: 768px) and (max-width: 1279px)',
+          desktop: '(min-width: 1280px)',
         }}
       >
         {matches => (
@@ -56,7 +56,7 @@ export const SliderTV = ({ movies = [], isLoading = false }) => {
                 first_air_date: date,
                 vote_average: rating,
               }) => (
-                <Link key={id} to={`/movies/${id}`} className={css.link}>
+                <Link key={id} to={`/tv/${id}`} className={css.link}>
                   <div className={css.card}>
                     <div className={css.card__container}>
                       <img

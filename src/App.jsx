@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 const Layout = lazy(() => import('./pages/Layout'));
 const PageHome = lazy(() => import('./pages/PageHome'));
 const PageMovieDetails = lazy(() => import('./pages/PageMovieDetails'));
-const Movies = lazy(() => import('./pages/Movies/Movies'));
+const PageTVDetails = lazy(() => import('./pages/PageTVDetails'));
 const Cast = lazy(() => import('./components/Cast/Cast'));
 const Reviews = lazy(() => import('./components/Reviews/Reviews'));
 
@@ -23,6 +23,10 @@ export const App = () => {
         <Route path="tv" element={<PageTV />} />
         <Route path="search" element={<PageSearch />} />
         <Route path="movies/:movieId" element={<PageMovieDetails />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
+        <Route path="tv/:tvId" element={<PageTVDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>

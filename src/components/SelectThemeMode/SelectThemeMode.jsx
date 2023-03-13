@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setThemeMode } from 'redux/themeModeSlice';
 import { IconButton } from '@mui/material';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
-import modeConfig from 'configs/mode.config';
 
 export const SelectThemeMode = () => {
   const dispatch = useDispatch();
-  const [mode, setMode] = useState(modeConfig.themeConfig.light);
+  const currentTheme = useSelector(state => state.themeMode.themeMode);
+  const [mode, setMode] = useState(currentTheme);
 
   useEffect(() => {
     dispatch(setThemeMode(mode));

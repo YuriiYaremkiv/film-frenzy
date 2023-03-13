@@ -1,48 +1,16 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
-import { Error } from '../Error/Error';
 import { NotReviews } from '../Info/NotReviews';
-import { getFetchByReviews } from '../../utils/fetchAPI';
-
-import css from './Reviews.module.scss';
-
-import tmdbConfigs from 'api/configs/tmdb.configs';
-
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
+import css from './Reviews.module.scss';
 
-const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoadind] = useState(false);
-  const [error, setError] = useState(false);
-  const { movieId } = useParams();
-
+const Reviews = ({ reviews, isLoading }) => {
   const { themeMode } = useSelector(state => state.themeMode);
-
-  useEffect(() => {
-    setLoadind(true);
-    (async () => {
-      try {
-        const response = await getFetchByReviews(movieId);
-        const reviews = response.filter(review => {
-          if (review.author_details.avatar_path) {
-            return true;
-          }
-        });
-        setReviews(reviews);
-        setLoadind(false);
-      } catch (error) {
-        setLoadind(false);
-        setError(true);
-      }
-    })();
-  }, [movieId]);
 
   return (
     <>
@@ -53,9 +21,8 @@ const Reviews = () => {
         >
           Social
         </h3>
-        {loading ? <Loader /> : null}
-        {error ? <Error /> : null}
-        {!loading && !reviews.length ? <NotReviews /> : null}
+        {isLoading ? <Loader /> : null}
+        {!isLoading && !reviews.length ? <NotReviews /> : null}
         <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
           {reviews.length
             ? reviews.map(

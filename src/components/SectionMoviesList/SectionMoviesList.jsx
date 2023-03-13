@@ -21,7 +21,7 @@ export const SectionMoviesList = ({ movies }) => {
           }) => {
             return (
               <li key={id} className={css.list__item}>
-                <Link className={css.list__link} to={`/movies/${id}`}>
+                <Link className={css.list__link} to={`/tv/${id}`}>
                   <div className={css.card}>
                     <div className={css.card__container}>
                       <img

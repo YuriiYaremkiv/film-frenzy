@@ -1,5 +1,3 @@
-@import '../../style/vars.scss';
-
 .section {
   padding-bottom: 20px;
 }
@@ -16,7 +14,7 @@
   font-size: 1.5em;
   font-weight: 600;
   text-align: center;
-  color: map-get($textColors, 'primary');
+  color: var(--textBlack);
 }
 
 .selector__light,
@@ -94,7 +92,7 @@
 
   background-color: var(--bgPrimary);
 
-  transition: all map-get($effect, 'timer') map-get($effect, 'function');
+  transition: all var(--effectTimer) var(--effectFunction);
 
   z-index: -1;
 }
@@ -136,7 +134,7 @@
     background-color: var(--bgPrimary);
     border-radius: 30px;
 
-    transition: all map-get($effect, 'timer') map-get($effect, 'function');
+    transition: all var(--effectTimer) var(--effectFunction);
 
     z-index: -1;
   }

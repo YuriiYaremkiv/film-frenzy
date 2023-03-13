@@ -1,25 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListNavigation } from 'components/ListNavigation/ListNavigation';
-import tmdbConfigs from 'api/configs/tmdb.configs';
 import { InputSearch } from 'components/InputSearch/InputSearch';
 import { SectionMoviesList } from 'components/SectionMoviesList/SectionMoviesList';
 import { SectionPeopleList } from 'components/SectionPeopleList/SectionPeopleList';
 import { ButtonLoadMore } from 'components/ButtonLoadMore/ButtonLoadMore';
-
 import { PaginationList } from 'components/PaginationList/PaginationList';
-
 import {
   getSearchMedia,
   getSearchPeople,
   getSearchMediaAdd,
   getSearchPeopleAdd,
 } from 'redux/search/searchOperations';
-
 import { setPage, setQuery } from 'redux/search/searchSlice';
+import tmdbConfigs from 'api/configs/tmdb.configs';
 
 const PageSearch = () => {
-  // const [query, setQuery] = useState('');
   const [type, setType] = useState(tmdbConfigs.searchType.movie);
   const dispatch = useDispatch();
 

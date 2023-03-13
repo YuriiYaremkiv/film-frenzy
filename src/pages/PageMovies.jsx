@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Pagination from '@mui/material/Pagination';
 import { styled } from '@mui/material/styles';
 import { SectionMovieSlider } from 'components/SectionMovieSlider/SectionMovieSlider';
 import { SectionMoviesList } from 'components/SectionMoviesList/SectionMoviesList';
 import { ButtonLoadMore } from 'components/ButtonLoadMore/ButtonLoadMore';
+import Pagination from '@mui/material/Pagination';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';

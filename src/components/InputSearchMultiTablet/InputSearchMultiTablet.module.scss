@@ -52,14 +52,13 @@
 
   transform: translateY(-50%);
 
-  transition: background-color map-get($effect, 'timerIcons')
-    map-get($effect, 'function');
+  transition: background-color var(--effectTimer) var(--effectFunction);
 
   &:hover {
-    background-color: map-get($bgColors, 'gray');
+    background-color: var(--bgGray);
   }
   &:active {
-    background-color: map-get($bgColors, 'modal');
+    background-color: var(--bgModal);
   }
 }
 

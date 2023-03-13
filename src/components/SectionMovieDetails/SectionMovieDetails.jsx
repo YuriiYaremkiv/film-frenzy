@@ -1,25 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, Outlet, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import Button from '@mui/material/Button';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Rating from '@mui/material/Rating';
-import Stack from '@mui/material/Stack';
-
-import css from './SectionMovieDetails.module.scss';
-
-import tmdbConfigs from 'api/configs/tmdb.configs';
-
-import mediaApi from 'api/modules/media.api';
-
-// -----------------------------------------------------------
 import Modal from 'react-modal';
 import ReactPlayer from 'react-player';
+import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
+import css from './SectionMovieDetails.module.scss';
 
-export const SectionMovieDetails = ({ movieInfo }) => {
+export const NumberToTime = props => {
+  const hours = Math.floor(props.number / 60);
+  const minutes = props.number % 60;
+
+  return (
+    <span>
+      {hours}h {minutes}m
+    </span>
+  );
+};
+
+export const SectionMovieDetails = ({ movieInfo, trailer }) => {
   const {
     title,
+    original_name,
     release_date: date,
+    first_air_date: dateTv,
     overview,
     genres,
     backdrop_path: backdrop,
@@ -28,45 +34,13 @@ export const SectionMovieDetails = ({ movieInfo }) => {
     runtime,
     vote_average: rating,
   } = movieInfo;
-
-  const [trailer, setTrailer] = useState([]);
-  const [error, setError] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const navigation = useNavigate();
-  const location = useLocation();
-  const { movieId } = useParams();
   const { themeMode } = useSelector(state => state.themeMode);
 
   const produceCountries = production_countries
     ?.map(country => country.iso_3166_1)
     .join(', ');
-  const allGenres = genres.map(genre => genre.name).join(', ');
-  const officailTrailer = trailer.filter(trailer => {
-    if (trailer.name === 'Official Trailer') {
-      return true;
-    }
-  });
-
-  useEffect(() => {
-    (async () => {
-      const { response, err } = await mediaApi.getTrailer({
-        movieId: movieId,
-      });
-
-      if (response) {
-        setTrailer(response.data.results);
-      }
-
-      if (err) {
-        console.log(err);
-        setError(err.message);
-      }
-    })();
-  }, [movieId]);
-
-  const onBtnClick = () => {
-    navigation(location?.state?.from ?? '/');
-  };
+  const allGenres = genres?.map(genre => genre.name).join(', ');
 
   const customStyles = {
     overlay: {
@@ -101,83 +75,73 @@ export const SectionMovieDetails = ({ movieInfo }) => {
     >
       <div className={css.wrapper}>
         <div className="container">
-          <div className={css.details__container}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster}`}
-              alt={title}
-              width="300px"
-              heigth="450px"
-            />
-            <div className={css.details}>
-              <h2 className={css.details__title}>
-                {`${title}`}{' '}
-                <span style={{ fontWeight: 400, opacity: 0.8 }}>
-                  {date ? `(${parseInt(date)})` : null}
+          <div className={css.block}>
+            <div className={css.image__container}>
+              <img
+                src={tmdbConfigs.posterImage(poster)}
+                alt={title}
+                className={css.image}
+              />
+            </div>
+
+            <div className={css.details__container}>
+              <h1 className={css.title}>
+                {title || original_name}{' '}
+                <span className={css.title__date}>
+                  {`(${parseInt(date || dateTv)})`}
                 </span>
-              </h2>
+              </h1>
+
               <ul className={css.list}>
-                {date ? <li className={css.list__item}>{date}</li> : null}
-                {produceCountries ? (
-                  <li className={css.list__item}>{`(${produceCountries})`}</li>
-                ) : null}
-                {allGenres ? <li>{allGenres}</li> : null}
-                {runtime ? <li>{<NumberToTime number={runtime} />}</li> : null}
+                <li className={css.list__item}>{date || dateTv}</li>
+                <li className={css.list__item}>{`(${produceCountries})`}</li>
+                <li>{allGenres}</li>
+                <li>{runtime && <NumberToTime number={runtime} />}</li>
               </ul>
-              <Stack className={css.rating}>
+
+              <div className={css.rating}>
                 <Rating
                   name="read-only"
                   size="large"
-                  color="#fff"
-                  defaultValue={rating / 2}
+                  value={rating / 2}
                   precision={0.5}
                   readOnly
-                  className={css[`rating__icon__${themeMode}`]}
+                  sx={{
+                    ...modeConfig.style.textColorAccent[themeMode],
+                  }}
                 />
-                <p className={css[`rating__text__${themeMode}`]}>
-                  {rating ? rating.toFixed(2) : null}
+                <p
+                  className={css.rating__text}
+                  style={{ ...modeConfig.style.textColorAccent[themeMode] }}
+                >
+                  {rating?.toFixed(2)}
                 </p>
-              </Stack>
-              <b>Overview</b>
-              <p>{overview}</p>
-              {/* video */}
-              <div className={css.video}>
-                <button
-                  className={css.video__button}
-                  onClick={() => setModalIsOpen(true)}
-                >
-                  Play Trailer
-                </button>
-                <Modal
-                  isOpen={modalIsOpen}
-                  style={customStyles}
-                  onRequestClose={() => setModalIsOpen(false)}
-                >
-                  <ReactPlayer
-                    url={tmdbConfigs.youtubePath(officailTrailer[0]?.key)}
-                    width="1268px"
-                    height="713px"
-                  />
-                </Modal>
               </div>
-              {/* video */}
+
+              <h2 className={css.overview}>Overview</h2>
+              <p className={css.overview__text}>{overview}</p>
+
+              <Button
+                variant="contained"
+                startIcon={<PlayCircleIcon />}
+                sx={{
+                  ...modeConfig.style.backgroundColorAccent[themeMode],
+                }}
+                onClick={() => setModalIsOpen(true)}
+              >
+                Play Trailer
+              </Button>
+              <Modal
+                isOpen={modalIsOpen}
+                style={customStyles}
+                onRequestClose={() => setModalIsOpen(false)}
+              >
+                <ReactPlayer url={tmdbConfigs.youtubePath(trailer[0]?.key)} />
+              </Modal>
             </div>
           </div>
-          <Outlet />
         </div>
       </div>
     </section>
   );
 };
-
-const NumberToTime = props => {
-  const hours = Math.floor(props.number / 60);
-  const minutes = props.number % 60;
-
-  return (
-    <span>
-      {hours}h {minutes}m
-    </span>
-  );
-};
-
-export default NumberToTime;

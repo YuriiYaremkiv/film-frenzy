@@ -1,71 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Loader } from '../Loader/Loader';
-import { Error } from '../Error/Error';
-import { getFetchByCredits } from '../../utils/fetchAPI';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { useLocation } from 'react-router-dom';
-
-import css from './Cast.module.scss';
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Media from 'react-media';
-import StarIcon from '@mui/icons-material/Star';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-
 import modeConfig from 'configs/mode.config';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import css from './Cast.module.scss';
 
-const Cast = () => {
-  const [actors, setActors] = useState([]);
-  const [isLoading, setIsLoadind] = useState(false);
-  const [error, setError] = useState(false);
-  const { movieId } = useParams();
-
-  const [actorsWithImage, setActorsWithImage] = useState([]);
-  const [actorOthers, setActorsOthers] = useState([]);
-
+const Cast = ({ actors, isLoading = false }) => {
   const { themeMode } = useSelector(state => state.themeMode);
-
   const location = useLocation();
 
-  useEffect(() => {
-    setIsLoadind(true);
-    (async () => {
-      try {
-        const movie = await getFetchByCredits(movieId);
-        const actors = movie.filter(actor => {
-          if (actor.profile_path) {
-            return actor;
-          }
-        });
-
-        setActors(actors);
-        setIsLoadind(false);
-      } catch (error) {
-        setIsLoadind(false);
-        setError(true);
-      }
-    })();
-  }, [movieId]);
-
-  useEffect(() => {
-    const actorImages = actors.filter(actor => {
-      return actor.profile_path !== null;
-    });
-
-    const other = actors.filter(actor => {
-      return actor.profile_path === null;
-    });
-    setActorsWithImage(actorImages);
-    setActorsOthers(other);
-  }, [actors]);
+  const count = actors.length;
 
   return (
     <div className="container">
@@ -79,24 +29,28 @@ const Cast = () => {
         queries={{
           responsive: '(max-width: 479px)',
           mobile: '(max-width: 767px)',
-          tablet: '(min-width: 768px) and (max-width: 1300px)',
-          desktop: '(min-width: 1300px)',
+          tablet: '(min-width: 768px) and (max-width: 1279px)',
+          desktop: '(min-width: 1280px)',
         }}
       >
         {matches => (
           <Slider
-            className="center"
-            infinite={true}
-            centerPadding="60px"
+            className="left-align-slider"
             swipeToSlide={true}
             slidesToShow={
               matches.responsive
-                ? 3
+                ? count > 3
+                  ? 3
+                  : count
                 : matches.mobile
                 ? 3
                 : matches.tablet
-                ? 5
-                : 9
+                ? count > 5
+                  ? 5
+                  : count
+                : count > 9
+                ? 9
+                : count
             }
             slidesToScroll={
               matches.responsive

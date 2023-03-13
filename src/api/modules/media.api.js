@@ -74,4 +74,5 @@ const mediaApi = {
     }
   },
 };
+
 export default mediaApi;

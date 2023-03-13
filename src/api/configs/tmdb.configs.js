@@ -39,6 +39,8 @@ const personImage = imageId =>
 const avatarImage = avatarId =>
   `https://image.tmdb.org/t/p/w64_and_h64_face/${avatarId}`;
 
+const posterImage = posterId => `https://image.tmdb.org/t/p/w500/${posterId}`;
+
 const personDetailImage = personId =>
   `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${personId}`;
 
@@ -58,6 +60,7 @@ const tmdbConfigs = {
   personImage,
   personDetailImage,
   avatarImage,
+  posterImage,
   backdropPath,
   youtubePath,
 };

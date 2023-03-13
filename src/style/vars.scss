@@ -1,15 +1,19 @@
 :root {
   --bgPrimary: rgba(3, 37, 65, 1);
+  --bgWhite: #fff;
+
   --bgBlue: #01b4e4;
   --bgBlueHover: #40c4ff;
   --bgBlueOpacityHover: rgba(1, 180, 228, 0.8);
+
   --bgRed: #d50000;
-  --bgRedOpacityHover: rgba(213, 0, 0, 0.8);
   --bgRedHover: #e53935;
-  --bgWhite: #fff;
+  --bgRedOpacityHover: rgba(213, 0, 0, 0.8);
+
   --bgPurple: #805be7;
   --bgLightPurple: rgba(128, 91, 231, 0.8);
   --bgGray: #bdbdbd;
+
   --bgModal: rgba(0, 0, 0, 0.2);
   --bgDarkModal: rgba(0, 0, 0, 0.5);
   --bgModalLinear: rgba(0, 0, 0, 0.6);
@@ -24,42 +28,3 @@
   --effectLongTimer: 500ms;
   --effectFunction: ease-in-out;
 }
-
-$bgColors: (
-  'primary': rgba(3, 37, 65, 1),
-  'white': #fff,
-  'green': #24cca7,
-  'ultramarine': #4a56e2,
-  'purple': #805be7,
-  'ligthPurple': rgba(128, 91, 231, 0.8),
-  'blue': rgba(1, 180, 228, 1),
-  'gray': #f5f5f5,
-  'darkGray': #9e9e9e,
-  'red': #ff6596,
-  'error': red,
-  'modal': rgba(0, 0, 0, 0.25),
-);
-
-$textColors: (
-  'primary': #000,
-  'secondary': #fff,
-  'white': #fff,
-  'gray': #bdbdbd,
-  'blue': rgba(1, 180, 228, 1),
-  'purple': #805be7,
-  'ligthPurple': rgba(128, 91, 231, 0.8),
-  'linear': linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%),
-);
-
-$effect: (
-  'timer': 300ms,
-  'timerIcons': 100ms,
-  'function': ease-in-out,
-);
-
-$breakpoints: (
-  'responsive': 'max-width: 479px',
-  'mobile': 'min-width: 480px',
-  'tablet': 'min-width: 768px',
-  'computer': 'min-width: 1280px',
-);

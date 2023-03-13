@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { SectionMovieDetails } from 'components/SectionMovieDetails/SectionMovieDetails';
+import { useState, useEffect } from 'react';
 import { Error } from '../components/Error/Error';
+import { SectionMovieDetails } from 'components/SectionMovieDetails/SectionMovieDetails';
 import { SectionRecommendation } from 'components/SectionRecommendation/SectionRecommendation';
 import { GlobalLoaderLogo } from 'components/GlobalLoaderLogo/GlobalLoaderLogo';
-import { getFetchByCredits, getFetchByReviews } from 'utils/fetchAPI';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
-import mediaApi from 'api/modules/media.api';
+import tvAPI from 'api/modules/tv.api';
 
 const initialState = {
   data: [],
@@ -16,35 +15,35 @@ const initialState = {
 };
 
 const PageMovieDetails = () => {
-  const [movie, setMovie] = useState(initialState);
+  const [tv, setTv] = useState(initialState);
   const [actors, setActors] = useState(initialState);
   const [reviews, setReviews] = useState(initialState);
   const [recommendation, setRecommendation] = useState(initialState);
   const [trailer, setTrailer] = useState(initialState);
-  const { movieId } = useParams();
+  const { tvId } = useParams();
 
   const globalLoading =
-    movie.isLoading &&
+    tv.isLoading &&
     actors.isLoading &&
     reviews.isLoading &&
     recommendation.isLoading &&
     trailer.isLoading;
 
-  //  Get data on movie:
+  //  Get info on tv:
   useEffect(() => {
     (async () => {
-      setMovie({
+      setTv({
         data: [],
         isLoading: true,
         error: '',
       });
 
-      const { response, err } = await mediaApi.getDetailsForMovie({
-        movieId: movieId,
+      const { response, err } = await tvAPI.getDetailsForTV({
+        tvId,
       });
 
       if (response) {
-        setMovie({
+        setTv({
           data: response.data,
           isLoading: false,
           error: '',
@@ -52,16 +51,16 @@ const PageMovieDetails = () => {
       }
 
       if (err) {
-        setMovie({
+        setTv({
           data: [],
           isLoading: false,
           error: err.message,
         });
       }
     })();
-  }, [movieId]);
+  }, [tvId]);
 
-  // Get all actors on movie:
+  // Get all actors on tv:
   useEffect(() => {
     (async () => {
       setActors({
@@ -69,21 +68,27 @@ const PageMovieDetails = () => {
         isLoading: true,
         error: '',
       });
-      try {
-        const movie = await getFetchByCredits(movieId);
-        const actors = movie.filter(actor => {
+
+      const { response, err } = await tvAPI.getCreditsByTV({
+        tvId,
+      });
+
+      if (response) {
+        const allActors = [...response.data.cast];
+        const actorsOnlyImage = allActors.filter(actor => {
           if (actor.profile_path) {
             return actor;
           }
           return false;
         });
-
         setActors({
-          data: actors,
+          data: actorsOnlyImage.sort((a, b) => b.popularity - a.popularity),
           isLoading: false,
           error: '',
         });
-      } catch (err) {
+      }
+
+      if (err) {
         setActors({
           data: [],
           isLoading: false,
@@ -91,9 +96,9 @@ const PageMovieDetails = () => {
         });
       }
     })();
-  }, [movieId]);
+  }, [tvId]);
 
-  // Get reviews for movie:
+  // Get reviews for tv:
   useEffect(() => {
     (async () => {
       setReviews({
@@ -101,21 +106,20 @@ const PageMovieDetails = () => {
         isLoading: true,
         error: '',
       });
-      try {
-        const response = await getFetchByReviews(movieId);
-        const reviews = response.filter(review => {
-          if (review.author_details.avatar_path) {
-            return true;
-          }
-          return false;
-        });
 
+      const { response, err } = await tvAPI.getReviewsByTV({
+        tvId,
+      });
+
+      if (response) {
         setReviews({
-          data: reviews,
+          data: response.data.results,
           isLoading: false,
           error: '',
         });
-      } catch (err) {
+      }
+
+      if (err) {
         setReviews({
           data: [],
           isLoading: false,
@@ -123,9 +127,9 @@ const PageMovieDetails = () => {
         });
       }
     })();
-  }, [movieId]);
+  }, [tvId]);
 
-  // Ger recomendations on movie:
+  // Ger recomendations on tv:
   useEffect(() => {
     (async () => {
       setRecommendation({
@@ -134,8 +138,8 @@ const PageMovieDetails = () => {
         error: '',
       });
 
-      const { response, err } = await mediaApi.getRecommendationMovies({
-        movieId: movieId,
+      const { response, err } = await tvAPI.getRecommendationsByTV({
+        tvId,
       });
 
       if (response) {
@@ -154,9 +158,9 @@ const PageMovieDetails = () => {
         });
       }
     })();
-  }, [movieId]);
+  }, [tvId]);
 
-  // Get trailers on movie:
+  // Get trailers on tv:
   useEffect(() => {
     (async () => {
       setTrailer({
@@ -165,8 +169,8 @@ const PageMovieDetails = () => {
         error: '',
       });
 
-      const { response, err } = await mediaApi.getTrailer({
-        movieId: movieId,
+      const { response, err } = await tvAPI.getTrailersByTV({
+        tvId: tvId,
       });
 
       if (response) {
@@ -191,26 +195,26 @@ const PageMovieDetails = () => {
         });
       }
     })();
-  }, [movieId]);
+  }, [tvId]);
 
   return (
     <div style={{ position: 'relative' }}>
       <div>
-        {movie.data && !movie.error ? (
-          <SectionMovieDetails movieInfo={movie.data} trailer={trailer.data} />
+        {tv.data && !tv.error ? (
+          <SectionMovieDetails movieInfo={tv.data} trailer={trailer.data} />
         ) : (
           <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
         )}
 
-        {actors.data.length && !actors.error && !movie.error ? (
+        {actors.data.length && !actors.error && !tv.error ? (
           <Cast actors={actors.data} />
         ) : null}
 
-        {reviews.data.length && !reviews.error && !movie.error ? (
+        {reviews.data.length && !reviews.error && !tv.error ? (
           <Reviews reviews={reviews.data} />
         ) : null}
 
-        {recommendation.data.length && !recommendation.error && !movie.error ? (
+        {recommendation.data.length && !recommendation.error && !tv.error ? (
           <SectionRecommendation recommendation={recommendation.data} />
         ) : null}
       </div>

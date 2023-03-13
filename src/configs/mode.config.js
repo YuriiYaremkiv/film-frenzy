@@ -59,6 +59,20 @@ const modeConfig = {
           'linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15))',
       },
     },
+    backgroundColorAccent: {
+      light: {
+        backgroundColor: '#01b4e4',
+        '&:hover': { backgroundColor: '#40c4ff' },
+      },
+      dark: {
+        backgroundColor: '#01b4e4',
+        '&:hover': { backgroundColor: '#40c4ff' },
+      },
+      red: {
+        backgroundColor: '#d50000',
+        '&:hover': { backgroundColor: '#e53935' },
+      },
+    },
     textColor: {
       light: {
         color: '#000',
@@ -70,6 +84,29 @@ const modeConfig = {
         color: '#fff',
       },
     },
+    textColorSecondary: {
+      light: {
+        color: '#000',
+      },
+      dark: {
+        color: '#000',
+      },
+      red: {
+        color: '#fff',
+      },
+    },
+    textColorAccent: {
+      light: {
+        color: '#01b4e4',
+      },
+      dark: {
+        color: '#01b4e4',
+      },
+      red: {
+        color: '#d50000',
+      },
+    },
+
     textColorAndHover: {
       light: {
         color: 'red',

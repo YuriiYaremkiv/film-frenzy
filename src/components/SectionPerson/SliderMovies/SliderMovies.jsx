@@ -35,8 +35,8 @@ export const SliderMovies = ({ movies = [], isLoading = false }) => {
         queries={{
           responsive: '(max-width: 479px)',
           mobile: '(max-width: 767px)',
-          tablet: '(min-width: 768px) and (max-width: 1300px)',
-          desktop: '(min-width: 1300px)',
+          tablet: '(min-width: 768px) and (max-width: 1279px)',
+          desktop: '(min-width: 1280px)',
         }}
       >
         {matches => (
