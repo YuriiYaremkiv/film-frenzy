@@ -3,9 +3,7 @@
   gap: 4px;
 }
 
-.link__light,
-.link__dark,
-.link__red {
+.link {
   display: block;
 
   text-decoration: none;
@@ -15,25 +13,7 @@
   transition: background-color var(--effectTimer) var(--effectFunction);
 }
 
-.link__light,
-.link__dark {
-  &:hover,
-  &:focus {
-    color: var(--textWhite);
-    background-color: var(--bgBlueOpacityHover) !important;
-  }
-}
-
-.link__red {
-  &:hover,
-  &:focus {
-    background-color: var(--bgRedOpacityHover) !important;
-  }
-}
-
-.button__light,
-.button__dark,
-.button__red {
+.button {
   padding: 2px 12px !important;
 
   font-family: 'Source Sans Pro', Arial, sans-serif !important;

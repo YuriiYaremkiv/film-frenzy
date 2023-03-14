@@ -1,16 +1,19 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GlobalLoader } from 'components/GlobalLoader/GlobalLoader';
-import Stack from '@mui/material/Stack';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Media from 'react-media';
 import StarIcon from '@mui/icons-material/Star';
+import tmdbConfigs from 'api/configs/tmdb.configs';
+import modeConfig from 'configs/mode.config';
 import css from './SliderList.module.scss';
 
 export const SliderList = ({ movies = [], isLoading = false }) => {
   const { themeMode } = useSelector(state => state.themeMode);
+
+  const count = movies.length || 1;
 
   return (
     <div className={css.container}>
@@ -32,10 +35,16 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
               matches.responsive
                 ? 1
                 : matches.mobile
-                ? 2
+                ? count > 2
+                  ? 2
+                  : count
                 : matches.tablet
-                ? 3
-                : 5
+                ? count > 3
+                  ? 3
+                  : count
+                : count > 5
+                ? 5
+                : count
             }
             slidesToScroll={
               matches.responsive
@@ -54,7 +63,7 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                 name,
                 poster_path: path,
                 release_date: date,
-                first_air_date = '',
+                first_air_date: dateTV,
                 vote_average: rating,
                 media_type: type,
               }) => (
@@ -66,25 +75,43 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                   <div className={css.card}>
                     <div className={css.card__container}>
                       <img
-                        src={`https://image.tmdb.org/t/p/w500/${path}`}
-                        alt="ias"
+                        src={tmdbConfigs.posterImage(path)}
+                        alt={title || name}
                         className={css.image}
                       />
                       <div className={css.description}></div>
-                      <Stack spacing={1} className={css.rating}>
-                        <p className={css[`rating__text__${themeMode}`]}>
-                          {rating ? rating.toFixed(1) : null}
+                      <div spacing={1} className={css.rating}>
+                        <p
+                          style={{
+                            ...modeConfig.style.textColorAccent[themeMode],
+                          }}
+                          className={css.rating__text}
+                        >
+                          {rating.toFixed(1)}
                         </p>
                         <StarIcon
                           fontSize="medium"
-                          className={css[`rating__icon__${themeMode}`]}
+                          style={{
+                            ...modeConfig.style.textColorAccent[themeMode],
+                          }}
+                          className={css.rating__icon}
                         />
-                      </Stack>
+                      </div>
                       <div className={css.card__tumb}>
-                        <p className={css[`date__${themeMode}`]}>
-                          {date ? date.slice(0, 4) : first_air_date.slice(0, 4)}
+                        <p
+                          style={{
+                            ...modeConfig.style.textColorAccent[themeMode],
+                          }}
+                          className={css.date}
+                        >
+                          {(date || dateTV)?.slice(0, 4)}
                         </p>
-                        <p className={css[`title__${themeMode}`]}>
+                        <p
+                          style={{
+                            ...modeConfig.style.textColorAccent[themeMode],
+                          }}
+                          className={css.title}
+                        >
                           {title || name}
                         </p>
                       </div>

@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Stack from '@mui/material/Stack';
-import StarIcon from '@mui/icons-material/Star';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import css from './SectionPeopleList.module.scss';
 

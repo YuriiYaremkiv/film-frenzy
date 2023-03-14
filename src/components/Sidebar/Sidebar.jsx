@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setThemeMode } from 'redux/themeModeSlice';
+import { setThemeMode } from 'redux/theme/themeModeSlice';
 import { Logo } from 'components/Logo/Logo';
 import {
   Drawer,

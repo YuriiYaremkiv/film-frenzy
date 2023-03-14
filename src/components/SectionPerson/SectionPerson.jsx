@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import personApi from 'api/modules/person.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionPerson.module.scss';
@@ -29,54 +26,8 @@ function splitIntoParts(text) {
   return parts;
 }
 
-export const SectionPerson = () => {
-  const [personInfo, setPersonInfo] = useState([]);
-  const [personMovieCredits, setPersonMovieCredits] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const { personId } = useParams();
-
+export const SectionPerson = ({ personInfo }) => {
   const { themeMode } = useSelector(state => state.themeMode);
-
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-
-      const { response, err } = await personApi.getDetails({
-        personId: personId,
-      });
-
-      if (response) {
-        setPersonInfo(response.data);
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    })();
-  }, [personId]);
-
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-
-      const { response, err } = await personApi.getMovieCredits({
-        personId: personId,
-      });
-
-      if (response) {
-        setPersonMovieCredits(response.data);
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    })();
-  }, [personId]);
 
   const {
     name,
@@ -148,7 +99,6 @@ export const SectionPerson = () => {
             {/* Image container - end */}
 
             {/* Description container - start */}
-
             <div className={css.contaner__description}>
               <h2 style={{ ...modeConfig.style.textColor[themeMode] }}>
                 {name}

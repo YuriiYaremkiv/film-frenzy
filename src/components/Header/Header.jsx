@@ -26,20 +26,11 @@ export const Header = () => {
       className={css.header}
     >
       <div className="container">
-        <Media query={{ maxWidth: 767 }}>
-          {matches =>
-            matches ? (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '10px 0',
-                }}
-              >
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
+        <div className={css.container}>
+          <Media query={{ maxWidth: 767 }}>
+            {matches =>
+              matches ? (
+                <div className={css.container__block}>
                   <IconButton
                     onClick={toggleSidebar}
                     style={{ ...modeConfig.style.textColor[themeMode] }}
@@ -48,39 +39,26 @@ export const Header = () => {
                   </IconButton>
                   <Logo />
                 </div>
-                <Button
-                  onClick={message}
-                  className={css[`button__${themeMode}`]}
-                >
-                  SIGN IN
-                </Button>
-              </div>
-            ) : (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '10px 0',
-                }}
-              >
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
-                >
+              ) : (
+                <div className={css.container__block}>
                   <Logo />
                   <Navigation />
                   <SelectThemeMode />
                 </div>
-                <Button
-                  onClick={message}
-                  className={css[`button__${themeMode}`]}
-                >
-                  SIGN IN
-                </Button>
-              </div>
-            )
-          }
-        </Media>
+              )
+            }
+          </Media>
+
+          <Button
+            onClick={message}
+            sx={{
+              ...modeConfig.bgAccent[themeMode],
+            }}
+            className={css.button}
+          >
+            SIGN IN
+          </Button>
+        </div>
       </div>
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
     </header>

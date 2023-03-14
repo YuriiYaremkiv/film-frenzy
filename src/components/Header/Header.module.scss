@@ -1,5 +1,3 @@
-@import '../../style/vars.scss';
-
 .header {
   position: sticky;
   top: 0;
@@ -7,9 +5,20 @@
   z-index: 20;
 }
 
-.button__light,
-.button__dark,
-.button__red {
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.container__block {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.button {
   display: block;
   padding: 2px 16px !important;
 
@@ -18,10 +27,10 @@
   font-weight: 600 !important;
   color: var(--textWhite) !important;
   white-space: nowrap;
-
-  background-color: var(--bgBlue) !important;
 }
 
-.button__red {
-  background-color: var(--bgRed) !important;
+@media screen and (min-width: 767px) {
+  .container__block {
+    gap: 16px;
+  }
 }

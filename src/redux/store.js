@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { themeModeSlice } from './themeModeSlice';
+import { themeModeSlice } from './theme/themeModeSlice';
 import moviesSlice from './transactions/transactionsSlice';
 import mediaSlice from './media/mediaSlice';
 import searchSlice from './search/searchSlice';

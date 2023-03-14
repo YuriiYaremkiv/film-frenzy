@@ -73,7 +73,7 @@ export const SliderMovies = ({ movies = [], isLoading = false }) => {
                 release_date: date,
                 vote_average: rating,
               }) => (
-                <Link key={id} to={`/movies/${id}`} className={css.link}>
+                <Link key={id} to={`/movie/${id}`} className={css.link}>
                   <div className={css.card}>
                     <div className={css.card__container}>
                       <img

@@ -25,7 +25,10 @@ const PageSearch = () => {
   const page = useSelector(state => state.search.page);
   const totalPages = useSelector(state => state.search.totalPages);
   const isLoading = useSelector(state => state.search.isLoading);
+  const notFoundNothing = useSelector(state => state.search.notFoundNothing);
   const error = useSelector(state => state.search.error);
+
+  console.log(notFoundNothing);
 
   useEffect(() => {
     if (!query) return;
@@ -106,6 +109,8 @@ const PageSearch = () => {
     dispatch(setPage(1));
   };
 
+  console.log(media);
+
   return (
     <div className="container">
       <div style={{ display: 'flex', justifyContent: 'right' }}>
@@ -134,6 +139,12 @@ const PageSearch = () => {
         <SectionPeopleList people={people} />
       )}
 
+      {notFoundNothing && (
+        <p style={{ color: 'red', textAlign: 'center' }}>
+          Nothing found. Please try again.
+        </p>
+      )}
+
       {!isLoading && (media.length || people.length) ? (
         <div
           style={{
@@ -148,6 +159,7 @@ const PageSearch = () => {
           />
         </div>
       ) : null}
+
       {!isLoading && (media.length || people.length) ? (
         <div
           style={{

@@ -86,27 +86,14 @@
   transition: opacity 250ms linear, transform 250ms linear;
 }
 
-.rating__text__light,
-.rating__text__dark {
-  color: var(--textWhite);
+.rating__text {
+  font-size: 20px;
 }
 
-.rating__text__red {
-  color: var(--textRed);
-}
-
-.rating__icon__light,
-.rating__icon__dark,
-.rating__icon__red {
+.rating__icon {
   margin: 0 !important;
   padding: 0 !important;
   margin-left: 6px !important;
-
-  color: var(--textWhite);
-}
-
-.rating__icon__red {
-  color: var(--textRed);
 }
 
 .image {
@@ -117,29 +104,15 @@
   transition: transform 250ms ease-in-out;
 }
 
-.date__light,
-.date__dark,
-.date__red {
+.date {
   margin-bottom: 8px;
 
   font-size: 19px;
-  color: var(--textWhite);
 }
 
-.date__red {
-  color: var(--textRed);
-}
-
-.title__light,
-.title__dark,
-.title__red {
+.title {
   font-size: 19px;
   font-weight: 700;
-  color: var(--textWhite);
-}
-
-.title__red {
-  color: var(--textRed);
 }
 
 .progress {

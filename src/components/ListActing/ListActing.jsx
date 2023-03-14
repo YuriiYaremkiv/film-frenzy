@@ -30,7 +30,7 @@ export const ListActing = ({ allMovies }) => {
                       {date.slice(0, 4)}
                     </p>
                     <Link
-                      to={`/movies/${id}`}
+                      to={`/movie/${id}`}
                       style={{ ...modeConfig.style.textColor[themeMode] }}
                       className={css[`item__link__${themeMode}`]}
                     >

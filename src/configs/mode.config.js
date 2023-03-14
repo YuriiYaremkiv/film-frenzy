@@ -73,6 +73,7 @@ const modeConfig = {
         '&:hover': { backgroundColor: '#e53935' },
       },
     },
+
     textColor: {
       light: {
         color: '#000',
@@ -177,6 +178,35 @@ const modeConfig = {
           'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
       },
     },
+  },
+  bgAccent: {
+    light: {
+      backgroundColor: '#01b4e4',
+      '&:hover': { backgroundColor: '#40c4ff' },
+    },
+    dark: {
+      backgroundColor: '#01b4e4',
+      '&:hover': { backgroundColor: '#40c4ff' },
+    },
+    red: {
+      backgroundColor: '#d50000',
+      '&:hover': { backgroundColor: '#e53935' },
+    },
+  },
+  bgAccentHover: {
+    light: {
+      '&:hover': { backgroundColor: '#40c4ff' },
+    },
+    dark: {
+      '&:hover': { backgroundColor: '#40c4ff' },
+    },
+    red: {
+      '&:hover': { backgroundColor: '#e53935' },
+    },
+  },
+  color: {
+    red: '#d50000',
+    blue: 'rgba(1, 180, 228, 1)',
   },
   themeConfig: {
     light: 'light',
