@@ -53,7 +53,7 @@ export const Sidebar = ({ open, toggleSidebar }) => {
         <Typography
           variant="h6"
           marginBottom="20px"
-          style={{ ...modeConfig.style.textColor[themeMode] }}
+          style={{ ...modeConfig.textColor[themeMode] }}
         >
           MENU
         </Typography>
@@ -62,7 +62,7 @@ export const Sidebar = ({ open, toggleSidebar }) => {
             <StyledLink
               key={index}
               to={item.path}
-              style={{ ...modeConfig.style.textColor[themeMode] }}
+              style={{ ...modeConfig.textColor[themeMode] }}
               className={css[`link__${themeMode}`]}
               thememode={themeMode}
               onClick={() => toggleSidebar(false)}
@@ -85,7 +85,7 @@ export const Sidebar = ({ open, toggleSidebar }) => {
           variant="h6"
           marginBottom="20px"
           style={{
-            ...modeConfig.style.textColor[themeMode],
+            ...modeConfig.textColor[themeMode],
             marginTop: '12px',
           }}
         >
@@ -114,7 +114,7 @@ export const Sidebar = ({ open, toggleSidebar }) => {
             primary={
               <Typography
                 textTransform="uppercase"
-                style={{ ...modeConfig.style.textColor[themeMode] }}
+                style={{ ...modeConfig.textColor[themeMode] }}
                 className={css.themeText}
               >
                 {`${

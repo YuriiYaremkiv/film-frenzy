@@ -35,7 +35,7 @@ export const Navigation = () => {
               <StyledLink
                 to={link}
                 style={{
-                  ...modeConfig.style.textColor[themeMode],
+                  ...modeConfig.textColor[themeMode],
                 }}
                 className={css.link}
                 thememode={themeMode}

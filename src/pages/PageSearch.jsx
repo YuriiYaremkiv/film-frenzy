@@ -28,8 +28,6 @@ const PageSearch = () => {
   const notFoundNothing = useSelector(state => state.search.notFoundNothing);
   const error = useSelector(state => state.search.error);
 
-  console.log(notFoundNothing);
-
   useEffect(() => {
     if (!query) return;
 
@@ -108,8 +106,6 @@ const PageSearch = () => {
     dispatch(setQuery(value));
     dispatch(setPage(1));
   };
-
-  console.log(media);
 
   return (
     <div className="container">

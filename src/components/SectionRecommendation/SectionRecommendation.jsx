@@ -13,7 +13,7 @@ export const SectionRecommendation = ({
     <section>
       <div className="container">
         <h3
-          style={{ ...modeConfig.style.textColor[themeMode] }}
+          style={{ ...modeConfig.textColor[themeMode] }}
           className={css.title}
         >
           Recommendations

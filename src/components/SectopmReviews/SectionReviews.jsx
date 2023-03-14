@@ -16,7 +16,7 @@ const Reviews = ({ reviews, isLoading }) => {
     <section className={css.section}>
       <div className="container">
         <h3
-          style={{ ...modeConfig.style.textColor[themeMode] }}
+          style={{ ...modeConfig.textColor[themeMode] }}
           className={css.title}
         >
           Social
@@ -50,11 +50,11 @@ const Reviews = ({ reviews, isLoading }) => {
                         </div>
                         <div>
                           <p
-                            style={{ ...modeConfig.style.textColor[themeMode] }}
+                            style={{ ...modeConfig.textColor[themeMode] }}
                             className={css.card__name}
                           >{`A review by ${author}`}</p>
                           <p
-                            style={{ ...modeConfig.style.textColor[themeMode] }}
+                            style={{ ...modeConfig.textColor[themeMode] }}
                             className={css.card__data}
                           >{`Written by ${author} on ${new Date(
                             date
@@ -64,7 +64,7 @@ const Reviews = ({ reviews, isLoading }) => {
                             day: 'numeric',
                           })}`}</p>
                           <p
-                            style={{ ...modeConfig.style.textColor[themeMode] }}
+                            style={{ ...modeConfig.textColor[themeMode] }}
                             className={css.card__content}
                           >
                             {content}

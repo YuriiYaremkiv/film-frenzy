@@ -21,7 +21,7 @@ const Cast = ({ actors, isLoading = false }) => {
     <section className={css.section}>
       <div className="container">
         <h3
-          style={{ ...modeConfig.style.textColor[themeMode] }}
+          style={{ ...modeConfig.textColor[themeMode] }}
           className={css.title}
         >
           Top Billed Cast
@@ -69,7 +69,7 @@ const Cast = ({ actors, isLoading = false }) => {
                   <Link
                     to={`/person/${id}`}
                     state={{ from: location }}
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                     className={css[`link__${themeMode}`]}
                   >
                     <div

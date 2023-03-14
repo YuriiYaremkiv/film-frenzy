@@ -73,18 +73,6 @@ const modeConfig = {
         '&:hover': { backgroundColor: '#e53935' },
       },
     },
-
-    textColor: {
-      light: {
-        color: '#000',
-      },
-      dark: {
-        color: '#fff',
-      },
-      red: {
-        color: '#fff',
-      },
-    },
     textColorSecondary: {
       light: {
         color: '#000',
@@ -202,6 +190,17 @@ const modeConfig = {
     },
     red: {
       '&:hover': { backgroundColor: '#e53935' },
+    },
+  },
+  textColor: {
+    light: {
+      color: '#000',
+    },
+    dark: {
+      color: '#fff',
+    },
+    red: {
+      color: '#fff',
     },
   },
   color: {

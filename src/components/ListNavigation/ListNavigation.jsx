@@ -27,7 +27,7 @@ export const ListNavigation = ({
       {title ? (
         <h2
           style={{
-            ...modeConfig.style.textColor[themeMode],
+            ...modeConfig.textColor[themeMode],
           }}
         >
           {title}

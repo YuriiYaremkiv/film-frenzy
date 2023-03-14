@@ -73,7 +73,7 @@ export const SectionMoreMovies = () => {
         <div className={css.title__container}>
           <h2
             className={css.title}
-            style={{ ...modeConfig.style.textColor[themeMode] }}
+            style={{ ...modeConfig.textColor[themeMode] }}
           >
             More Movies
           </h2>

@@ -25,7 +25,7 @@ export const SliderMovies = ({ movies = [], isLoading = false }) => {
     >
       <h3
         style={{
-          ...modeConfig.style.textColor[themeMode],
+          ...modeConfig.textColor[themeMode],
           marginBottom: '4px',
         }}
       >

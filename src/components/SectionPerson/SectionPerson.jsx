@@ -51,17 +51,17 @@ export const SectionPerson = ({ personInfo }) => {
                 alt={name}
                 className={css.image}
               />
-              <h3 style={{ ...modeConfig.style.textColor[themeMode] }}>
+              <h3 style={{ ...modeConfig.textColor[themeMode] }}>
                 Personal Info
               </h3>
               <ul
-                style={{ ...modeConfig.style.textColor[themeMode] }}
+                style={{ ...modeConfig.textColor[themeMode] }}
                 className={css.list__info}
               >
                 <li>
                   Known For:
                   <p
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                     className={css.list__info__item}
                   >
                     {known}
@@ -70,7 +70,7 @@ export const SectionPerson = ({ personInfo }) => {
                 <li>
                   Gender:
                   <p
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                     className={css.list__info__item}
                   >
                     {gender === '1' ? 'Female' : 'Male'}
@@ -79,7 +79,7 @@ export const SectionPerson = ({ personInfo }) => {
                 <li>
                   Birthday:
                   <p
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                     className={css.list__info__item}
                   >
                     {birthday}
@@ -88,7 +88,7 @@ export const SectionPerson = ({ personInfo }) => {
                 <li>
                   Place of Birth:
                   <p
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                     className={css.list__info__item}
                   >
                     {place_of_birth}
@@ -100,12 +100,8 @@ export const SectionPerson = ({ personInfo }) => {
 
             {/* Description container - start */}
             <div className={css.contaner__description}>
-              <h2 style={{ ...modeConfig.style.textColor[themeMode] }}>
-                {name}
-              </h2>
-              <h3 style={{ ...modeConfig.style.textColor[themeMode] }}>
-                Biography
-              </h3>
+              <h2 style={{ ...modeConfig.textColor[themeMode] }}>{name}</h2>
+              <h3 style={{ ...modeConfig.textColor[themeMode] }}>Biography</h3>
               <ul
                 style={{
                   display: 'flex',
@@ -119,7 +115,7 @@ export const SectionPerson = ({ personInfo }) => {
                     return (
                       <li key={index}>
                         <p
-                          style={{ ...modeConfig.style.textColor[themeMode] }}
+                          style={{ ...modeConfig.textColor[themeMode] }}
                           className={css.text__biography}
                         >
                           {el}

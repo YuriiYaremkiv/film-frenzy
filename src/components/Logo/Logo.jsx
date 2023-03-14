@@ -8,7 +8,7 @@ export const Logo = ({ fontSize = '' }) => {
   return (
     <p
       style={{
-        ...modeConfig.style.textColor[themeMode],
+        ...modeConfig.textColor[themeMode],
         fontSize: `${fontSize}px`,
       }}
       className={css.logo}

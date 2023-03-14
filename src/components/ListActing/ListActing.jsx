@@ -11,7 +11,7 @@ export const ListActing = ({ allMovies }) => {
       <div>
         <h3
           style={{
-            ...modeConfig.style.textColor[themeMode],
+            ...modeConfig.textColor[themeMode],
             marginTop: '8px',
           }}
         >
@@ -24,19 +24,19 @@ export const ListActing = ({ allMovies }) => {
                 <li key={index}>
                   <div className={css.item}>
                     <p
-                      style={{ ...modeConfig.style.textColor[themeMode] }}
+                      style={{ ...modeConfig.textColor[themeMode] }}
                       className={css[`item__date__${themeMode}`]}
                     >
                       {date.slice(0, 4)}
                     </p>
                     <Link
                       to={`/movie/${id}`}
-                      style={{ ...modeConfig.style.textColor[themeMode] }}
+                      style={{ ...modeConfig.textColor[themeMode] }}
                       className={css[`item__link__${themeMode}`]}
                     >
                       {title}
                     </Link>
-                    <p style={{ ...modeConfig.style.textColor[themeMode] }}>
+                    <p style={{ ...modeConfig.textColor[themeMode] }}>
                       as {character}
                     </p>
                   </div>

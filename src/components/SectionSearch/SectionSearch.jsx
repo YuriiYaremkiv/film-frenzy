@@ -178,14 +178,14 @@ export const SectionSearch = () => {
             <div className={css.title__container}>
               <h2
                 style={{
-                  ...modeConfig.style.textColor[themeMode],
+                  ...modeConfig.textColor[themeMode],
                 }}
               >
                 Welcome
               </h2>
               <h3
                 style={{
-                  ...modeConfig.style.textColor[themeMode],
+                  ...modeConfig.textColor[themeMode],
                 }}
               >
                 Millions of movies, TV shows and people to discover. Explore

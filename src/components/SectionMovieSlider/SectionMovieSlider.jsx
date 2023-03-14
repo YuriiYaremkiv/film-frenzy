@@ -58,7 +58,7 @@ export const SectionMovieSlider = ({ movies, allGenres }) => {
                       <h2
                         style={{
                           zIndex: 10,
-                          ...modeConfig.style.textColor[themeMode],
+                          ...modeConfig.textColor[themeMode],
                         }}
                         className={css.title}
                       >
@@ -108,13 +108,13 @@ export const SectionMovieSlider = ({ movies, allGenres }) => {
                         </ul>
                       ) : null}
                       <p
-                        style={{ ...modeConfig.style.textColor[themeMode] }}
+                        style={{ ...modeConfig.textColor[themeMode] }}
                         className={css.overview}
                       >
                         {overview}
                       </p>
                       <p
-                        style={{ ...modeConfig.style.textColor[themeMode] }}
+                        style={{ ...modeConfig.textColor[themeMode] }}
                         className={css.date}
                       >
                         <b>Release date: </b>

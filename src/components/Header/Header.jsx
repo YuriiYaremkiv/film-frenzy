@@ -33,7 +33,7 @@ export const Header = () => {
                 <div className={css.container__block}>
                   <IconButton
                     onClick={toggleSidebar}
-                    style={{ ...modeConfig.style.textColor[themeMode] }}
+                    style={{ ...modeConfig.textColor[themeMode] }}
                   >
                     <MenuIcon fontSize="large" />
                   </IconButton>
