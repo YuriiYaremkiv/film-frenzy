@@ -15,6 +15,7 @@ const PageTV = () => {
   const [page, setPage] = useState(1);
   const [allPages, setAllPages] = useState(1);
   const [type, setType] = useState(tmdbConfigs.movieType.popular);
+  const [allGenres, setAllGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const { themeMode } = useSelector(state => state.themeMode);
@@ -41,6 +42,24 @@ const PageTV = () => {
     })();
     // eslint-disable-next-line
   }, [type]);
+
+  // Get all genres for serials:
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+
+      const { response, err } = await tvAPI.getGenresByTV();
+
+      if (response) {
+        setAllGenres(response.data.genres);
+        setIsLoading(false);
+      }
+      if (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   const handleChangeType = type => {
     setType(type);
@@ -120,23 +139,17 @@ const PageTV = () => {
 
   return (
     <main style={{ ...modeConfig.style.backgroundColorMain[themeMode] }}>
-      <SectionMovieSlider />
+      <SectionMovieSlider movies={movies} allGenres={allGenres} />
       <div className="container">
         <ListNavigation
           title="TV Series"
           type={type}
           handleChangeType={handleChangeType}
-          categories={[
-            { category: 'Popular', type: tmdbConfigs.tvType.popular },
-            { category: 'Top Rated', type: tmdbConfigs.tvType.top_rated },
-          ]}
         />
-        <SectionMoviesList
-          movies={movies}
-          type={type}
-          handleChangeType={handleChangeType}
-        />
-        {!isLoading ? (
+
+        <SectionMoviesList movies={movies} />
+
+        {!isLoading && (
           <div
             style={{
               display: 'flex',
@@ -149,22 +162,25 @@ const PageTV = () => {
               isLoading={isLoading}
             />
           </div>
-        ) : null}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '8px 0 ',
-          }}
-        >
-          <CustomPagination
-            showFirstButton
-            showLastButton
-            count={allPages}
-            page={page}
-            onChange={handlePageChange}
-          />
-        </div>
+        )}
+
+        {!isLoading && allPages > 1 && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              padding: '8px 0 ',
+            }}
+          >
+            <CustomPagination
+              showFirstButton
+              showLastButton
+              count={allPages}
+              page={page}
+              onChange={handlePageChange}
+            />
+          </div>
+        )}
       </div>
       {error}
     </main>

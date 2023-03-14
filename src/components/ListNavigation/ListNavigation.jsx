@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux';
+import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './ListNavigation.module.scss';
 
-export const ListNavigation = ({
-  title,
-  type,
-  handleChangeType,
-  categories = [],
-}) => {
+const categories = [
+  { category: 'Popular', type: tmdbConfigs.movieType.popular },
+  { category: 'Top Rated', type: tmdbConfigs.movieType.top_rated },
+];
+
+export const ListNavigation = ({ title, type, handleChangeType }) => {
   const { themeMode } = useSelector(state => state.themeMode);
 
   const handleChangeRadioButton = e => {

@@ -42,8 +42,6 @@ export const SectionMovieDetails = ({ movieInfo, trailer }) => {
     .join(', ');
   const allGenres = genres?.map(genre => genre.name).join(', ');
 
-  console.log(trailer);
-
   const customStyles = {
     overlay: {
       position: 'fixed',

@@ -143,8 +143,15 @@ const PageMovieDetails = () => {
       });
 
       if (response) {
+        const recommendation = response.data.results.filter(media => {
+          if (media.backdrop_path) {
+            return media;
+          }
+          return false;
+        });
+
         setRecommendation({
-          data: response.data.results,
+          data: recommendation,
           isLoading: false,
           error: '',
         });

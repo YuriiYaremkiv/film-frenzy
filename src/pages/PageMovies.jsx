@@ -15,6 +15,7 @@ const PageMovies = () => {
   const [page, setPage] = useState(1);
   const [allPages, setAllPages] = useState(1);
   const [type, setType] = useState(tmdbConfigs.movieType.popular);
+  const [allGenres, setAllGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const { themeMode } = useSelector(state => state.themeMode);
@@ -41,6 +42,24 @@ const PageMovies = () => {
     })();
     // eslint-disable-next-line
   }, [type]);
+
+  // Get all genres for movie:
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+
+      const { response, err } = await mediaApi.getGenres();
+
+      if (response) {
+        setAllGenres(response.data.genres);
+        setIsLoading(false);
+      }
+      if (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   const handleChangeType = type => {
     setType(type);
@@ -118,19 +137,17 @@ const PageMovies = () => {
 
   return (
     <main style={{ ...modeConfig.style.backgroundColorMain[themeMode] }}>
-      <SectionMovieSlider />
+      <SectionMovieSlider movies={movies} allGenres={allGenres} />
       <div className="container">
         <ListNavigation
           title="Movies"
           type={type}
           handleChangeType={handleChangeType}
-          categories={[
-            { category: 'Popular', type: tmdbConfigs.movieType.popular },
-            { category: 'Top Rated', type: tmdbConfigs.movieType.top_rated },
-          ]}
         />
+
         <SectionMoviesList movies={movies} />
-        {!isLoading ? (
+
+        {!isLoading && (
           <div
             style={{
               display: 'flex',
@@ -143,22 +160,25 @@ const PageMovies = () => {
               isLoading={isLoading}
             />
           </div>
-        ) : null}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '8px 0 ',
-          }}
-        >
-          <CustomPagination
-            showFirstButton
-            showLastButton
-            count={allPages}
-            page={page}
-            onChange={handlePageChange}
-          />
-        </div>
+        )}
+
+        {!isLoading && allPages > 1 && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              padding: '8px 0 ',
+            }}
+          >
+            <CustomPagination
+              showFirstButton
+              showLastButton
+              count={allPages}
+              page={page}
+              onChange={handlePageChange}
+            />
+          </div>
+        )}
       </div>
       {error}
     </main>

@@ -11,6 +11,7 @@ const mediaEndpoints = {
   trailersByTV: ({ tvId }) => `${BASE_URL}tv/${tvId}/videos?api_key=${KEY}`,
   recommendationsByTV: ({ tvId }) =>
     `${BASE_URL}tv/${tvId}/recommendations?api_key=${KEY}`,
+  genresByTV: () => `${BASE_URL}genre/tv/list?api_key=${KEY}`,
 };
 
 const tvAPI = {
@@ -61,6 +62,14 @@ const tvAPI = {
   getTrailersByTV: async ({ tvId }) => {
     try {
       const response = await axios.get(mediaEndpoints.trailersByTV({ tvId }));
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+  getGenresByTV: async () => {
+    try {
+      const response = await axios.get(mediaEndpoints.genresByTV());
       return { response };
     } catch (err) {
       return { err };

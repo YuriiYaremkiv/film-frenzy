@@ -56,8 +56,13 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                 release_date: date,
                 first_air_date = '',
                 vote_average: rating,
+                media_type: type,
               }) => (
-                <Link key={id} to={`/movies/${id}`} className={css.link}>
+                <Link
+                  key={id}
+                  to={`/${type === 'tv' ? 'tv' : 'movie'}/${id}`}
+                  className={css.link}
+                >
                   <div className={css.card}>
                     <div className={css.card__container}>
                       <img
