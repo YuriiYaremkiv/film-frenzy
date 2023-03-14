@@ -7,13 +7,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
-import css from './Reviews.module.scss';
+import css from './SectionReviews.module.scss';
 
 const Reviews = ({ reviews, isLoading }) => {
   const { themeMode } = useSelector(state => state.themeMode);
 
   return (
-    <>
+    <section className={css.section}>
       <div className="container">
         <h3
           style={{ ...modeConfig.style.textColor[themeMode] }}
@@ -23,7 +23,12 @@ const Reviews = ({ reviews, isLoading }) => {
         </h3>
         {isLoading ? <Loader /> : null}
         {!isLoading && !reviews.length ? <NotReviews /> : null}
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+        <Swiper
+          pagination={true}
+          modules={[Pagination]}
+          className="mySwiper"
+          autoHeight={true}
+        >
           {reviews.length
             ? reviews.map(
                 ({
@@ -72,20 +77,8 @@ const Reviews = ({ reviews, isLoading }) => {
               )
             : null}
         </Swiper>
-        {/* <ul>
-          {reviews.length
-            ? reviews.map(({ id, author, content }) => {
-                return (
-                  <li key={id}>
-                    <b>{author}</b>
-                    <p>{content}</p>
-                  </li>
-                );
-              })
-            : null}
-        </ul> */}
       </div>
-    </>
+    </section>
   );
 };
 

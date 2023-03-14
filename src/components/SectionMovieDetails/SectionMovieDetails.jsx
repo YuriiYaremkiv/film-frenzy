@@ -42,6 +42,8 @@ export const SectionMovieDetails = ({ movieInfo, trailer }) => {
     .join(', ');
   const allGenres = genres?.map(genre => genre.name).join(', ');
 
+  console.log(trailer);
+
   const customStyles = {
     overlay: {
       position: 'fixed',
@@ -121,23 +123,29 @@ export const SectionMovieDetails = ({ movieInfo, trailer }) => {
               <h2 className={css.overview}>Overview</h2>
               <p className={css.overview__text}>{overview}</p>
 
-              <Button
-                variant="contained"
-                startIcon={<PlayCircleIcon />}
-                sx={{
-                  ...modeConfig.style.backgroundColorAccent[themeMode],
-                }}
-                onClick={() => setModalIsOpen(true)}
-              >
-                Play Trailer
-              </Button>
-              <Modal
-                isOpen={modalIsOpen}
-                style={customStyles}
-                onRequestClose={() => setModalIsOpen(false)}
-              >
-                <ReactPlayer url={tmdbConfigs.youtubePath(trailer[0]?.key)} />
-              </Modal>
+              {trailer[0] && (
+                <>
+                  <Button
+                    variant="contained"
+                    startIcon={<PlayCircleIcon />}
+                    sx={{
+                      ...modeConfig.style.backgroundColorAccent[themeMode],
+                    }}
+                    onClick={() => setModalIsOpen(true)}
+                  >
+                    Play Trailer
+                  </Button>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    style={customStyles}
+                    onRequestClose={() => setModalIsOpen(false)}
+                  >
+                    <ReactPlayer
+                      url={tmdbConfigs.youtubePath(trailer[0]?.key)}
+                    />
+                  </Modal>
+                </>
+              )}
             </div>
           </div>
         </div>

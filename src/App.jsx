@@ -5,8 +5,10 @@ const Layout = lazy(() => import('./pages/Layout'));
 const PageHome = lazy(() => import('./pages/PageHome'));
 const PageMovieDetails = lazy(() => import('./pages/PageMovieDetails'));
 const PageTVDetails = lazy(() => import('./pages/PageTVDetails'));
-const Cast = lazy(() => import('./components/Cast/Cast'));
-const Reviews = lazy(() => import('./components/Reviews/Reviews'));
+const Cast = lazy(() => import('./components/SectionCast/SectionCast'));
+const Reviews = lazy(() =>
+  import('./components/SectopmReviews/SectionReviews')
+);
 
 const PageMovies = lazy(() => import('./pages/PageMovies'));
 const PageTV = lazy(() => import('./pages/PageTV'));

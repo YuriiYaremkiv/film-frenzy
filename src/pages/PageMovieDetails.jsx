@@ -5,8 +5,8 @@ import { Error } from '../components/Error/Error';
 import { SectionRecommendation } from 'components/SectionRecommendation/SectionRecommendation';
 import { GlobalLoaderLogo } from 'components/GlobalLoaderLogo/GlobalLoaderLogo';
 import { getFetchByCredits, getFetchByReviews } from 'utils/fetchAPI';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+import Cast from 'components/SectionCast/SectionCast';
+import Reviews from 'components/SectopmReviews/SectionReviews';
 import mediaApi from 'api/modules/media.api';
 
 const initialState = {
