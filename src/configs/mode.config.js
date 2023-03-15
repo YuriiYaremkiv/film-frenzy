@@ -181,6 +181,17 @@ const modeConfig = {
       '&:hover': { backgroundColor: '#e53935' },
     },
   },
+  bgSecondary: {
+    light: {
+      backgroundColor: 'rgba(3, 37, 65, 1)',
+    },
+    dark: {
+      backgroundColor: '#01b4e4',
+    },
+    red: {
+      backgroundColor: '#d50000',
+    },
+  },
   bgAccentHover: {
     light: {
       '&:hover': { backgroundColor: '#40c4ff' },
@@ -190,6 +201,17 @@ const modeConfig = {
     },
     red: {
       '&:hover': { backgroundColor: '#e53935' },
+    },
+  },
+  bgBorderAccent: {
+    light: {
+      border: '1px solid #01b4e4',
+    },
+    dark: {
+      border: '1px solid #01b4e4',
+    },
+    red: {
+      border: '1px solid #d50000',
     },
   },
   textColor: {

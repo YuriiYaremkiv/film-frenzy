@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SliderList } from 'components/SliderList/SliderList';
+import { Error } from 'components/Error/Error';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionPopularMovie.module.scss';
-import { Error } from 'components/Error/Error';
+import { SelectorList } from 'components/SelectorList/SelectorList';
+
+const list = [
+  { title: 'Today', value: tmdbConfigs.mediaTime.day },
+  { title: 'This Week', value: tmdbConfigs.mediaTime.week },
+];
 
 export const SectionPopularMovie = () => {
   const [movies, setMovies] = useState([]);
@@ -49,16 +55,18 @@ export const SectionPopularMovie = () => {
     })();
   }, [time]);
 
-  let stylesHorizontal = {};
-  let stylesVertical = {};
+  // Styles for select category - start:
+  const stylesHorizontal = {};
+  const stylesVertical = {};
+  const stylesMaxWidth = { maxWidth: '210px' };
 
   switch (time) {
-    case 'day':
+    case tmdbConfigs.mediaTime.day:
       stylesHorizontal.left = 0;
       stylesHorizontal.width = '90px';
       stylesVertical.transform = 'translateY(0px)';
       break;
-    case 'week':
+    case tmdbConfigs.mediaTime.week:
       stylesHorizontal.left = 0;
       stylesHorizontal.width = '125px';
       stylesHorizontal.transform = 'translateX(85px)';
@@ -67,6 +75,7 @@ export const SectionPopularMovie = () => {
     default:
       return stylesHorizontal;
   }
+  // Styles for select category - end.
 
   return (
     <section className={css.section}>
@@ -78,54 +87,14 @@ export const SectionPopularMovie = () => {
           >
             Popular Movies
           </h2>
-          <div className={css[`selector__${themeMode}`]}>
-            <label>
-              <h3
-                className={
-                  time === 'day'
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Today
-              </h3>
-              <input
-                type="radio"
-                checked={time === tmdbConfigs.mediaTime.day}
-                name="time"
-                value={tmdbConfigs.mediaTime.day}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <label>
-              <h3
-                className={
-                  time === 'week'
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                This Week
-              </h3>
-              <input
-                type="radio"
-                checked={time === tmdbConfigs.mediaTime.week}
-                name="time"
-                value={tmdbConfigs.mediaTime.week}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <div
-              className={css[`backGroungHorizontal__${themeMode}`]}
-              style={stylesHorizontal}
-            ></div>
-            <div
-              className={css[`backGroungVertical__${themeMode}`]}
-              style={stylesVertical}
-            ></div>
-          </div>
+          <SelectorList
+            type={time}
+            list={list}
+            onChangeValue={handleChangeRadioButton}
+            stylesHorizontal={stylesHorizontal}
+            stylesVertical={stylesVertical}
+            stylesMaxWidth={stylesMaxWidth}
+          />
         </div>
 
         {!error ? (

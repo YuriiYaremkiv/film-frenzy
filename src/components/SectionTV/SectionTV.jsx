@@ -6,6 +6,13 @@ import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionTV.module.scss';
 import { Error } from 'components/Error/Error';
+import { SelectorList } from 'components/SelectorList/SelectorList';
+
+const list = [
+  { title: 'Popular', value: tmdbConfigs.tvType.popular },
+  { title: 'Top Rated', value: tmdbConfigs.tvType.top_rated },
+  { title: 'On The Air', value: tmdbConfigs.tvType.on_the_air },
+];
 
 export const SectionTV = () => {
   const [series, setSeries] = useState([]);
@@ -47,8 +54,10 @@ export const SectionTV = () => {
     setType(e.target.value);
   };
 
-  let stylesHorizontal = {};
-  let stylesVertical = {};
+  // Styles for select category - start:
+  const stylesHorizontal = {};
+  const stylesVertical = {};
+  const stylesMaxWidth = { maxWidth: '340px' };
 
   switch (type) {
     case 'popular':
@@ -72,6 +81,7 @@ export const SectionTV = () => {
     default:
       return stylesHorizontal;
   }
+  // Styles for select category - end.
 
   return (
     <section className={css.section}>
@@ -83,74 +93,16 @@ export const SectionTV = () => {
           >
             Television
           </h2>
-          <div className={css[`selector__${themeMode}`]}>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.tvType.popular
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Popular
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.tvType.popular}
-                name="time"
-                value={tmdbConfigs.tvType.popular}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.tvType.top_rated
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Top Rated
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.tvType.top_rated}
-                name="time"
-                value={tmdbConfigs.tvType.top_rated}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.tvType.on_the_air
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                On The Air
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.tvType.on_the_air}
-                name="time"
-                value={tmdbConfigs.tvType.on_the_air}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <div
-              className={css[`backGroungHorizontal__${themeMode}`]}
-              style={stylesHorizontal}
-            ></div>
-            <div
-              className={css[`backGroungVertical__${themeMode}`]}
-              style={stylesVertical}
-            ></div>
-          </div>
+          <SelectorList
+            type={type}
+            list={list}
+            onChangeValue={handleChangeRadioButton}
+            stylesHorizontal={stylesHorizontal}
+            stylesVertical={stylesVertical}
+            stylesMaxWidth={stylesMaxWidth}
+          />
         </div>
+
         {!error ? (
           <SliderTV movies={series} isLoading={isLoading} />
         ) : (

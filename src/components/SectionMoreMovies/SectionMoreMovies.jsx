@@ -6,6 +6,13 @@ import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionMoreMovies.module.scss';
 import { Error } from 'components/Error/Error';
+import { SelectorList } from 'components/SelectorList/SelectorList';
+
+const list = [
+  { title: 'Now Playing', value: tmdbConfigs.movieType.now_playing },
+  { title: 'Top Rated', value: tmdbConfigs.movieType.top_rated },
+  { title: 'Upcoming', value: tmdbConfigs.movieType.upcoming },
+];
 
 export const SectionMoreMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -42,8 +49,12 @@ export const SectionMoreMovies = () => {
     })();
   }, [type]);
 
+  // Styles for select category - start:
   let stylesHorizontal = {};
   let stylesVertical = {};
+  const stylesMaxWidth = {
+    maxWidth: '375px',
+  };
 
   switch (type) {
     case 'now_playing':
@@ -66,6 +77,7 @@ export const SectionMoreMovies = () => {
     default:
       return stylesHorizontal;
   }
+  // Styles for select category - end.
 
   return (
     <section className={css.section}>
@@ -77,73 +89,14 @@ export const SectionMoreMovies = () => {
           >
             More Movies
           </h2>
-          <div className={css[`selector__${themeMode}`]}>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.movieType.now_playing
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Now Playing
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.movieType.now_playing}
-                name="time"
-                value={tmdbConfigs.movieType.now_playing}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.movieType.top_rated
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Top Rated
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.movieType.top_rated}
-                name="time"
-                value={tmdbConfigs.movieType.top_rated}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <label>
-              <h3
-                className={
-                  type === tmdbConfigs.movieType.upcoming
-                    ? css[`activeTitle__${themeMode}`]
-                    : css[`disableTitle__${themeMode}`]
-                }
-              >
-                Upcoming
-              </h3>
-              <input
-                type="radio"
-                checked={type === tmdbConfigs.movieType.upcoming}
-                name="time"
-                value={tmdbConfigs.movieType.upcoming}
-                onChange={handleChangeRadioButton}
-                className={css.select__input}
-              />
-            </label>
-            <div
-              className={css[`backGroungHorizontal__${themeMode}`]}
-              style={stylesHorizontal}
-            ></div>
-            <div
-              className={css[`backGroungVertical__${themeMode}`]}
-              style={stylesVertical}
-            ></div>
-          </div>
+          <SelectorList
+            type={type}
+            list={list}
+            onChangeValue={handleChangeRadioButton}
+            stylesHorizontal={stylesHorizontal}
+            stylesVertical={stylesVertical}
+            stylesMaxWidth={stylesMaxWidth}
+          />
         </div>
 
         {!error ? (

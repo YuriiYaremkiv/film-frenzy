@@ -1,0 +1,106 @@
+.selector {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 180px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+.active__light,
+.active__dark,
+.active__red,
+.disable__light,
+.disable__dark,
+.disable__red {
+  margin: 0;
+  padding: 4px 20px;
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--textBlack);
+  cursor: pointer;
+
+  z-index: 10;
+  transition: color var(--effectLongTimer) var(--effectFunction);
+}
+
+.active__light {
+  color: var(--textBlue);
+}
+
+.disable__dark,
+.disable__red {
+  color: var(--textWhite);
+}
+
+.active__dark,
+.active__red {
+  color: var(--textWhite);
+}
+
+.input {
+  display: none;
+}
+
+.bgHorizontal {
+  display: none;
+}
+
+.bgVertical {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+
+  transition: all var(--effectTimer) var(--effectFunction);
+
+  z-index: -1;
+}
+
+@media screen and (min-width: 480px) {
+  .selector {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    height: 30px;
+    width: auto;
+
+    border-radius: 30px;
+    overflow: hidden;
+
+    z-index: 0;
+  }
+
+  .bgHorizontal {
+    position: absolute;
+    display: block;
+    height: 30px;
+
+    border-radius: 30px;
+
+    transition: all var(--effectTimer) var(--effectFunction);
+
+    z-index: -1;
+  }
+
+  .bgVertical {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .selector {
+    flex-direction: row;
+    margin: 0 auto 0 0;
+  }
+}

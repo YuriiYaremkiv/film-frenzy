@@ -1,5 +1,3 @@
-@import '../../style/vars.scss';
-
 .section {
   padding-bottom: 20px;
 }
@@ -19,143 +17,6 @@
   color: var(--textWhite);
 }
 
-.selector__light,
-.selector__dark,
-.selector__red {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-
-  max-width: 180px;
-
-  border: 1px solid var(--textBlue);
-  border-radius: 10px;
-  overflow: hidden;
-
-  z-index: 0;
-}
-
-.selector__red {
-  border: 1px solid var(--textRed);
-}
-
-.activeTitle__light,
-.activeTitle__dark,
-.activeTitle__red,
-.disableTitle__light,
-.disableTitle__dark,
-.disableTitle__red {
-  margin: 0;
-  padding: 4px 20px;
-
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 600;
-  color: var(--textBlack);
-  cursor: pointer;
-
-  z-index: 10;
-  transition: color var(--effectLongTimer) var(--effectFunction);
-}
-
-.activeTitle__light {
-  color: var(--textBlue);
-}
-
-.disableTitle__dark,
-.disableTitle__red {
-  color: var(--textWhite);
-}
-
-.activeTitle__dark,
-.activeTitle__red {
-  color: var(--textWhite);
-}
-
-.select__input {
-  display: none;
-}
-
-.backGroungHorizontal__light,
-.backGroungHorizontal__dark,
-.backGroungHorizontal__red {
-  display: none;
-}
-
-.backGroungVertical__light,
-.backGroungVertical__dark,
-.backGroungVertical__red {
-  position: absolute;
-  width: 100%;
-  height: 30px;
-
-  background-color: var(--bgPrimary);
-
-  transition: all var(--effectTimer) var(--effectFunction);
-
-  z-index: -1;
-}
-
-.backGroungVertical__dark {
-  background-color: var(--bgBlue);
-}
-
-.backGroungVertical__red {
-  background-color: var(--bgRed);
-}
-
-@media screen and (min-width: 480px) {
-  .selector__light,
-  .selector__dark,
-  .selector__red {
-    position: relative;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 auto;
-
-    max-width: 375px;
-
-    border-radius: 30px;
-    overflow: hidden;
-
-    z-index: 0;
-  }
-
-  .backGroungHorizontal__light,
-  .backGroungHorizontal__dark,
-  .backGroungHorizontal__red {
-    position: absolute;
-    display: block;
-    height: 30px;
-
-    background-color: var(--bgPrimary);
-    border-radius: 30px;
-
-    transition: all var(--effectTimer) var(--effectFunction);
-
-    z-index: -1;
-  }
-
-  .backGroungHorizontal__dark {
-    background-color: var(--bgBlue);
-  }
-
-  .backGroungHorizontal__red {
-    background-color: var(--bgRed);
-  }
-
-  .backGroungVertical__light,
-  .backGroungVertical__dark,
-  .backGroungVertical__red {
-    display: none;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .title__container {
     display: flex;
@@ -166,14 +27,5 @@
     margin: 0 20px 0 0;
 
     text-align: left;
-  }
-
-  .selector__light,
-  .selector__dark,
-  .selector__red {
-    flex-direction: row;
-    margin: 0 auto 0 0;
-
-    max-width: 610px;
   }
 }
