@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { SliderTV } from './SliderTV/SliderTV';
+import { Error } from 'components/Error/Error';
+import { SelectorList } from 'components/SelectorList/SelectorList';
+import { SliderList } from 'components/SliderList/SliderList';
 import tvAPI from 'api/modules/tv.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionTV.module.scss';
-import { Error } from 'components/Error/Error';
-import { SelectorList } from 'components/SelectorList/SelectorList';
 
 const list = [
   { title: 'Popular', value: tmdbConfigs.tvType.popular },
@@ -57,7 +57,7 @@ export const SectionTV = () => {
   // Styles for select category - start:
   const stylesHorizontal = {};
   const stylesVertical = {};
-  const stylesMaxWidth = { maxWidth: '340px' };
+  const stylesMaxWidth = { maxWidth: '343px' };
 
   switch (type) {
     case 'popular':
@@ -104,7 +104,9 @@ export const SectionTV = () => {
         </div>
 
         {!error ? (
-          <SliderTV movies={series} isLoading={isLoading} />
+          <>
+            <SliderList movies={series} isLoading={isLoading} />
+          </>
         ) : (
           <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
         )}

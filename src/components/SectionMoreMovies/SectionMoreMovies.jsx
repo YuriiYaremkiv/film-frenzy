@@ -100,11 +100,7 @@ export const SectionMoreMovies = () => {
         </div>
 
         {!error ? (
-          <SliderList
-            movies={movies}
-            isLoading={isLoading}
-            themeMode={themeMode}
-          />
+          <SliderList movies={movies} isLoading={isLoading} />
         ) : (
           <Error title="Sorry, we're experiencing a temporary network issue. Please try again later." />
         )}

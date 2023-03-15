@@ -10,6 +10,37 @@ import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SliderList.module.scss';
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: 'block',
+        transform: 'translate(-45px, -20px) scale(1.8)',
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: 'block',
+        transform: 'translate(45px, -20px) scale(1.8)',
+        zIndex: 1,
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
 export const SliderList = ({ movies = [], isLoading = false }) => {
   const { themeMode } = useSelector(state => state.themeMode);
 
@@ -27,9 +58,6 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
       >
         {matches => (
           <Slider
-            className="center"
-            infinite={true}
-            centerPadding="60px"
             swipeToSlide={true}
             slidesToShow={
               matches.responsive
@@ -55,6 +83,8 @@ export const SliderList = ({ movies = [], isLoading = false }) => {
                 ? 2
                 : 2
             }
+            nextArrow={<SampleNextArrow />}
+            prevArrow={<SamplePrevArrow />}
           >
             {movies.map(
               ({

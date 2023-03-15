@@ -9,12 +9,21 @@ const Cast = lazy(() => import('./components/SectionCast/SectionCast'));
 const Reviews = lazy(() =>
   import('./components/SectopmReviews/SectionReviews')
 );
-
 const PageMovies = lazy(() => import('./pages/PageMovies'));
 const PageTV = lazy(() => import('./pages/PageTV'));
-
 const PagePerson = lazy(() => import('./pages/PagePerson'));
 const PageSearch = lazy(() => import('./pages/PageSearch'));
+
+// import Layout from './pages/Layout';
+// import PageHome from './pages/PageHome';
+// import PageMovieDetails from './pages/PageMovieDetails';
+// import PageTVDetails from './pages/PageTVDetails';
+// import Cast from './components/SectionCast/SectionCast';
+// import Reviews from './components/SectopmReviews/SectionReviews';
+// import PageMovies from './pages/PageMovies';
+// import PageTV from './pages/PageTV';
+// import PagePerson from './pages/PagePerson';
+// import PageSearch from './pages/PageSearch';
 
 export const App = () => {
   return (

@@ -89,39 +89,39 @@ image {
 }
 
 /* Styles of slider */
-.slick-slide {
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-}
+// .slick-slide {
+//   height: 100% !important;
+//   display: flex !important;
+//   align-items: center !important;
+// }
 
-.slider {
-  height: 100vh !important;
-}
+// .slider {
+//   height: 100vh !important;
+// }
 
-.slick-prev:before,
-.slick-next:before {
-  font-size: 36px !important;
+// .slick-prev:before,
+// .slick-next:before {
+//   font-size: 36px !important;
 
-  color: var(--bgGray) !important;
-}
+//   color: var(--bgGray) !important;
+// }
 
-.slick-prev,
-.slick-next {
-  width: 70px !important;
-  height: 70px !important;
+// .slick-prev,
+// .slick-next {
+//   width: 70px !important;
+//   height: 70px !important;
 
-  font-size: 36px !important;
+//   font-size: 36px !important;
 
-  border-radius: 50%;
-  z-index: 10 !important;
+//   border-radius: 50%;
+//   z-index: 10 !important;
 
-  transition: background-color var(--effectTimer) var(--effectFunction) !important;
+//   transition: background-color var(--effectTimer) var(--effectFunction) !important;
 
-  &:hover {
-    background-color: var(--bgGray) !important;
-  }
-}
+//   &:hover {
+//     background-color: var(--bgGray) !important;
+//   }
+// }
 
 @keyframes fadein {
   from {
