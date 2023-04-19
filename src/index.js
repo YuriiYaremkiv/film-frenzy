@@ -11,7 +11,7 @@ Modal.setAppElement('#root');
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/movies">
       <App />
     </BrowserRouter>
   </Provider>
