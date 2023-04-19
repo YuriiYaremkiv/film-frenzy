@@ -55,7 +55,6 @@ export const SectionPopularMovie = () => {
     })();
   }, [time]);
 
-  // Styles for select category - start:
   const stylesHorizontal = {};
   const stylesVertical = {};
   const stylesMaxWidth = { maxWidth: '210px' };
@@ -75,7 +74,6 @@ export const SectionPopularMovie = () => {
     default:
       return stylesHorizontal;
   }
-  // Styles for select category - end.
 
   return (
     <section className={css.section}>

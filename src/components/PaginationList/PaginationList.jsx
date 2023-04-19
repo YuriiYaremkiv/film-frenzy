@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import Pagination from '@mui/material/Pagination';
 import { styled } from '@mui/material/styles';
+import Pagination from '@mui/material/Pagination';
 
 export const PaginationList = ({ currentPage, allPages, paginationPage }) => {
   const { themeMode } = useSelector(state => state.themeMode);

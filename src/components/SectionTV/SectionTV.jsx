@@ -54,7 +54,6 @@ export const SectionTV = () => {
     setType(e.target.value);
   };
 
-  // Styles for select category - start:
   const stylesHorizontal = {};
   const stylesVertical = {};
   const stylesMaxWidth = { maxWidth: '343px' };
@@ -81,7 +80,6 @@ export const SectionTV = () => {
     default:
       return stylesHorizontal;
   }
-  // Styles for select category - end.
 
   return (
     <section className={css.section}>

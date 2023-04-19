@@ -10,11 +10,9 @@ import './index.scss';
 Modal.setAppElement('#root');
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter basename="/">
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter basename="/">
+      <App />
+    </BrowserRouter>
+  </Provider>
 );

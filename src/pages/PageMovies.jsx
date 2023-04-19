@@ -43,7 +43,6 @@ const PageMovies = () => {
     // eslint-disable-next-line
   }, [type]);
 
-  // Get all genres for movie:
   useEffect(() => {
     (async () => {
       setIsLoading(true);

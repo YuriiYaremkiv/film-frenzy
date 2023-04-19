@@ -1,11 +1,8 @@
-import css from './SectionLatestTrailers.module.scss';
-
 import { useEffect, useState } from 'react';
-
 import { SliderTrailers } from './SliderTrailers/SliderTrailers';
-
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
+import css from './SectionLatestTrailers.module.scss';
 
 export const SectionLatestTrailers = () => {
   const [movies, setMovies] = useState([]);

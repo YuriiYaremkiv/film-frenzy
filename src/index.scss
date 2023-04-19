@@ -88,41 +88,6 @@ image {
   display: block;
 }
 
-/* Styles of slider */
-// .slick-slide {
-//   height: 100% !important;
-//   display: flex !important;
-//   align-items: center !important;
-// }
-
-// .slider {
-//   height: 100vh !important;
-// }
-
-// .slick-prev:before,
-// .slick-next:before {
-//   font-size: 36px !important;
-
-//   color: var(--bgGray) !important;
-// }
-
-// .slick-prev,
-// .slick-next {
-//   width: 70px !important;
-//   height: 70px !important;
-
-//   font-size: 36px !important;
-
-//   border-radius: 50%;
-//   z-index: 10 !important;
-
-//   transition: background-color var(--effectTimer) var(--effectFunction) !important;
-
-//   &:hover {
-//     background-color: var(--bgGray) !important;
-//   }
-// }
-
 @keyframes fadein {
   from {
     opacity: 0;
@@ -132,7 +97,6 @@ image {
   }
 }
 
-// theme modes
 .MuiList-root {
   background-color: #e0e0e0;
 }
@@ -168,7 +132,3 @@ image {
 .left-align-slider .slick-slide {
   display: flex !important;
 }
-
-// .slick-slide.slick-active.slick-current {
-//   width: auto !important;
-// }

@@ -30,7 +30,6 @@ const PageMovieDetails = () => {
     recommendation.isLoading &&
     trailer.isLoading;
 
-  //  Get data on movie:
   useEffect(() => {
     (async () => {
       setMovie({
@@ -61,7 +60,6 @@ const PageMovieDetails = () => {
     })();
   }, [movieId]);
 
-  // Get all actors on movie:
   useEffect(() => {
     (async () => {
       setActors({
@@ -93,7 +91,6 @@ const PageMovieDetails = () => {
     })();
   }, [movieId]);
 
-  // Get reviews for movie:
   useEffect(() => {
     (async () => {
       setReviews({
@@ -125,7 +122,6 @@ const PageMovieDetails = () => {
     })();
   }, [movieId]);
 
-  // Ger recomendations on movie:
   useEffect(() => {
     (async () => {
       setRecommendation({
@@ -156,7 +152,6 @@ const PageMovieDetails = () => {
     })();
   }, [movieId]);
 
-  // Get trailers on movie:
   useEffect(() => {
     (async () => {
       setTrailer({

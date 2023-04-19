@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import imageNotFound from '../../image/not-found.jpg';
 import Button from '@mui/material/Button';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Rating from '@mui/material/Rating';
@@ -81,6 +82,13 @@ export const SectionMovieDetails = ({ movieInfo, trailer }) => {
                 src={tmdbConfigs.posterImage(poster)}
                 alt={title}
                 className={css.image}
+                onError={e => {
+                  e.target.onerror = null;
+                  if (e.target.src !== imageNotFound) {
+                    e.target.src = null;
+                    e.target.src = imageNotFound;
+                  }
+                }}
               />
             </div>
 

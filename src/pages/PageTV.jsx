@@ -43,7 +43,6 @@ const PageTV = () => {
     // eslint-disable-next-line
   }, [type]);
 
-  // Get all genres for serials:
   useEffect(() => {
     (async () => {
       setIsLoading(true);

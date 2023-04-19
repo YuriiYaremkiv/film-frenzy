@@ -26,7 +26,6 @@ export const SectionSearch = () => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
   const [posterMovies, setPosterMovies] = useState([]);
-  const [error, setError] = useState('');
   const [redirectToSearch, setRedirectToSearch] = useState(false);
   const { themeMode } = useSelector(state => state.themeMode);
   const isLoading = useSelector(state => state.movies.isLoading);
@@ -38,7 +37,7 @@ export const SectionSearch = () => {
 
   useEffect(() => {
     (async () => {
-      const { response, err } = await mediaApi.getList({
+      const { response } = await mediaApi.getList({
         mediaType: tmdbConfigs.mediaType.movie,
         timeWindow: tmdbConfigs.mediaTime.week,
         page: 2,
@@ -46,11 +45,6 @@ export const SectionSearch = () => {
 
       if (response) {
         setPosterMovies(response.data.results);
-      }
-
-      if (err) {
-        console.log(err);
-        setError(err.message);
       }
     })();
   }, []);
@@ -88,11 +82,6 @@ export const SectionSearch = () => {
 
   const handleShowList = () => {
     setShowList(false);
-  };
-
-  const handleShoeListBtn = () => {
-    setShowList(!showList);
-    inputRef.current.focus();
   };
 
   const handleSearchMovies = () => {

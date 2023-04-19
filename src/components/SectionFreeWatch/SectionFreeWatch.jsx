@@ -1,8 +1,6 @@
-import React from 'react';
-import css from './SectionFreeWatch.module.scss';
-
 import { useState } from 'react';
 import { SliderMovies } from 'components/SliderMovies/SliderMovies';
+import css from './SectionFreeWatch.module.scss';
 
 export const SectionFreeWatch = ({ movies }) => {
   const [type, setType] = useState('movie');

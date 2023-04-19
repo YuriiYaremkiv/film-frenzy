@@ -1,12 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-
 import Stack from '@mui/material/Stack';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Media from 'react-media';

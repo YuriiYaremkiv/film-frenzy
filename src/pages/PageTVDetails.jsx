@@ -29,7 +29,6 @@ const PageMovieDetails = () => {
     recommendation.isLoading &&
     trailer.isLoading;
 
-  //  Get info on tv:
   useEffect(() => {
     (async () => {
       setTv({
@@ -60,7 +59,6 @@ const PageMovieDetails = () => {
     })();
   }, [tvId]);
 
-  // Get all actors on tv:
   useEffect(() => {
     (async () => {
       setActors({
@@ -98,7 +96,6 @@ const PageMovieDetails = () => {
     })();
   }, [tvId]);
 
-  // Get reviews for tv:
   useEffect(() => {
     (async () => {
       setReviews({
@@ -129,7 +126,6 @@ const PageMovieDetails = () => {
     })();
   }, [tvId]);
 
-  // Ger recomendations on tv:
   useEffect(() => {
     (async () => {
       setRecommendation({
@@ -167,7 +163,6 @@ const PageMovieDetails = () => {
     })();
   }, [tvId]);
 
-  // Get trailers on tv:
   useEffect(() => {
     (async () => {
       setTrailer({

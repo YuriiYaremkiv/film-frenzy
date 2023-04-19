@@ -8,46 +8,28 @@ import { SliderMovies } from 'components/SectionPerson/SliderMovies/SliderMovies
 const PagePerson = () => {
   const [personInfo, setPersonInfo] = useState([]);
   const [personMovieCredits, setPersonMovieCredits] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const { personId } = useParams();
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true);
-
-      const { response, err } = await personApi.getDetails({
+      const { response } = await personApi.getDetails({
         personId: personId,
       });
 
       if (response) {
         setPersonInfo(response.data);
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
       }
     })();
   }, [personId]);
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true);
-
-      const { response, err } = await personApi.getMovieCredits({
+      const { response } = await personApi.getMovieCredits({
         personId: personId,
       });
 
       if (response) {
         setPersonMovieCredits(response.data);
-        setIsLoading(false);
-      }
-
-      if (err) {
-        setError(err.message);
-        setIsLoading(false);
       }
     })();
   }, [personId]);

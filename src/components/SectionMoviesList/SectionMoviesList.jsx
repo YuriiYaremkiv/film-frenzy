@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import imageNotFound from '../../image/not-found.jpg';
 import Stack from '@mui/material/Stack';
 import StarIcon from '@mui/icons-material/Star';
 import tmdbConfigs from 'api/configs/tmdb.configs';
@@ -37,25 +38,33 @@ export const SectionMoviesList = ({ movies }) => {
                         src={tmdbConfigs.posterImage(path)}
                         alt={title}
                         className={css.image}
+                        onError={e => {
+                          e.target.onerror = null;
+                          if (e.target.src !== imageNotFound) {
+                            e.target.src = null;
+                            e.target.src = imageNotFound;
+                          }
+                        }}
                       />
-                      <div className={css.description}></div>
-                      <Stack spacing={1} className={css.rating}>
-                        <p
-                          style={{
-                            ...modeConfig.style.textColorAccent[themeMode],
-                          }}
-                          className={css.rating__text}
-                        >
-                          {rating?.toFixed(1)}
-                        </p>
-                        <StarIcon
-                          fontSize="medium"
-                          style={{
-                            ...modeConfig.style.textColorAccent[themeMode],
-                          }}
-                          className={css.rating__icon}
-                        />
-                      </Stack>
+                      <div className={css.description}>
+                        <Stack spacing={1} className={css.rating}>
+                          <p
+                            style={{
+                              ...modeConfig.style.textColorAccent[themeMode],
+                            }}
+                            className={css.rating__text}
+                          >
+                            {rating?.toFixed(1)}
+                          </p>
+                          <StarIcon
+                            fontSize="medium"
+                            style={{
+                              ...modeConfig.style.textColorAccent[themeMode],
+                            }}
+                            className={css.rating__icon}
+                          />
+                        </Stack>
+                      </div>
                       <div className={css.card__tumb}>
                         <p
                           style={{

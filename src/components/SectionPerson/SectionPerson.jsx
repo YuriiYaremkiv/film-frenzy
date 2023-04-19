@@ -44,7 +44,6 @@ export const SectionPerson = ({ personInfo }) => {
       <section className={css.section}>
         <div className="container">
           <div className={css.container}>
-            {/* Image container - start */}
             <div className={css.container__image}>
               <img
                 src={tmdbConfigs.personDetailImage(path)}
@@ -96,9 +95,7 @@ export const SectionPerson = ({ personInfo }) => {
                 </li>
               </ul>
             </div>
-            {/* Image container - end */}
 
-            {/* Description container - start */}
             <div className={css.contaner__description}>
               <h2 style={{ ...modeConfig.textColor[themeMode] }}>{name}</h2>
               <h3 style={{ ...modeConfig.textColor[themeMode] }}>Biography</h3>
@@ -126,7 +123,6 @@ export const SectionPerson = ({ personInfo }) => {
               </ul>
             </div>
           </div>
-          {/* Description container - end */}
         </div>
       </section>
     </>

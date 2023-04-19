@@ -1,10 +1,7 @@
-import PropTypes from 'prop-types';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 import { IconContext } from 'react-icons';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-
 import css from './MovieDetail.module.scss';
 
 export const MovieDetail = ({ movieInfo }) => {
@@ -76,20 +73,4 @@ export const MovieDetail = ({ movieInfo }) => {
       <Outlet />
     </div>
   );
-};
-
-MovieDetail.propTypes = {
-  movieInfo: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    poster_path: PropTypes.string.isRequired,
-  }),
 };
