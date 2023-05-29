@@ -181,7 +181,7 @@ export const SectionSearch = () => {
                 now.
               </h3>
 
-              <Media queries={{ small: { maxWidth: 767 } }}>
+              {/* <Media queries={{ small: { maxWidth: 767 } }}>
                 {matches =>
                   matches.small ? (
                     <div style={{ position: 'relative' }}>
@@ -217,7 +217,7 @@ export const SectionSearch = () => {
                     </div>
                   )
                 }
-              </Media>
+              </Media> */}
             </div>
           </div>
         </div>

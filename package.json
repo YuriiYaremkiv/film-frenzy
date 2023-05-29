@@ -2,7 +2,7 @@
   "name": "movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yyaremkiv/movies/",
+  "homepage": "https://yyaremkiv.github.io/film-frenzy/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
