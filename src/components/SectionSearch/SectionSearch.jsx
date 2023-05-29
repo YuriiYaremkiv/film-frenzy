@@ -1,39 +1,16 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router';
-import debounce from 'lodash/debounce';
-import Media from 'react-media';
-import { MyInputSearch } from 'components/MyListSearch/MyListSearch';
-import {
-  getQueryMoviesList,
-  getQueryMoviesListRemove,
-} from 'redux/transactions/transactionsOperations';
-import { getSearchMedia } from 'redux/search/searchOperations';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
-import { InputSearchMultiMobile } from 'components/InputSearchMultiMobile/InputSearchMultiMobile';
-import { InputSearchMultiTablet } from 'components/InputSearchMultiTablet/InputSearchMultiTablet';
 import mediaApi from 'api/modules/media.api';
 import tmdbConfigs from 'api/configs/tmdb.configs';
 import modeConfig from 'configs/mode.config';
 import css from './SectionSearch.module.scss';
 
 export const SectionSearch = () => {
-  const [query, setQuery] = useState('');
-  const [showClearBtn, setShowClearBtn] = useState(false);
-  const [showList, setShowList] = useState(true);
-  const inputRef = useRef(null);
-  const dispatch = useDispatch();
   const [posterMovies, setPosterMovies] = useState([]);
-  const [redirectToSearch, setRedirectToSearch] = useState(false);
   const { themeMode } = useSelector(state => state.themeMode);
-  const isLoading = useSelector(state => state.movies.isLoading);
-  const list = useSelector(state => state.movies.list);
-
-  useEffect(() => {
-    setShowList(true);
-  }, [list]);
 
   useEffect(() => {
     (async () => {
@@ -49,55 +26,6 @@ export const SectionSearch = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    if (query.length > 0) {
-      dispatch(getQueryMoviesList(query));
-    } else {
-      dispatch(getQueryMoviesListRemove());
-    }
-    // eslint-disable-next-line
-  }, [query]);
-
-  const handleInputChange = e => {
-    setQuery(e.target.value);
-    if (e.target.value) {
-      setShowClearBtn(true);
-    } else {
-      setShowClearBtn(false);
-    }
-  };
-
-  // eslint-disable-next-line
-  const throttledChangeHandler = useCallback(
-    debounce(handleInputChange, 500),
-    []
-  );
-
-  const handleClearSearch = () => {
-    inputRef.current.focus();
-    inputRef.current.value = '';
-    dispatch(getQueryMoviesListRemove());
-    setShowClearBtn(false);
-  };
-
-  const handleShowList = () => {
-    setShowList(false);
-  };
-
-  const handleSearchMovies = () => {
-    if (!inputRef.current.value) {
-      return;
-    }
-    dispatch(
-      getSearchMedia({
-        searchType: tmdbConfigs.mediaType.movie,
-        query: inputRef.current.value,
-        page: 1,
-      })
-    );
-    setRedirectToSearch(true);
-  };
-
   const params = {
     modules: [Autoplay],
     speed: 2000,
@@ -109,10 +37,6 @@ export const SectionSearch = () => {
     slidesPerView: 1,
     grabCursor: false,
   };
-
-  if (redirectToSearch) {
-    return <Navigate to="/search" />;
-  }
 
   return (
     <section className={css.section}>
@@ -180,44 +104,6 @@ export const SectionSearch = () => {
                 Millions of movies, TV shows and people to discover. Explore
                 now.
               </h3>
-
-              {/* <Media queries={{ small: { maxWidth: 767 } }}>
-                {matches =>
-                  matches.small ? (
-                    <div style={{ position: 'relative' }}>
-                      <InputSearchMultiMobile
-                        inputRef={inputRef}
-                        throttledChangeHandler={throttledChangeHandler}
-                        showClearBtn={showClearBtn}
-                        handleClearSearch={handleClearSearch}
-                        handleSearchMovies={handleSearchMovies}
-                        handleShowList={handleShowList}
-                      />
-                      <MyInputSearch
-                        options={list}
-                        showList={showList}
-                        isLoading={isLoading}
-                      />
-                    </div>
-                  ) : (
-                    <div style={{ position: 'relative' }}>
-                      <InputSearchMultiTablet
-                        inputRef={inputRef}
-                        throttledChangeHandler={throttledChangeHandler}
-                        showClearBtn={showClearBtn}
-                        handleClearSearch={handleClearSearch}
-                        handleSearchMovies={handleSearchMovies}
-                        handleShowList={handleShowList}
-                      />
-                      <MyInputSearch
-                        options={list}
-                        showList={showList}
-                        isLoading={isLoading}
-                      />
-                    </div>
-                  )
-                }
-              </Media> */}
             </div>
           </div>
         </div>
